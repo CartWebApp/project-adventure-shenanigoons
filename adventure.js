@@ -3,17 +3,18 @@ const options = document.getElementById('options');
 const input = document.getElementById('input');
 const submit = document.getElementById('submit');
 
-function StoryObject(text, options, scenes, path, secret) {
+function StoryObject(text, options, scenes, path, item, secret) {
     this.text = text;
     this.options = options;
     this.scenes = scenes;
     this.path = path;
+    this.item = item;
     this.secret = secret;
 }
 
 let inventory = {
     supersize: false
-}
+};
 
 const story = new StoryObject(
     'You are taking out the trash at your job from good burger when hatsune miku appears in a doctor strange type portal and kicks master oogway out of her universe. She is real intimidating and master oogway tells you to go after her before she escapes',
@@ -49,24 +50,28 @@ const story = new StoryObject(
                             `Miku's face lights up with a childlike wonder. "S... Supersize?" she asks. "Dang right" You clarify. She eats her supersized meal as her heart grows three sizes. "Hey kid. You can get loads of these burgers if you worked here." She demands a job immediatly. You see no threat in her voice, and it seems she has forgotten about the rest of this world completely. You now work with miku at good burger, and have a great time doing it.\nYOU REACHED THE GOOD BURGER ENDING\nOPEN SECRET`,
                             [],
                             []
-                        )], 0, {item: 'supersize', option: 'Supersize'}
+                        )], 0, null, { item: 'supersize', option: 'Supersize' }
                     )
                 ]
             )]
         ),
         // the debug path
-        new StoryObject(0, [], 0, [3, 0, 1])
+        new StoryObject(0, [], 0, [])
     ]
 );
 
 // prints text to screen and handles prompts
 StoryObject.prototype.run = function () {
     this.openSecrets();
-    
+
     text.innerHTML = this.text;
     options.innerHTML = '';
     for (option of this.options) {
         options.innerHTML += `<li>${option}</li>`
+    }
+
+    if (this.item) {
+        inventory[this.item] = true;
     }
 
     let object = this;
@@ -117,6 +122,7 @@ StoryObject.prototype.findPath = function () {
     return followPath(this.parent, this.path.slice());
 }
 
+// add secret option if applicable
 StoryObject.prototype.openSecrets = function () {
     if (this.secret) {
         if (inventory[this.secret.item]) {
