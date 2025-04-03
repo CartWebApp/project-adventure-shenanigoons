@@ -44,7 +44,7 @@ const story = new StoryObject(
                     new StoryObject(0, [], 0, []),
                     new StoryObject(
                         `Shifu looks flabbergasted. He never even considered that you wouldn't try to save your world. Miku portals in and grabs Shifu. Shifu: "H-How? How did you know I was here?". Miku: "I was hiding in your wifi". Miku chucks Shifu through a portal and looks at you. Miku: "Could I have a good burger meal?"`,
-                        ['Supersize'],
+                        [],
                         [new StoryObject(
                             `Miku's face lights up with a childlike wonder. "S... Supersize?" she asks. "Dang right" You clarify. She eats her supersized meal as her heart grows three sizes. "Hey kid. You can get loads of these burgers if you worked here." She demands a job immediatly. You see no threat in her voice, and it seems she has forgotten about the rest of this world completely. You now work with miku at good burger, and have a great time doing it.\nYOU REACHED THE GOOD BURGER ENDING\nOPEN SECRET`,
                             [],
@@ -54,6 +54,7 @@ const story = new StoryObject(
                 ]
             )]
         ),
+        // the debug path
         new StoryObject(0, [], 0, [3, 0, 1])
     ]
 );
@@ -125,7 +126,7 @@ StoryObject.prototype.openSecrets = function () {
 }
 
 story.addParents();
-// story.run();
+story.run();
 
 // Debug Path
-story.scenes[4].findPath().run();
+// story.scenes[4].findPath().run();
