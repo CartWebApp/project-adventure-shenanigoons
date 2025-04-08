@@ -93,12 +93,12 @@ const story = {
                     {},
                     {
                         text: `Shifu looks flabbergasted. He never even considered that you wouldn't try to save your world. Miku portals in and grabs Shifu. Shifu: "H-How? How did you know I was here?". Miku: "I was hiding in your wifi". Miku chucks Shifu through a portal and looks at you. Miku: "Could I have a good burger meal?"`,
-                        options: [],
+                        options: [`Sure man. It's on the house`, `Nah`],
                         scenes: [{
                             text: `Miku's face lights up with a childlike wonder. "S... Supersize?" she asks. "Dang right" You clarify. She eats her supersized meal as her heart grows three sizes. "Hey kid. You can get loads of these burgers if you worked here." She demands a job immediatly. You see no threat in her voice, and it seems she has forgotten about the rest of this world completely. You now work with miku at good burger, and have a great time doing it. <br><br>YOU REACHED THE GOOD BURGER ENDING <br><br>OPEN SECRET`,
                             ending: true
                         }],
-                        secret: { item: `supersize`, option: `Supersize` }
+                        secret: { item: `supersize`, option: `Wanna Supersize that?` }
                     }
                 ]
             },

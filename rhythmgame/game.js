@@ -145,7 +145,7 @@ myBody.addEventListener(`keyup`, function (e) {
 });
 
 
-
+// don't need to understand lol
 function drawLaneLines() {
     const ctx = myGameArea.context;
     const laneWidth = myGameArea.canvas.width / 4;
@@ -161,6 +161,27 @@ function drawLaneLines() {
         ctx.stroke();
     }
 }
+
+
+
+    const laneIndex = Math.floor(Math.random() * spawnLanes.length);
+    const spawnX = spawnLanes[laneIndex];
+
+
+    
+    myObstacles.push(new component(67.5, 100, "green", spawnX, 0));
+
+
+
+
+
+
+
+
+
+    nextSpawnInterval = getRandomSpawnInterval(); // reset for next spawn
+
+
 
 function updateGameArea() {
     let x, height, gap, minHeight, maxHeight, minGap, maxGap;
@@ -209,26 +230,27 @@ function updateGameArea() {
     myGameArea.clear();
     drawLaneLines(); // draw the lane dividers
     myGameArea.frameNo += 1;
-    if (myGameArea.frameNo === 1 || myGameArea.frameNo % nextSpawnInterval === 0) {
-        x = myGameArea.canvas.width;
-        // minHeight = 20;
-        // maxHeight = 200;
-        // height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+    // if (myGameArea.frameNo === 1 || myGameArea.frameNo % nextSpawnInterval === 0) {
+    //     x = myGameArea.canvas.width;
+    //     // minHeight = 20;
+    //     // maxHeight = 200;
+    //     // height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
 
 
 
 
-        // section for making game objects
+    //     // section for making game objects
 
 
-        const laneIndex = Math.floor(Math.random() * spawnLanes.length);
-        const spawnX = spawnLanes[laneIndex];
-        let sillyObstacles = myObstacles.push(new component(67.5, 100, "green", spawnX, 0));
-        nextSpawnInterval = getRandomSpawnInterval(); // reset for next spawn
+        
+    //     // myObstacles.push(new component(10, height, "green", x, 0));
 
-        // myObstacles.push(new component(10, height, "green", x, 0));
+    // }
 
-    }
+    
+
+
+
     for (i = 0; i < myObstacles.length; i += 1) {
 
 
