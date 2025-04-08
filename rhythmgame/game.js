@@ -51,7 +51,7 @@ function component(width, height, color, x, y, type) {
     this.x = x;
     this.y = y;
     this.hit = false;
-    this.speedY = 10;
+    this.speedY = 6;
 
     // gonna be honest idk how this works
     this.update = function () {
@@ -223,7 +223,7 @@ function updateGameArea() {
 
         const laneIndex = Math.floor(Math.random() * spawnLanes.length);
         const spawnX = spawnLanes[laneIndex];
-        let sillyObstacles = myObstacles.push(new component(67.5, 70, "green", spawnX, 0));
+        let sillyObstacles = myObstacles.push(new component(67.5, 100, "green", spawnX, 0));
         nextSpawnInterval = getRandomSpawnInterval(); // reset for next spawn
 
         // myObstacles.push(new component(10, height, "green", x, 0));
