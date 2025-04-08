@@ -14,3 +14,52 @@ canvas {
     height: fit-content;
     margin-bottom: 16dvh;
 }
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* { 
+    font-family: "Poppins", sans-serif;
+    color: white;
+}
+
+body { 
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(4, 4, 37);
+    height: 100dvh;
+    width: 100dvw;
+}
+
+#gameHolder { 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    width: 80%;
+}
+
+#textContainer { 
+    display: flex;
+    width: 70%;
+    background: linear-gradient(to left, rgb(1, 2, 50), rgb(32, 11, 11));
+    padding: 1rem;
+    color: white;
+    border-radius: 15px;
+}
+input {
+    color: black;
+    
+}
+
+button {
+    background-color: rgb(34, 34, 138);
+    padding: .5rem 1rem;
+    border-radius: 15px;
+    outline: none;
+    border: none;
+}

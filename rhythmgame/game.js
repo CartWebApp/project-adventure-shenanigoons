@@ -13,6 +13,8 @@ let keyJustPressed, keyJustPressed2, keyJustPressed3, keyJustPressed4 = false
 
 const spawnLanes = [0, 67, 135, 203]; // approx. evenly spaced
 
+
+
 function startGame() {
     myGamePiece = new component(66.5, 2, "red", 0, 400);
     myGamePiece2 = new component(66.5, 2, "red", 68, 400);
@@ -25,6 +27,15 @@ function startGame() {
     myScore = new component("30px", "Consolas", "black", 0, 90, "text");
     missCountDisplay = new component("30px", "Consolas", "black", 0, 120, "text");
     myGameArea.start();
+
+
+    
+    const music = document.getElementById("bgMusic");
+    music.currentTime = 0;
+    music.play();
+
+    
+    setTimeout(startObstacles(), 50);
 }
 
 let myGameArea = {
@@ -164,22 +175,71 @@ function drawLaneLines() {
 
 
 
-    const laneIndex = Math.floor(Math.random() * spawnLanes.length);
-    const spawnX = spawnLanes[laneIndex];
-
-
     
-    myObstacles.push(new component(67.5, 100, "green", spawnX, 0));
+        let d = spawnLanes[0];
+        let f = spawnLanes[1];
+        let j = spawnLanes[2];
+        let k = spawnLanes[3];
+
+
+        const baseTime = 468.75;
+
+        const timings = [];
+        const laneList = [];
+
+        let currentTimeStep = 1;
+        while (currentTimeStep * baseTime < 60000) {
+            const spawnTime = currentTimeStep * baseTime;
+            timings.push(spawnTime);
+
+            // Generate lane patterns based on current position
+            const rand = Math.random();
+
+            if (rand < 0.2) {
+                // Jump
+                const left = spawnLanes[Math.floor(Math.random() * 2)]; // d or f
+                const right = spawnLanes[2 + Math.floor(Math.random() * 2)]; // j or k
+                laneList.push(left);
+                timings.push(spawnTime); // duplicate timing for jump
+                laneList.push(right);
+            } else if (rand < 0.5) {
+                // Roll or trill
+                const startLane = spawnLanes[Math.floor(Math.random() * 4)];
+                laneList.push(startLane);
+                currentTimeStep += 0.5;
+                timings.push(currentTimeStep * baseTime);
+                laneList.push(startLane);
+            } else {
+                // Single note, vary lanes
+                const lane = spawnLanes[Math.floor(Math.random() * 4)];
+                laneList.push(lane);
+            }
+
+            // Time step increment: 1 or 1.5 randomly
+            currentTimeStep += Math.random() < 0.5 ? 1 : 1.5;
+        }
+
+   
+
+        function pushObstacle(lane) {
+            myObstacles.push(new component(67.5, 100, "green", lane, 0));
+        }
+        
+
+
+
+        
+        function startObstacles() {
+            for (let i = 0; i < timings.length; i++) {
+                setTimeout(() => {
+                    pushObstacle(laneList[i]);
+                }, timings[i]);
+            }
+        }
 
 
 
 
-
-
-
-
-
-    nextSpawnInterval = getRandomSpawnInterval(); // reset for next spawn
 
 
 
@@ -230,23 +290,24 @@ function updateGameArea() {
     myGameArea.clear();
     drawLaneLines(); // draw the lane dividers
     myGameArea.frameNo += 1;
-    // if (myGameArea.frameNo === 1 || myGameArea.frameNo % nextSpawnInterval === 0) {
-    //     x = myGameArea.canvas.width;
-    //     // minHeight = 20;
-    //     // maxHeight = 200;
-    //     // height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+    if (myGameArea.frameNo === 1 || myGameArea.frameNo % nextSpawnInterval === 0) {
+        x = myGameArea.canvas.width;
+        // minHeight = 20;
+        // maxHeight = 200;
+        // height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
 
 
 
 
-    //     // section for making game objects
+        // section for making game objects
+        const laneIndex = Math.floor(Math.random() * spawnLanes.length);
+        const spawnX = spawnLanes[laneIndex];
 
+       
+        // myObstacles.push(new component(10, height, "green", x, 0));
 
-        
-    //     // myObstacles.push(new component(10, height, "green", x, 0));
-
-    // }
-
+    }
+    nextSpawnInterval = getRandomSpawnInterval(); // reset for next spawn
     
 
 
