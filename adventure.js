@@ -32,8 +32,15 @@ const image = document.getElementById(`image`);
 */
 
 const inventory = {
-    
+
 };
+
+const relationshipBlunders = {
+    teto: 0,
+    gabriel: 0,
+    walter: 0,
+    iceBear: 0
+}
 
 const story = {
     text: `The night shift at Good Burger was supposed to be uneventful. The parking lot was empty, the distant hum of traffic the only sound as you hauled a garbage bag toward the dumpster. Then, the air changed.
@@ -90,11 +97,108 @@ const story = {
                 text: `You shake your head and walk back inside Good Burger. Flipping patties is way safer than fighting an anime pop goddess. Just as you settle back in, a portal bursts open inside the restaurant. Master Shifu stumbles out, eyes wild. “WHAT ARE YOU DOING?!” He launches into a desperate rant about Miku’s reign of terror—how she’s ravaged his world, abolished privacy, and turned society into a dystopian nightmare. “Please,” he begs, gripping your uniform. “We need you.” He stares at you, waiting for an answer. `,
                 options: ["Fine, I`ll join you", `No`],
                 scenes: [
-                    {},
+                    {
+                        text: `You are in front of the miku home base (the miku-scraper). It appears like she's already started to take over your world. Your companion explains that miku has set up a field around the skyscraper to block any portals from opening inside`,
+                        options: [`Continue`],
+                        scenes: [{
+                            text: `Shifu knows that Miku is too powerful to take on alone. He knows of a few high level guards inside the building, and thinks you both would be able to convince that group to join you both and lay siege on Miku. You don't share his optimism, but you let him lead the way. You both walk in the front door of the miku-scraper to see a group of guards having a potluck on the ground floor. They recognize Shifu, and clamor around him, greeting him, dapping him up and the like. Shifu talks about your plans to stop Miku's takeover, and the clamoring stops. "Now that just ain't gonna happen" Peter Griffin interjects.`,
+                            options: [`Oh ok I'll just do it myself then`, `Think of the lives at stake!`, `It'd be funny`],
+                            scenes: [{
+                                text: `"You insult me, kid. LeBron, do your thing" As Peter says this, LeBron flies over to you from a corner in the room. He picks you up and flies you to the top of the skyscraper. "G'bye kid. This is just part of the job description" He drops you. YOU DIE`,
+                                ending: true
+                            }, {
+                                text: `As you say this, your vision cuts. You see a broken world, where people are both scared to die and be alive. There are posters of Miku's face everywhere. Upon closer inspection, the posters seem to have a surveillance system built into them. Everyone in this world is terrified. Your vision cuts back, and you look around. Everyone seems to have had the same vision as you. "You have to warn us before you use a cutaway gag" Shifu scolds. "I've told you before," Peter Griffin explains, "I can't control them. But this was quite enlightening."`,
+                                options: [`Continue`],
+                                scenes: [{
+                                    text: `Peter says, "I'll set up a vote in the guards' high council regarding a siege on Miku. You have my vote, of course, but you'll have to convince the others." You see him step over to a corner where many guards are. Most guards seem taken aback by this proposition. You see four high ranking guards besides Peter in that corner, all of them eyeing you both. You'll only need to convince two of them to get a majority vote.<br><br>If you lose 3 relationship points that person’s vote is locked out and cannot be accessed again.`,
+                                    options: [`Continue`],
+                                    scenes: [{
+                                        text: `Who do you approach?`
+                                    }]
+                                }]
+                            }, {
+                                text: `It's not funny to lose my job, kid. You know what it's like, don't you? Being stuck in a job you hate? I have access to your file. I know you've been working at that good burger for over 15 years. You don't like your job, just like me, but it's what we must do to survive.`,
+                                options: [`I am NOTHING like you`, `wait but i love good burger`],
+                                scenes: [{ path: ['p', 0] }, {
+                                    text: `Peter sighs. "I don't understand you. You've been working at that job for over half your life, without promotion or change of any kind. You've lived off of minimum wage for 15 full years! Doesn't that wear you down! Doesn't that make you wanna change! I bet you haven't even heard of a supersized meal." Admittedly, you haven't heard of a supersize meal. Peter sighs once more. "Hey kid. I may be overstepping my boundaries, but I like your spunk. It takes real guts to even think you can take Miku down. And I guess I feel sympathetic because I relate to you. Lemme teach you how to supersize a meal"`,
+                                    options: [`Nah I'm good. Thanks tho!`, `Yes please!`],
+                                    scenes: [{
+                                        text: `Suit yourself, kid`,
+                                        options: [`Continue`],
+                                        scenes: [{
+                                            path: ['p', 'p', 'p', 1, 0]
+                                        }]
+                                    }, {
+                                        text: `Peter teaches you how to supersize a good burger meal. You now know how to supersize!`,
+                                        options: [`Continue`],
+                                        item: 'supersize',
+                                        scenes: [{
+                                            path: ['p', 'p', 'p', 1, 0]
+                                        }]
+                                    }]
+                                }]
+                            }]
+                        }]
+                    },
                     {
                         text: `Shifu looks flabbergasted. He never even considered that you wouldn't try to save your world. Miku portals in and grabs Shifu. Shifu: "H-How? How did you know I was here?". Miku: "I was hiding in your wifi". Miku chucks Shifu through a portal and looks at you. Miku: "Could I have a good burger meal?"`,
                         options: [`Sure man. It's on the house`, `Nah`],
                         scenes: [{
+                            text: `Miku says, “Mmm… Yeah this is mid af"`,
+                            options: [`Continue`],
+                            scenes: [{ path: ['p', 1] }]
+                        }, {
+                            text: `Miku grabs you and throws you through a portal. "I thought you'd be smarter than that", Miku says, "It's a shame, really. Maybe this will teach you a lesson." You are in a prison.
+                            You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension, you begin to question if its because miku is hiding in everyone's wifi, thus providing wifi for everyone.  
+                            The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way.  
+                            Knowing that Miku is on her way, through the fortunately slow wifi, you join up with Earth's heroes, and warn them of Miku's destructive power.`,
+                            options: [`Continue`],
+                            scenes: [{
+                                text: `On your way out, the door is closed, and a hooded man is guarding the door in which the heroes came through. He says, "You know, God gave me a gift to do other things besides play the game of basketball." Feeling this man's aura, you realize that he is the GOAT, he is LeBron James. He asks you, "where do you think you're going?"`,
+                                options: [`I'm gonna end Miku's reign once and for all! She needs to realize that this world is not hers!`, `Sorry, my GOAT, I did not know you were the guard here, I’ll go back…`],
+                                scenes: [{
+                                    text: `You seem like a baller, kid, and you're honest. I respect that. I'm gonna give you some advice that Warren Buffet once told me, he said, "always follow your gut. When you have that gut feeling, you have to go with it, don't go back on it.  
+                                    (LeBron grabs you and your team, dunks you and your team through a portal to the top floor of the Miku scraper). 
+                                    You land atop the Miku scraper, seeing the manaical vocaloid sitting atop a throne facing away from you, toward the now dystopian city, a city you once knew to be yours. You say to your gang, "Maybe she doesn't know we're here." As you say these words, World is Mine starts playing from all around you, and her throne spins 540 degrees (she accidentally 360'd, then finally turned it around correctly) "Of course I know you're here, kid, I've been hiding in your wifi, waiting for your attempt at retribution."`,
+                                    options: [`Surrender`, `Fight Hatsune Miku`],
+                                    scenes: [{
+                                        text: `Feeling her magical power, you feel completely oppressed, you say to your team, "we can't do this, nobody on this Earth is powerful enough." The team looks at each other and nods amongst themselves, and approach Miku. All thoughts of attempting to fight Miku have vanished, you've made peace with your life without Good Burger."We would like to serve you, to become your personal strike team" You? You weaklings? What do you have to offer me, I could do just fine without you. Who responds?`,
+                                        options: [`DanTDM`, `Markiplier`],
+                                        scenes: [{
+                                            text: `DanTDM replies, hoping that he will say the right thing, "Make me a sandwich, woman!" Miku is completely surprised that he would say such a thing. She looks you dead in the eyes. "Do you condone this?"`,
+                                            options: [`Yep!`, `NAH`],
+                                            scenes: [{
+                                                text: `Holding a leek, Miku casts a killing spell upon you, "AVADA KADAVRA", your group is completely obliterated YOU DIED`,
+                                                ending: true
+                                            }, {
+                                                text: `"You decided to team up with him, you have to take responsiblity for who you choose to associate with!" "ONE TWO THREE MIKU MIKU BEAM" You and your team are vanquished and not a molecule is left YOU DIED`,
+                                                ending: true
+                                            }]
+                                        }, {
+                                            text: `Markiplier replies, knowing exactly what to say, "Hello everybody, my name is Markiplier". The aura that came out of this statement was the most the world has ever seen, besides Satoru Gojo of course. Miku is taken aback, seeing this amount of aura truly impressed her. Because of this, she was moved. "Why, what a great offer, I can see why you chose this side of the war, you're the smart ones..." Miku addresses you, "I'm on top of the world, because of you." "You have untapped power, and I knew that if I didn't take this chance, I would not be able to make this world mine."  You thank Miku for this generous offer, and tell her, "All I wanted to do, is follow you" YOU HAVE REACHED THE UNDERLING ENDING`,
+                                            ending: true
+                                        }]
+                                    }, {
+                                        text: `PewDiePie unleashes his long range punch, dazing Miku, and Markiplier gets ready for an attack. DanTDM takes this opportunity, when shes dazed, to fly in and swing his diamond sword at Miku, slicing her leek wand in half. Stampy joins the fray, trying to charm Miku for you to do the final attack, this of course, doesn't work. Hatsune Miku came prepared, nobody can charm Miku the way Teto could... Enraged by this, Mikuattacks your team, leaving them all injured but you. You go to attack Miku in a one on one, and she challenges you to a one versus one in a rhythm game. It all comes down to this, the world depends on you.`,
+                                        options: ['Continue'],
+                                        scenes: [{
+                                            // Rhythm game
+                                        }]
+                                    }]
+                                }, {
+                                    text: `LeBron says, "Yeah, sure ahaha, just make sure that you take care of your mattress covers (winks)"
+                                    You start walking back to your designated cell area, and while you're walking back, you think about what he was saying, and you begin to get confused. You think to yourself, why would he say that?`,
+                                    options: [`Go back to LeBron`, `Go back to your cell`],
+                                    scenes: [{ path: ['p'] }, {
+                                        text: `You and the heroes return to the cell, and you try to go to sleep, feeling defeated. 
+                                        As you're trying to fall asleep, you're moving around on your mattress, and feel something underneath the mattress, which was preventing you from sleeping. You find, "The Drip."`,
+                                        options: [`Continue`],
+                                        item: `drip`,
+                                        scenes: [{ path: ['p', 'p'] }]
+                                    }]
+                                }]
+                            }]
+                        }, {
                             text: `Miku's face lights up with a childlike wonder. "S... Supersize?" she asks. "Dang right" You clarify. She eats her supersized meal as her heart grows three sizes. "Hey kid. You can get loads of these burgers if you worked here." She demands a job immediatly. You see no threat in her voice, and it seems she has forgotten about the rest of this world completely. You now work with miku at good burger, and have a great time doing it. <br><br>YOU REACHED THE GOOD BURGER ENDING <br><br>OPEN SECRET`,
                             ending: true
                         }],
@@ -146,14 +250,14 @@ const story = {
                                         text: `You begin to imitate Steven Universe. "Miku... this isn't like you!" Miku, to be frank, is insulted that you would ever say such a thing and Miku Miku beams you on the spot.<br><br>YOU DIE`,
                                         ending: true
                                     }]
-                                },{
+                                }, {
                                     // rhythm game
                                 }]
                             }]
                         }, {
                             text: `You walk up the staircase with Master Oogway to see a group of high level intimidating guards on the ground floor`,
                             options: [`Continue`],
-                            secret: {item: `drip`, option: `Whip out the drip`},
+                            secret: { item: `drip`, option: `Whip out the drip` },
                             scenes: [{
                                 text: `Without warning, they attack, giving no time for you to think. This must have been why Oogway said to avoid this floor. You have learned your lesson.<br><br>YOU DIE`,
                                 ending: true
@@ -166,7 +270,7 @@ const story = {
                                 }, {
                                     text: `Peter says, "No worries kid.  But if you're trying to get to Miku, go down and take the elevator."`,
                                     options: [`Take the elevator`],
-                                    scenes: [{path: ['p', 'p', 'p', 2]}]
+                                    scenes: [{ path: ['p', 'p', 'p', 2] }]
                                 }]
                             }]
                         }]
@@ -175,7 +279,7 @@ const story = {
             }]
         },
         // the debug pathway
-        { path: [3, 1, 0, 0] }
+        { path: [3, 0, 0, 0, 1, 0] }
     ]
 };
 
@@ -197,11 +301,14 @@ Object.prototype.run = function () {
     if (this.item) {
         inventory[this.item] = true;
     }
+    if (this.blunder) {
+        relationshipBlunders[this.blunder]++;
+    }
 
     let object = this;
 
     submit.addEventListener(`click`, function select() {
-        if (input.value < object.options.length && input.value >= 0 && input.value) {
+        if (input.value < object.options.length && input.value >= 0 && input.value && !object.scenes[input.value].locked) {
             submit.removeEventListener(`click`, select);
 
             if (!('scenes' in object.scenes[input.value]) && !object.scenes[input.value].ending) {
@@ -254,6 +361,8 @@ Object.prototype.openSecrets = function () {
         }
     }
 }
+
+Object.prototype
 
 story.addParents();
 story.run();
