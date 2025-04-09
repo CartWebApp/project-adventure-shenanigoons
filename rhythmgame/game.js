@@ -4,39 +4,50 @@ let myObstacles = [];
 let myScore;
 let myBody = document.querySelector(`body`)
 let scoreCounter = 0;
-
+let comboDisplay;
 let missCounter = 0;
-let nextSpawnInterval = getRandomSpawnInterval();
+// let laneList;
 
 let keyPressed, keyPressed2, keyPressed3, keyPressed4 = false;
 let keyJustPressed, keyJustPressed2, keyJustPressed3, keyJustPressed4 = false
 
-const spawnLanes = [0, 67, 135, 203]; // approx. evenly spaced
+const music = document.getElementById("bgMusic");
 
+const spawnLanes = [0, 68, 136, 204]; // approx. evenly spaced
 
+let nextNoteIndex = 0;
+let gameStartTime = null;
 
 function startGame() {
+    document.getElementById(`startBtn`).remove();
     myGamePiece = new component(66.5, 2, "red", 0, 400);
     myGamePiece2 = new component(66.5, 2, "red", 68, 400);
     myGamePiece3 = new component(66.5, 2, "red", 135.5, 400);
     myGamePiece4 = new component(66.5, 2, "red", 203, 400);
     theLine = new component(270, 2, "red", 0, 400); //this doesnt do anything yet lol
 
-
-
     myScore = new component("30px", "Consolas", "black", 0, 90, "text");
     missCountDisplay = new component("30px", "Consolas", "black", 0, 120, "text");
+    comboDisplay = new component("30px", "Consolas", "black", 0, 150, "text");
+
+    nextNoteIndex = 0;
+    lastFrameTime = null;
+
     myGameArea.start();
 
-
+    setTimeout(() => {
+        music.currentTime = 0;
+        music.volume = 0.4;
+        setTimeout(() => {
+            music.play();
+        }, 130);
+        gameStartTime = performance.now(); // start tracking audio sync from this point
+    }, 1000); // 1000ms = 1 second
     
-    const music = document.getElementById("bgMusic");
-    music.currentTime = 0;
-    music.play();
 
-    
-    setTimeout(startObstacles(), 50);
 }
+
+let lastFrameTime = null;
 
 let myGameArea = {
     canvas: document.createElement("canvas"),
@@ -46,12 +57,15 @@ let myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
-        this.interval = setInterval(updateGameArea, 20);
+        requestAnimationFrame(updateGameArea);
     },
     clear: function () {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
-}
+};
+
+
+
 // el component maker
 function component(width, height, color, x, y, type) {
     this.type = type;
@@ -62,7 +76,7 @@ function component(width, height, color, x, y, type) {
     this.x = x;
     this.y = y;
     this.hit = false;
-    this.speedY = 6;
+    this.speedY = 2.9;
 
     // gonna be honest idk how this works
     this.update = function () {
@@ -109,13 +123,6 @@ function component(width, height, color, x, y, type) {
     }
 }
 
-
-
-
-
-
-
-
 // ALL ME BABY LETS GO 
 myBody.addEventListener(`keydown`, function (e) {
     if (e.key === `d` && !keyPressed) {
@@ -135,15 +142,6 @@ myBody.addEventListener(`keydown`, function (e) {
         keyJustPressed4 = true; // mark this as a new press
     }
 });
-
-
-
-
-
-
-
-
-
 
 // ALL ME BABY RAHHH
 myBody.addEventListener(`keyup`, function (e) {
@@ -173,174 +171,204 @@ function drawLaneLines() {
     }
 }
 
+       
+        // staircase (to right): d, f, j, k
+        // staircase (to left): k, j, f, d
+        // crisscross (on left): k, d, f  
+
+        //harder 
 
 
-    
+
+
+
+
+        
+
+        
+
         let d = spawnLanes[0];
         let f = spawnLanes[1];
         let j = spawnLanes[2];
         let k = spawnLanes[3];
 
+        // const timings = [1, 2, 3, 4,   6, 7, 8,  10, 11, 12, 13,  15, 16, 17,  19, 19, 20,  21, 21, 22,   23, 23];
+        // const laneList = [d, f, j, k,   d, f, d,   k, j, f, d,    k, j, k,     k, d, f,     k, d, j,      k, d];  
 
-        const baseTime = 468.75;
+        // const timings = [3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+        // const laneList = [d, d, d, d, d, d, d, d, d, d, d, d];
 
+        const z = 468.75;     
+        const b = z/2;  
+
+
+        
+       
+        let p = 2;
+        const laneList = [`d1`, `f1`, `j1`, `k1`,   `d1`, `f1`, `d1`,   `k2`, `j1`, `f1`, `d1`,    `k1`, `j1`, `k1`,     `k2`, `d0`, `f1`,     `k2`, `d0`, `j1`,      `k1`, `d1`];  
+        // const laneList = [`d1`, `f1`, `j1`, `k1`];
         const timings = [];
-        const laneList = [];
-
-        let currentTimeStep = 1;
-        while (currentTimeStep * baseTime < 60000) {
-            const spawnTime = currentTimeStep * baseTime;
-            timings.push(spawnTime);
-
-            // Generate lane patterns based on current position
-            const rand = Math.random();
-
-            if (rand < 0.2) {
-                // Jump
-                const left = spawnLanes[Math.floor(Math.random() * 2)]; // d or f
-                const right = spawnLanes[2 + Math.floor(Math.random() * 2)]; // j or k
-                laneList.push(left);
-                timings.push(spawnTime); // duplicate timing for jump
-                laneList.push(right);
-            } else if (rand < 0.5) {
-                // Roll or trill
-                const startLane = spawnLanes[Math.floor(Math.random() * 4)];
-                laneList.push(startLane);
-                currentTimeStep += 0.5;
-                timings.push(currentTimeStep * baseTime);
-                laneList.push(startLane);
-            } else {
-                // Single note, vary lanes
-                const lane = spawnLanes[Math.floor(Math.random() * 4)];
-                laneList.push(lane);
-            }
-
-            // Time step increment: 1 or 1.5 randomly
-            currentTimeStep += Math.random() < 0.5 ? 1 : 1.5;
+        for (let i = 0; i < laneList.length; i++) {
+            const obstacle = laneList[i];
+        
+            p = Number(obstacle[1]) + p;
+            timings.push(p)
+            console.log(p);
         }
+        
+        console.log(timings);
+        console.log(laneList);
+        console.log(laneList[nextNoteIndex][0]);
+        //easier
 
-   
+             
+ 
+        // const timings = [1, 1.5, 1.5, 1.5,    2, 2, 3]
+        // const laneList = [d, f, j, k,   d, f, d];  
+        let combo = 1; 
 
+        
         function pushObstacle(lane) {
-            myObstacles.push(new component(67.5, 100, "green", lane, 0));
+            myObstacles.push(new component(66, 110, "green", lane, 0));
         }
         
 
+        // function startObstacles() {
+        //     for (let i = 0; i < timings.length; i++) {
+        //         setTimeout(() => {
+        //             pushObstacle(laneList[i]);
+        //         }, b*timings[i]);
+        //     }
+        // }
+
+// Schroeder's Test
+/* 
+
+let p = 0;
+
+const laneList = [1d, 1f, 1j, 1k,   1d, 1f, 1d,   2k, 1j, 1f, 1d,    1k, 1j, 1k,     2k, 0d, 1f,     1k, 0d, 1j,      1k, 0d];
+
+for (let i = laneList.length - 1; i>= 0, i--;) {
+    const obstacle = laneList[i];
+
+    p = obstacle[0] + p;
+    for (let o = 0; o < laneList.length; o) {
+            timings.push(p)
+        }
+    
+
+}
+*/
 
 
-        
-        function startObstacles() {
-            for (let i = 0; i < timings.length; i++) {
-                setTimeout(() => {
-                    pushObstacle(laneList[i]);
-                }, timings[i]);
-            }
+
+
+
+
+`d`
+d
+
+
+
+function updateGameArea(timestamp) {
+    if (!lastFrameTime) lastFrameTime = timestamp;
+    const elapsed = (timestamp - lastFrameTime) / 1000;
+    lastFrameTime = timestamp;
+
+    myGameArea.clear();
+    drawLaneLines();
+
+    const currentTime = gameStartTime ? (performance.now() - gameStartTime) / 1000 : 0;
+
+    
+    // the new startobstacles
+    while (nextNoteIndex < timings.length && currentTime >= (b*timings[nextNoteIndex])/1000) {
+
+        // Get the character (like 'd', 'f', etc.)
+        const laneChar = laneList[nextNoteIndex][0];
+
+        // Map it to a lane position
+        let laneX;
+        switch (laneChar) {
+            case 'd': laneX = d; break;
+            case 'f': laneX = f; break;
+            case 'j': laneX = j; break;
+            case 'k': laneX = k; break;
+            default:
+                console.warn(`Unknown lane: ${laneChar}`);
+                laneX = 0;
         }
 
+        // Then push the obstacle in that lane
+        pushObstacle(laneX);
+        nextNoteIndex++;
+    }
 
-
-
-
-
-
-function updateGameArea() {
-    let x, height, gap, minHeight, maxHeight, minGap, maxGap;
+    // Move and draw all obstacles
     for (let i = myObstacles.length - 1; i >= 0; i--) {
         const obstacle = myObstacles[i];
 
-        // if red collides and key is pressed
+        if (obstacle.y > myGameArea.canvas.height) {
+            missCounter++;
+            combo = 1;
+            myObstacles.splice(i, 1);
+            continue;
+        }
+        
+
         if (myGamePiece.crashWith(obstacle) && keyJustPressed && !obstacle.hit) {
-            scoreCounter += 100;
+            scoreCounter += 100*(combo);
+            combo += 1;
             obstacle.hit = true;
             myObstacles.splice(i, 1);
             continue; // skip the rest of the loop for this one
+            
         }
         if (myGamePiece2.crashWith(obstacle) && keyJustPressed2 && !obstacle.hit) {
-            scoreCounter += 100;
+            scoreCounter += 100*(combo);
+            combo += 1;
             obstacle.hit = true;
             myObstacles.splice(i, 1);
             continue; // skip the rest of the loop for this one
         }
         if (myGamePiece3.crashWith(obstacle) && keyJustPressed3 && !obstacle.hit) {
-            scoreCounter += 100;
+            scoreCounter += 100*(combo);
+            combo += 1;
             obstacle.hit = true;
             myObstacles.splice(i, 1);
             continue; // skip the rest of the loop for this one
         }
         if (myGamePiece4.crashWith(obstacle) && keyJustPressed4 && !obstacle.hit) {
-            scoreCounter += 100;
+            scoreCounter += 100*(combo);
+            combo += 1;
             obstacle.hit = true;
             myObstacles.splice(i, 1);
             continue; // skip the rest of the loop for this one
         }
-
-
-        // if it falls off the bottom, count as a miss
-        if (obstacle.y > myGameArea.canvas.height) {
-            missCounter++;
-            myObstacles.splice(i, 1);
-            continue;
-        }
-
+        // Collision detection logic remains the same
+        // (your code that checks crashWith and updates score goes here)
+        
 
         obstacle.newPos();
         obstacle.update();
     }
 
-    myGameArea.clear();
-    drawLaneLines(); // draw the lane dividers
-    myGameArea.frameNo += 1;
-    if (myGameArea.frameNo === 1 || myGameArea.frameNo % nextSpawnInterval === 0) {
-        x = myGameArea.canvas.width;
-        // minHeight = 20;
-        // maxHeight = 200;
-        // height = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-
-
-
-
-        // section for making game objects
-        const laneIndex = Math.floor(Math.random() * spawnLanes.length);
-        const spawnX = spawnLanes[laneIndex];
-
-       
-        // myObstacles.push(new component(10, height, "green", x, 0));
-
-    }
-    nextSpawnInterval = getRandomSpawnInterval(); // reset for next spawn
-    
-
-
-
-    for (i = 0; i < myObstacles.length; i += 1) {
-
-
-        myObstacles[i].newPos();
-        myObstacles[i].update();
-    }
-    myScore.text = "SCORE: " + scoreCounter;
-    myScore.update();
-    missCountDisplay.text = "MISSES: " + missCounter;
-    missCountDisplay.update();
-    // myGamePiece.newPos();
     myGamePiece.update();
     myGamePiece2.update();
     myGamePiece3.update();
     myGamePiece4.update();
-    keyJustPressed = false;
-    keyJustPressed2 = false;
-    keyJustPressed3 = false;
-    keyJustPressed4 = false;
+
+    myScore.text = "SCORE: " + scoreCounter;
+    comboDisplay.text = "COMBO: " + (combo - 1);
+    missCountDisplay.text = "MISSES: " + missCounter;
+
+    myScore.update();
+    comboDisplay.update();
+    missCountDisplay.update();
+
+    // Reset keys for one-time press detection
+    keyJustPressed = keyJustPressed2 = keyJustPressed3 = keyJustPressed4 = false;
+
+    requestAnimationFrame(updateGameArea);
 }
 
-function everyinterval(n) {
-    if ((myGameArea.frameNo / n) % 1 == 0) { return true; }
-    return false;
-}
-function getRandomSpawnInterval() {
-    const min = 10;
-    const max = 20;
-    const step = 5;
-    const range = Math.floor((max - min) / step) + 1;
-    return min + (Math.floor(Math.random() * range) * step);
-}
