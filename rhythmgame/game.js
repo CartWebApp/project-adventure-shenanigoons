@@ -7,28 +7,37 @@ let scoreCounter = 0;
 let comboDisplay;
 let missCounter = 0;
 // let laneList;
-
+// let canvWidth = 270;
+let canvWidth = 400;
+let canvHeight = canvWidth*(16/9);
+// let canvHeight = 480;
 let keyPressed, keyPressed2, keyPressed3, keyPressed4 = false;
 let keyJustPressed, keyJustPressed2, keyJustPressed3, keyJustPressed4 = false
 
 const music = document.getElementById("bgMusic");
 
-const spawnLanes = [0, 68, 136, 204]; // approx. evenly spaced
+// const spawnLanes = [0, 68, 136, 204]; // approx. evenly spaced
+let lane0 = 1;
+let lane1 = (canvWidth*(1.01/4));
+let lane2 = ((canvWidth*2.015/4));
+let lane3 = (canvWidth*(3.02/4));
+const spawnLanes = [lane0, lane1, lane2, lane3];
 
 let nextNoteIndex = 0;
 let gameStartTime = null;
-
+let redWidth = canvWidth*(.9851/4);
+let redHeight = canvHeight*.83333;
 function startGame() {
     document.getElementById(`startBtn`).remove();
-    myGamePiece = new component(66.5, 2, "red", 0, 400);
-    myGamePiece2 = new component(66.5, 2, "red", 68, 400);
-    myGamePiece3 = new component(66.5, 2, "red", 135.5, 400);
-    myGamePiece4 = new component(66.5, 2, "red", 203, 400);
-    theLine = new component(270, 2, "red", 0, 400); //this doesnt do anything yet lol
+    myGamePiece = new component(redWidth, 2, "red", lane0, redHeight);
+    myGamePiece2 = new component(redWidth, 2, "red", lane1, redHeight);
+    myGamePiece3 = new component(redWidth, 2, "red", lane2, redHeight);
+    myGamePiece4 = new component(redWidth, 2, "red", lane3, redHeight);
+    // theLine = new component(270, 2, "red", 0, 400); //this doesnt do anything yet lol
 
-    myScore = new component("30px", "Consolas", "black", 0, 90, "text");
-    missCountDisplay = new component("30px", "Consolas", "black", 0, 120, "text");
-    comboDisplay = new component("30px", "Consolas", "black", 0, 150, "text");
+    myScore = new component("30px", "Consolas", "white", 0, 90, "text");
+    missCountDisplay = new component("30px", "Consolas", "white", 0, 120, "text");
+    comboDisplay = new component("30px", "Consolas", "white", 0, 150, "text");
 
     nextNoteIndex = 0;
     lastFrameTime = null;
@@ -40,7 +49,7 @@ function startGame() {
         music.volume = 0.05;
         setTimeout(() => {
             music.play();
-        }, 130);
+        }, 250);
         gameStartTime = performance.now(); // start tracking audio sync from this point
     }, 1000); // 1000ms = 1 second
     
@@ -48,12 +57,11 @@ function startGame() {
 }
 
 let lastFrameTime = null;
-
 let myGameArea = {
     canvas: document.createElement("canvas"),
     start: function () {
-        this.canvas.width = 270;
-        this.canvas.height = 480;
+        this.canvas.width = canvWidth;
+        this.canvas.height = canvHeight;
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.frameNo = 0;
@@ -76,7 +84,9 @@ function component(width, height, color, x, y, type) {
     this.x = x;
     this.y = y;
     this.hit = false;
-    this.speedY = 12;
+    this.speedY = 750;
+    this.speedY = canvHeight*(55/48);
+    // this.speedY = 550;
 
     // gonna be honest idk how this works
     this.update = function () {
@@ -91,8 +101,8 @@ function component(width, height, color, x, y, type) {
             ctx.fillRect(this.x, this.y, this.width, this.height);
         }
     }
-    this.newPos = function () {
-        this.y += this.speedY;
+    this.newPos = function (deltaTime) {
+        this.y += this.speedY * deltaTime;
         this.hitBottom();
     }
     this.hitBottom = function () {
@@ -240,23 +250,18 @@ function drawLaneLines() {
         
             p = Number(obstacle[1]) + p;
             timings.push(p)
-            console.log(p);
+            
         }
-        
-        console.log(timings);
-        console.log(laneList);
-        console.log(laneList[nextNoteIndex][0]);
         //easier
-
-             
  
         // const timings = [1, 1.5, 1.5, 1.5,    2, 2, 3]
         // const laneList = [d, f, j, k,   d, f, d];  
         let combo = 1; 
-
+        let noteWidth = canvWidth*(.9703/4);
+        let noteHeight = Math.floor(canvHeight*(.229166))
         
         function pushObstacle(lane) {
-            myObstacles.push(new component(66, 110, "aqua", lane, 0));
+            myObstacles.push(new component(noteWidth, noteHeight, "aqua", lane, 0));
         }
         
 
@@ -299,6 +304,7 @@ for (let i = laneList.length - 1; i>= 0, i--;) {
 function updateGameArea(timestamp) {
     if (!lastFrameTime) lastFrameTime = timestamp;
     const elapsed = (timestamp - lastFrameTime) / 1000;
+    const deltaTime = elapsed; // already in seconds from your existing logic
     lastFrameTime = timestamp;
 
     myGameArea.clear();
@@ -375,7 +381,7 @@ function updateGameArea(timestamp) {
         // (your code that checks crashWith and updates score goes here)
         
 
-        obstacle.newPos();
+        obstacle.newPos(deltaTime);
         obstacle.update();
     }
 
