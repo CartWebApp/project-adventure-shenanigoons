@@ -76,7 +76,7 @@ function component(width, height, color, x, y, type) {
     this.x = x;
     this.y = y;
     this.hit = false;
-    this.speedY = 2.9;
+    this.speedY = 12;
 
     // gonna be honest idk how this works
     this.update = function () {
