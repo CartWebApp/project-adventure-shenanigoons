@@ -37,7 +37,7 @@ function startGame() {
 
     setTimeout(() => {
         music.currentTime = 0;
-        music.volume = 0.4;
+        music.volume = 0.05;
         setTimeout(() => {
             music.play();
         }, 130);
@@ -205,7 +205,34 @@ function drawLaneLines() {
         
        
         let p = 2;
-        const laneList = [`d1`, `f1`, `j1`, `k1`,   `d1`, `f1`, `d1`,   `k2`, `j1`, `f1`, `d1`,    `k1`, `j1`, `k1`,     `k2`, `d0`, `f1`,     `k2`, `d0`, `j1`,      `k1`, `d1`];  
+        const laneList = [
+            `d1`, `d1`, `d1`, `d1`, 
+            `d1`, `f1`, `j1`, `k1`, 
+            `j1`, `f1`, `k1`, `d1`, 
+
+            `j1`, `f0`, `j1`, `f0`, 
+            `j1`, `f0`,
+
+            `k1`, `k1`, `k1`, `k1`,
+            `k1`, `k1`, `j1`, `f1`,
+            `d1`, `f1`, `d1`, `k1`,
+
+            `d3`, `k1`, `d1`, `k1`, 
+            `j0`, `d2`, `f0`, `k2`, 
+            `j0`, `d2`, `f0`, `d2`,
+            `k1`, `j1`, `f1`,
+
+            `d2`, `k1`, `d1`, `f1`,
+            `j0`, `d2`, `k0`, `f2`,
+            `j0`, `d2`, `k0`, `j2`,
+            `k1`, `d1`, `f1`,
+
+            `k2`, `d1`, `k1`
+
+
+
+
+        ];  
         // const laneList = [`d1`, `f1`, `j1`, `k1`];
         const timings = [];
         for (let i = 0; i < laneList.length; i++) {
@@ -229,7 +256,7 @@ function drawLaneLines() {
 
         
         function pushObstacle(lane) {
-            myObstacles.push(new component(66, 110, "green", lane, 0));
+            myObstacles.push(new component(66, 110, "aqua", lane, 0));
         }
         
 
@@ -265,8 +292,7 @@ for (let i = laneList.length - 1; i>= 0, i--;) {
 
 
 
-`d`
-d
+
 
 
 
