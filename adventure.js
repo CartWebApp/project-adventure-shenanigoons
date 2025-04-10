@@ -39,7 +39,8 @@ const relationshipBlunders = {
     teto: 0,
     gabriel: 0,
     walter: 0,
-    iceBear: 0
+    iceBear: 0,
+    john: 0
 }
 
 const story = {
@@ -113,6 +114,7 @@ const story = {
                                     text: `Peter says, "I'll set up a vote in the guards' high council regarding a siege on Miku. You have my vote, of course, but you'll have to convince the others." You see him step over to a corner where many guards are. Most guards seem taken aback by this proposition. You see four high ranking guards besides Peter in that corner, all of them eyeing you both. You'll only need to convince two of them to get a majority vote.<br><br>If you lose 3 relationship points that person’s vote is locked out and cannot be accessed again.`,
                                     options: [`Continue`],
                                     scenes: [{
+                                        // who do you approach is here
                                         text: `Who do you approach?`
                                     }]
                                 }]
@@ -283,6 +285,31 @@ const story = {
     ]
 };
 
+const test = {
+    text: `You and john stare deeply into each others eyes. You don't want to ruin the moment, but you are afraid that if you stay silent for too long things may become slightly awkward. What do you do?`,
+    options: [`Yell "HAIRPIN, RESONANCE!!"`, `Stay silent`, `Eat a lil food`],
+    scenes: [{
+        text: `John gets the refrence and chuckles a little, but is very confused. Stuffs a lil' awkward now :(<br>-1 relationship point`,
+        options: [`Continue`],
+        blunder: { name: 'john', count: 1 },
+        scenes: [{ path: ['p'] }],
+        lock: {
+            paths: [{ path: [] }, { path: ['P', 1] }, { path: ['P', 2] }], condition: () => (relationshipBlunders.john >= 3), scene: {
+                path: ['P']
+            }
+        }
+    }, {
+        text: `John appreciates the silence, and bestows upon you the entirety of the country of France in gratitude`,
+        options: [`Continue`],
+        scenes: [{ path: ['p'] }]
+    }, {
+        text: `You try to eat food, but forget that you're at a UN conference instead of a dinner, and start gnawing on the table. John is disgusted by your disgraceful conduct<br>-3 relationship points!!!`,
+        blunder: { name: 'john', count: 3 },
+        options: ['Continue'],
+        scenes: [{ path: ['p'] }]
+    }]
+}
+
 // prints text to screen and handles prompts
 Object.prototype.run = function () {
     this.openSecrets();
@@ -302,24 +329,37 @@ Object.prototype.run = function () {
         inventory[this.item] = true;
     }
     if (this.blunder) {
-        relationshipBlunders[this.blunder]++;
+        relationshipBlunders[this.blunder.name] += this.blunder.count;
     }
 
-    let object = this;
-
-    submit.addEventListener(`click`, function select() {
-        if (input.value < object.options.length && input.value >= 0 && input.value && !object.scenes[input.value].locked) {
-            submit.removeEventListener(`click`, select);
-
-            if (!('scenes' in object.scenes[input.value]) && !object.scenes[input.value].ending) {
-                object.scenes[input.value].findPath().run();
-            } else {
-                object.scenes[input.value].run();
-            }
-
-            input.value = null;
+    if (this.lock && this.lock.condition()) {
+        for (target of this.lock.paths) {
+            target.findPath().locked = true;
         }
-    })
+        if ('path' in this.lock.scene) {
+            this.lock.scene.findPath().run();
+        } else {
+            this.lock.scene.run();
+        }
+    } else {
+        let object = this;
+        submit.addEventListener(`click`, function select() {
+            if (input.value < object.options.length && input.value >= 0 && input.value && !object.scenes[input.value].locked) {
+                submit.removeEventListener(`click`, select);
+
+                if (!('scenes' in object.scenes[input.value]) && !object.scenes[input.value].ending) {
+                    object.scenes[input.value].findPath().run();
+                } else {
+                    object.scenes[input.value].run();
+                }
+
+                input.value = null;
+            }
+            if (input.value < object.options.length && input.value >= 0 && input.value && 'locked' in object.scenes[input.value] && object.scenes[input.value].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                text.innerHTML += `<br><br>That path is locked!`;
+            }
+        })
+    }
 }
 
 // adds parents to all the objects
@@ -332,15 +372,24 @@ Object.prototype.addParents = function () {
             scene.addParents();
         }
     }
+    if ('lock' in this) {
+        for (path of this.lock.paths) {
+            path.parent = this;
+        }
+        this.lock.scene.parent = this;
+    }
 }
 
 // useful for going up or down the line multiple times
 // returns the object the path leads to
 // paths look like [`p`] for parent, or [0] for zero index
-// so a path like [`p`, 0] will return the parent`s first scene
+// so a path like [`p`, 0] will return the parent's first scene
 Object.prototype.findPath = function () {
     function followPath(object, path) {
-        if (path[0] === `p`) {
+        if (path[0] === `P`) {
+            path.shift();
+            return followPath(story, path);
+        } else if (path[0] === `p`) {
             path.shift();
             return followPath(object.parent, path);
         } else if (path.length === 0) {
@@ -361,8 +410,6 @@ Object.prototype.openSecrets = function () {
         }
     }
 }
-
-Object.prototype
 
 story.addParents();
 story.run();
