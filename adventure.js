@@ -44,18 +44,10 @@ const relationshipBlunders = {
 }
 
 const story = {
-    text: `The night shift at Good Burger was supposed to be uneventful. The parking lot was empty, the distant hum of traffic the only sound as you hauled a garbage bag toward the dumpster. Then, the air changed.
-    A deep hum vibrated through the lot, and with a sudden crack, a portal tore open above the dumpster, swirling with neon blue energy. Inside, two figures clashed—Master Oogway, standing firm, and Hatsune Miku, a streak of turquoise light moving with impossible speed.
-    <br><br> “You do not belong here,” Oogway said, deflecting a strike with his staff.
-    <br><br> Miku’s teal eyes gleamed. “And you do?”
-    <br><br> She unleashed a wave of energy, sharp crescents of sound cutting through the air. Oogway spun his staff, dispersing them, but she was already gone—a blur that reappeared above him. Her foot crashed into his shell, a burst of cyan energy erupting on impact.
-    With a resounding crash, Oogway was blasted from the portal, spinning through the air before slamming into the Good Burger dumpster. The lid slammed shut. A lone soda cup rolled onto the pavement.
-    You froze, gripping the garbage bag like it was your last defense. The portal still crackled with energy. On the other side, Miku’s gaze shifted from the fallen Oogway… to you.
-    <br><br> From inside the dumpster, Oogway’s muffled voice weakly urged, “Go… after her…”
-    <br><br> Miku stepped forward, crossing into your world.
-    You had no choice.`,
-    options: [`Stay paralyzed, stunned with fear `, `Go after her `, `You exclaim, “What is going on!?” `],
-    image: `absolute-sekai.webp`,
+    text: `Miku steps forward, crossing into your world`,
+    cutscene: [{text: `The night shift at Good Burger was supposed to be uneventful. The parking lot was empty, the distant hum of traffic the only sound as you hauled a garbage bag toward the dumpster. Then, the air changed.`, image: `images/first-cutscene/1.jpg`}, {text: `A deep hum vibrated through the lot, and with a sudden crack, a portal tore open above the dumpster, swirling with neon blue energy. Inside, two figures clashed—Master Oogway, standing firm, and Hatsune Miku, a streak of turquoise light moving with impossible speed.`, image: `images/first-cutscene/2.jpg`}, {text: `“You do not belong here,” Oogway said, deflecting a strike with his staff.`, image: `images/first-cutscene/3.jpg`}, {text: `Miku’s teal eyes gleamed. “And you do?”`, image: `images/first-cutscene/4.jpg`}, {text: `She unleashed a wave of energy, sharp crescents of sound cutting through the air. Oogway spun his staff, dispersing them, but she was already gone—a blur that reappeared above him. Her foot crashed into his shell, a burst of cyan energy erupting on impact.`, image: `images/first-cutscene/5.jpg`}, {text: `With a resounding crash, Oogway was blasted from the portal, spinning through the air before slamming into the Good Burger dumpster.`, image: `images/first-cutscene/6.jpg`}, {text: `You froze, gripping the garbage bag like it was your last defense. The portal still crackled with energy. On the other side, Miku’s gaze shifted from the fallen Oogway… to you.`, image: `images/first-cutscene/7.jpg`}, {text: `From inside the dumpster, Oogway’s muffled voice weakly urged, “Go… after her…”`, image: `images/first-cutscene/8.jpg`, last: true}],
+    options: [`Stay paralyzed, stunned with fear`, `Go after her`, `“What is going on!?”`],
+    image: `images/first-cutscene/9.jpg`,
     scenes: [
         {
             text: `You couldn’t move. You couldn’t speak.
@@ -314,52 +306,83 @@ const test = {
 Object.prototype.run = function () {
     this.openSecrets();
 
-    text.innerHTML = this.text;
-    options.innerHTML = ``;
-    if ('options' in this) {
-        for (option of this.options) {
-            options.innerHTML += `<li>${option}</li>`
+    if (`cutscene` in this && !this.cutsceneRan) {
+        this.cutscene[0].runScene(this, 0);
+    } else {
+        text.innerHTML = this.text;
+        options.innerHTML = ``;
+        if ('options' in this) {
+            for (option of this.options) {
+                options.innerHTML += `<li>${option}</li>`
+            }
+        }
+        
+        if ('image' in this) {
+            image.src = this.image;
+        }
+    
+        if (this.item) {
+            inventory[this.item] = true;
+        }
+        if (this.blunder) {
+            relationshipBlunders[this.blunder.name] += this.blunder.count;
+        }
+    
+        if (this.lock && this.lock.condition()) {
+            for (target of this.lock.paths) {
+                target.findPath().locked = true;
+            }
+            if ('path' in this.lock.scene) {
+                this.lock.scene.findPath().run();
+            } else {
+                this.lock.scene.run();
+            }
+        } else {
+            let object = this;
+            submit.addEventListener(`click`, function select() {
+                if (input.value < object.options.length && input.value >= 0 && input.value && !object.scenes[input.value].locked) {
+                    submit.removeEventListener(`click`, select);
+    
+                    if (object.cutsceneRan) {
+                        delete object.cutsceneRan;
+                    }
+    
+                    if (!('scenes' in object.scenes[input.value]) && !object.scenes[input.value].ending) {
+                        object.scenes[input.value].findPath().run();
+                    } else {
+                        object.scenes[input.value].run();
+                    }
+    
+                    input.value = null;
+                }
+                if (input.value < object.options.length && input.value >= 0 && input.value && 'locked' in object.scenes[input.value] && object.scenes[input.value].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                    text.innerHTML += `<br><br>That path is locked!`;
+                }
+            })
         }
     }
-    if ('image' in this) {
+}
+
+Object.prototype.runScene = function (parent, i) {
+    text.innerHTML = this.text;
+    if (`image` in this) {
         image.src = this.image;
     }
 
-    if (this.item) {
-        inventory[this.item] = true;
-    }
-    if (this.blunder) {
-        relationshipBlunders[this.blunder.name] += this.blunder.count;
-    }
+    options.innerHTML = `<li>Continue</li>`;
 
-    if (this.lock && this.lock.condition()) {
-        for (target of this.lock.paths) {
-            target.findPath().locked = true;
-        }
-        if ('path' in this.lock.scene) {
-            this.lock.scene.findPath().run();
+    let scene = this;
+    submit.addEventListener(`click`, function select() {
+        submit.removeEventListener(`click`, select);
+
+        if (scene.last) {
+            parent.cutsceneRan = true;
+            parent.run();
         } else {
-            this.lock.scene.run();
+            i++;
+            parent.cutscene[i].runScene(parent, i);
         }
-    } else {
-        let object = this;
-        submit.addEventListener(`click`, function select() {
-            if (input.value < object.options.length && input.value >= 0 && input.value && !object.scenes[input.value].locked) {
-                submit.removeEventListener(`click`, select);
-
-                if (!('scenes' in object.scenes[input.value]) && !object.scenes[input.value].ending) {
-                    object.scenes[input.value].findPath().run();
-                } else {
-                    object.scenes[input.value].run();
-                }
-
-                input.value = null;
-            }
-            if (input.value < object.options.length && input.value >= 0 && input.value && 'locked' in object.scenes[input.value] && object.scenes[input.value].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                text.innerHTML += `<br><br>That path is locked!`;
-            }
-        })
-    }
+    })
 }
 
 // adds parents to all the objects
