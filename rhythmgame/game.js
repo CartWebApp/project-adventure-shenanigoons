@@ -241,12 +241,97 @@ function drawLaneLines() {
 
             `j1`, `k1`, `d1`, `f1`,
             `d1`, `k2`, `j2`, `d2`,
-            `f2`, `d2`, `k1`, `f1`,
-            `d1`, `j1`, `k0`, `d1`,
-            `f0`
+            `f2`, 
+            //anyone can find me (25sec)
+            `d2`, `k1`, `f1`, `d1`,
+            `j1`, `f1`, `d2`, `k1`,
+            `f1`, `j1`, `d1`, `k2`,
+            //running through my mind (29sec)
+            `k2`, `j1`, `f1`, `d1`,
+            `k1`,
+            //im thinking
+            `f1`, `j1`, `k1`,
+            //miku miku (31sec)
+            `d1`, `k2`, `d2`, `k2`,
+            //oo ee oo
+            `d2`, `k1`, `j1`, `f1`,
+            //im thinking
+            `k2`, `j1`, `f1`, 
+            //miku miku (34sec)
+            `k1`, `d2`, `k2`, `d2`,
+            //oo ee oo 
+            `k2`, `d1`, `j1`, `f1`,
 
+            `d2`, `f1`, `k1`, `j1`,
 
+            `f1`, `j1`, `f1`, `k1`,
+            `d1`, `k1`, `d1`,
+            //oo ee oo
+            `j1`, `f1`, `j1`, `f1`
+            //musica -> im thinking
+            `j1`, `k1`, `j1`, `d1`
+            //miku miku 
+            `j1`, `k1`, `k1`, `j1`,
+            `f1`, `d1`, `d1`, `f1`,
+            //oo ee oo
+            `k1`, `f1`, `d1`, `d1`,
+            //musica
+            `d2`, `k1`, `d1`,
+            //im on 
+            `k1`, `j2`, 
+            //top of the world (46sec)
+            `f1`, `d1`, `j1`, `k1`,
+            //because of you
+            `d3`, `k2`, `j1`, `d1`,
+            //all i 
+            `k2`, `f0`, 
+            `j2`, `d0`,
+            
+            `f2`, `k1`, `j1`, `d1`,
 
+            `d3`, `f2`, `j1`, `k1`,
+
+            `k2`, `j2`, 
+            
+            `f2`, `d1`, `f1`, `j1`,
+
+            `j2`, `f2`, `k1`, `j1`,
+            `f2`, `f2`,
+            `f2`, `j1`, `k1`, `j1`,
+            `d1`, `f1`,
+            `k1`, `j1`, `f1`, 
+            //im thinking (1min)
+            `k1`, `f1`, `j1`, 
+            //miku miku
+            `k1`, `d0`,
+            `j2`,
+            `k2`, `d0`, 
+            `f2`, 
+            //oo ee oo
+            `j2`, `k1`, `f1`, `d1`,
+            //im thinking 
+            `f2`, `j1`, `k1`, 
+            //miku miku
+            `d1`, `f1`, `k1`,
+            `d1`, `k1`, `j1`, `d1`,
+            `k1`, 
+            //oo ee oo
+            `f1`, `j1`, `f1`, 
+            `d1`,
+            //im thinking
+            `k2`, `j1`, `f1`,
+            //miku miku
+            `k1`, `j1`, `d1`,
+
+            `d2`, `f1`, `k1`,
+
+            `f2`, `j1`, `d1`, `k1`,
+            //im thinking 
+            `f2`, `k1`, `j1`, `f1`,
+            `j1`, `d1`, `j2`, `f1`,
+            `k1`,
+            // 
+            `j2`, `f1`, `k1`, `d1`
 
 
         ];  
