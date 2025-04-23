@@ -1,7 +1,5 @@
 const text = document.getElementById(`text`);
 const options = document.getElementById(`options`);
-const input = document.getElementById(`input`);
-const submit = document.getElementById(`submit`);
 const image = document.getElementById(`image`);
 
 // I'm templating it I'm templating it I'm templating it I'm templating it I'm templating it I'm templating it 
@@ -32,7 +30,7 @@ const image = document.getElementById(`image`);
 */
 
 const inventory = {
-
+    
 };
 
 const relationshipBlunders = {
@@ -45,7 +43,7 @@ const relationshipBlunders = {
 
 const story = {
     text: `Miku steps forward, crossing into your world`,
-    cutscene: [{text: `The night shift at Good Burger was supposed to be uneventful. The parking lot was empty, the distant hum of traffic the only sound as you hauled a garbage bag toward the dumpster. Then, the air changed.`, image: `images/first-cutscene/1.jpg`}, {text: `A deep hum vibrated through the lot, and with a sudden crack, a portal tore open above the dumpster, swirling with neon blue energy. Inside, two figures clashed—Master Oogway, standing firm, and Hatsune Miku, a streak of turquoise light moving with impossible speed.`, image: `images/first-cutscene/2.jpg`}, {text: `“You do not belong here,” Oogway said, deflecting a strike with his staff.`, image: `images/first-cutscene/3.jpg`}, {text: `Miku’s teal eyes gleamed. “And you do?”`, image: `images/first-cutscene/4.jpg`}, {text: `She unleashed a wave of energy, sharp crescents of sound cutting through the air. Oogway spun his staff, dispersing them, but she was already gone—a blur that reappeared above him. Her foot crashed into his shell, a burst of cyan energy erupting on impact.`, image: `images/first-cutscene/5.jpg`}, {text: `With a resounding crash, Oogway was blasted from the portal, spinning through the air before slamming into the Good Burger dumpster.`, image: `images/first-cutscene/6.jpg`}, {text: `You froze, gripping the garbage bag like it was your last defense. The portal still crackled with energy. On the other side, Miku’s gaze shifted from the fallen Oogway… to you.`, image: `images/first-cutscene/7.jpg`}, {text: `From inside the dumpster, Oogway’s muffled voice weakly urged, “Go… after her…”`, image: `images/first-cutscene/8.jpg`, last: true}],
+    cutscene: [{ text: `The night shift at Good Burger was supposed to be uneventful. The parking lot was empty, the distant hum of traffic the only sound as you hauled a garbage bag toward the dumpster. Then, the air changed.`, image: `images/first-cutscene/1.jpg` }, { text: `A deep hum vibrated through the lot, and with a sudden crack, a portal tore open above the dumpster, swirling with neon blue energy. Inside, two figures clashed—Master Oogway, standing firm, and Hatsune Miku, a streak of turquoise light moving with impossible speed.`, image: `images/first-cutscene/2.jpg` }, { text: `“You do not belong here,” Oogway said, deflecting a strike with his staff.`, image: `images/first-cutscene/3.jpg` }, { text: `Miku’s teal eyes gleamed. “And you do?”`, image: `images/first-cutscene/4.jpg` }, { text: `She unleashed a wave of energy, sharp crescents of sound cutting through the air. Oogway spun his staff, dispersing them, but she was already gone—a blur that reappeared above him. Her foot crashed into his shell, a burst of cyan energy erupting on impact.`, image: `images/first-cutscene/5.jpg` }, { text: `With a resounding crash, Oogway was blasted from the portal, spinning through the air before slamming into the Good Burger dumpster.`, image: `images/first-cutscene/6.jpg` }, { text: `You froze, gripping the garbage bag like it was your last defense. The portal still crackled with energy. On the other side, Miku’s gaze shifted from the fallen Oogway… to you.`, image: `images/first-cutscene/7.jpg` }, { text: `From inside the dumpster, Oogway’s muffled voice weakly urged, “Go… after her…”`, image: `images/first-cutscene/8.jpg`, last: true }],
     options: [`Stay paralyzed, stunned with fear`, `Go after her`, `“What is going on!?”`],
     image: `images/first-cutscene/9.jpg`,
     scenes: [
@@ -107,7 +105,63 @@ const story = {
                                     options: [`Continue`],
                                     scenes: [{
                                         // who do you approach is here
-                                        text: `Who do you approach?`
+                                        text: `Who do you approach?`,
+                                        options: [`A man with sunglasses and a hat`, `Twintailed drilly haired redhead`, `A polar bear`, `A curly haired man`],
+                                        scenes: [{
+                                            text: `You approach Walter White, and he eyes you catiously`,
+                                            options: [`We have to cook`, `Think of Walter White Jr.`],
+                                            scenes: [{
+                                                text: `With what lab? Miku stole my RV once I joined her army<br><br>-1 relationship point!`,
+                                                options: [`Continue`],
+                                                scenes: [{ path: [`p`] }, {
+                                                    text: `With what lab? Miku stole my RV once I joined her army<br><br>You know what, I'm tired of this. I'm voting against the rebellion<br><br>You lost Walter's vote!`,
+                                                    options: [`Continue`],
+                                                    scenes: [{ path: [`p`, `p`, `p`] }]
+                                                }],
+                                                blunder: { name: `walter`, count: 1 },
+                                                lock: {
+                                                    paths: [{ path: [`p`] }],
+                                                    condition: () => relationshipBlunders.walter >= 3,
+                                                    scene: { path: [1] }
+                                                }
+                                            }, {
+                                                text: `How could I forget? Under Miku's reign, he's in real danger. She really likes picking on disabled kids. The situation here is too dangerous to agitate it.`,
+                                                options: [`You can’t leave him to die, Walter!`, `Danger? I am the danger`],
+                                                scenes: [{
+                                                    text: `Walter is taken aback by this. "Who do you think you are?? To ask me for help, and insult ME in YOUR time of need? You're on thin ice, pal"<br><br>-2 relationship points!!`,
+                                                    options: [`Focus up Walter`],
+                                                    scenes: [{ path: [`p`] }, {
+                                                        text: `Walter is taken aback by this. "Who do you think you are?? To ask me for help, and insult ME in YOUR time of need? I'm done with you. I'm voting against the rebellion<br><br>You lost Walter's vote!`,
+                                                        options: [`Continue`],
+                                                        scenes: [{ path: [`p`, `p`, `p`, `p`] }]
+                                                    }],
+                                                    blunder: { name: `walter`, count: 2 },
+                                                    lock: {
+                                                        paths: [{ path: [`p`, `p`] }], condition: () => relationshipBlunders.walter >= 3, scene: { path: [1] }
+                                                    }
+                                                }, {
+                                                    text: `Say that again?`,
+                                                    options: [`Danger? I am the danger`],
+                                                    scenes: [{
+                                                        text: `flungoid?`,
+                                                        options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
+                                                        scenes: [{
+                                                            text: `You see Walter's face light up with a childlike wonder "I haven't heard those words in 14 years. Alright kid, you have my vote."<br><br>YOU HAVE WALTER'S VOTE!`,
+                                                            options: [`Continue`],
+                                                            scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }],
+                                                        }],
+                                                        item: 'walter',
+                                                        lock: {
+                                                            paths: [{ path: [`p`, `p`, `p`] }], condition: () => true, scene: { path: [0] }
+                                                        }
+                                                    }]
+                                                }]
+                                            }, {
+                                                text: `We have to cook! I know exactly where to use this. Come on, Pinkman. You find a remote village, and in this village you see a Barbaric King and an Archer Queen. Walter explains, “We need to cook". The monarchs lead you to a cave, showing you a massive vat of Dark Elixir. Not asking any questions, you fill a vial with this dark elixir, and you head back to Good Burger, with your new secret ingredient. YOU HAVE RETURNED WITH THE ELIXIR OPEN SECRET`,
+                                                ending: true
+                                            }],
+                                            secret: { item: `elixir-key`, option: `*pull out the elixir key* We HAVE to cook` }
+                                        }]
                                     }]
                                 }]
                             }, {
@@ -217,7 +271,7 @@ const story = {
                             text: `You gain an odd looking key. There is a container of a viscous purple fluid at the top of the key<br><br>OBTAINED ELIXER KEY`,
                             options: [`Continue`],
                             scenes: [{ path: ['p'] }],
-                            item: `elixer-key`
+                            item: `elixir-key`
                         }, {
                             text: `The map shows "you are here" in the basement. The map shows that the skyscraper is terribly unorganized, with a web diagram tangled over the whole thing showing many paths for portals. Oogway says this is an attempt at confusing any intruders, but he's seen many miku-scrapers in his day, so he'll guide you through this one easily. He points to the map and says it's best to take the elevator here`,
                             options: [`Continue`],
@@ -273,7 +327,7 @@ const story = {
             }]
         },
         // the debug pathway
-        { path: [3, 0, 0, 0, 1, 0] }
+        { path: [3, 0, 0, 0, 1, 0, 0] }
     ]
 };
 
@@ -314,21 +368,21 @@ Object.prototype.run = function () {
         if ('options' in this) {
             for (option of this.options) {
                 options.innerHTML += `<li>${option}</li>`
-                
+
             }
         }
-        
+
         if ('image' in this) {
             image.src = this.image;
         }
-    
+
         if (this.item) {
             inventory[this.item] = true;
         }
         if (this.blunder) {
             relationshipBlunders[this.blunder.name] += this.blunder.count;
         }
-    
+
         if (this.lock && this.lock.condition()) {
             for (target of this.lock.paths) {
                 target.findPath().locked = true;
@@ -340,26 +394,56 @@ Object.prototype.run = function () {
             }
         } else {
             let object = this;
-            submit.addEventListener(`click`, function select() {
-                if (input.value < object.options.length && input.value >= 0 && input.value && !object.scenes[input.value].locked) {
-                    submit.removeEventListener(`click`, select);
-    
-                    if (object.cutsceneRan) {
-                        delete object.cutsceneRan;
+
+            for (let i = 0; i < this.options.length; i++) {
+                options.children[i].addEventListener(`click`, function select() {
+                    if (!object.scenes[i].locked) {
+                        for (j = 0; j < object.options.length; j++) {
+                            options.children[j].removeEventListener(`click`, select);
+                        }
+
+                        if (object.cutsceneRan) {
+                            delete object.cutsceneRan;
+                        }
+
+                        if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
+                            object.scenes[i].findPath().run();
+                        } else {
+                            object.scenes[i].run();
+                        }
                     }
-    
-                    if (!('scenes' in object.scenes[input.value]) && !object.scenes[input.value].ending) {
-                        object.scenes[input.value].findPath().run();
-                    } else {
-                        object.scenes[input.value].run();
+                    if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                        text.innerHTML += `<br><br>That path is locked!`;
                     }
-    
-                    input.value = null;
-                }
-                if (input.value < object.options.length && input.value >= 0 && input.value && 'locked' in object.scenes[input.value] && object.scenes[input.value].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                    text.innerHTML += `<br><br>That path is locked!`;
-                }
-            })
+                })
+
+                document.addEventListener(`keydown`, function select(e) {
+                    if (e.key >= 0 && e.key < object.options.length) {
+                        document.removeEventListener(`keydown`, select);
+                        for (j = 0; j < object.options.length; j++) {
+                            options.children[j].removeEventListener(`click`, select);
+                        }
+                    }
+                    if (e.key == i + 1) {
+                        if (!object.scenes[i].locked) {
+                            document.removeEventListener(`keydown`, select);
+
+                            if (object.cutsceneRan) {
+                                delete object.cutsceneRan;
+                            }
+
+                            if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
+                                object.scenes[i].findPath().run();
+                            } else {
+                                object.scenes[i].run();
+                            }
+                        }
+                        if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                            text.innerHTML += `<br><br>That path is locked!`;
+                        }
+                    }
+                })
+            }
         }
     }
 }
@@ -373,8 +457,8 @@ Object.prototype.runScene = function (parent, i) {
     options.innerHTML = `<li>Continue</li>`;
 
     let scene = this;
-    submit.addEventListener(`click`, function select() {
-        submit.removeEventListener(`click`, select);
+    options.children[0].addEventListener(`click`, function select() {
+        options.children[0].removeEventListener(`click`, select);
 
         if (scene.last) {
             parent.cutsceneRan = true;
@@ -436,7 +520,7 @@ Object.prototype.openSecrets = function () {
 }
 
 story.addParents();
-story.run();
+// story.run();
 
 // Debug Path
-// story.scenes[4].findPath().run();
+story.scenes[4].findPath().run();
