@@ -390,16 +390,23 @@ for (let i = laneList.length - 1; i>= 0, i--;) {
 
 
 
+let maxCombo = 0;
 
 
-
-
+let body = document.querySelector(body);
+function gameEnd(misses, maxcombo) {
+    myGameArea = 0;
+    body.innerText += misses;
+    body.innerText += maxcombo;
+}
 
 function updateGameArea(timestamp) {
     if (!lastFrameTime) lastFrameTime = timestamp;
     const elapsed = (timestamp - lastFrameTime) / 1000;
     const deltaTime = elapsed; // already in seconds from your existing logic
     lastFrameTime = timestamp;
+
+    if (combo > maxCombo) maxCombo = combo;
 
     myGameArea.clear();
     drawLaneLines();
@@ -409,7 +416,7 @@ function updateGameArea(timestamp) {
     
     // the new startobstacles
     while (nextNoteIndex < timings.length && currentTime >= (b*timings[nextNoteIndex])/1000) {
-
+        
         // Get the character (like 'd', 'f', etc.)
         const laneChar = laneList[nextNoteIndex][0];
 
@@ -429,7 +436,9 @@ function updateGameArea(timestamp) {
         pushObstacle(laneX);
         nextNoteIndex++;
     }
-
+    if (nextNoteIndex === nextNoteIndex.length) {
+        gameEnd(missCounter.text, maxCombo);
+    }
     // Move and draw all obstacles
     for (let i = myObstacles.length - 1; i >= 0; i--) {
         const obstacle = myObstacles[i];
@@ -471,10 +480,7 @@ function updateGameArea(timestamp) {
             myObstacles.splice(i, 1);
             continue; // skip the rest of the loop for this one
         }
-        // Collision detection logic remains the same
-        // (your code that checks crashWith and updates score goes here)
         
-
         obstacle.newPos(deltaTime);
         obstacle.update();
     }
@@ -491,6 +497,7 @@ function updateGameArea(timestamp) {
     myScore.update();
     comboDisplay.update();
     missCountDisplay.update();
+
 
     // Reset keys for one-time press detection
     keyJustPressed = keyJustPressed2 = keyJustPressed3 = keyJustPressed4 = false;
