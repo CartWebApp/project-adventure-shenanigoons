@@ -30,7 +30,7 @@ const image = document.getElementById(`image`);
 */
 
 const inventory = {
-
+    
 };
 
 const relationshipBlunders = {
