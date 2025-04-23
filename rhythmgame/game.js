@@ -6,6 +6,7 @@ let myBody = document.querySelector(`body`)
 let scoreCounter = 0;
 let comboDisplay;
 let missCounter = 0;
+let sillyCanvas;
 // let laneList;
 // let canvWidth = 270;
 let canvWidth = 400;
@@ -52,7 +53,7 @@ function startGame() {
         }, 250);
         gameStartTime = performance.now(); // start tracking audio sync from this point
     }, 1000); // 1000ms = 1 second
-    
+    sillyCanvas = document.querySelector(`canvas`);
 
 }
 
@@ -393,11 +394,12 @@ for (let i = laneList.length - 1; i>= 0, i--;) {
 let maxCombo = 0;
 
 
-let body = document.querySelector(body);
+
 function gameEnd(misses, maxcombo) {
-    myGameArea = 0;
-    body.innerText += misses;
-    body.innerText += maxcombo;
+    
+    sillyCanvas.remove();
+    document.innerText += misses;
+    document.innerText += maxcombo;
 }
 
 function updateGameArea(timestamp) {
@@ -436,8 +438,9 @@ function updateGameArea(timestamp) {
         pushObstacle(laneX);
         nextNoteIndex++;
     }
-    if (nextNoteIndex === nextNoteIndex.length) {
-        gameEnd(missCounter.text, maxCombo);
+    console.log(nextNoteIndex);
+    if (nextNoteIndex == nextNoteIndex.length) {
+       gameEnd(missCounter.text, maxCombo)
     }
     // Move and draw all obstacles
     for (let i = myObstacles.length - 1; i >= 0; i--) {
