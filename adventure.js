@@ -420,6 +420,9 @@ Object.prototype.run = function () {
                 document.addEventListener(`keydown`, function select(e) {
                     if (e.key >= 0 && e.key < object.options.length) {
                         document.removeEventListener(`keydown`, select);
+                        for (j = 0; j < object.options.length; j++) {
+                            options.children[j].removeEventListener(`click`, select);
+                        }
                     }
                     if (e.key == i + 1) {
                         if (!object.scenes[i].locked) {
