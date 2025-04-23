@@ -370,6 +370,7 @@ Object.prototype.run = function () {
         if ('options' in this) {
             for (option of this.options) {
                 options.innerHTML += `<li>${option}</li>`
+                
             }
         }
 

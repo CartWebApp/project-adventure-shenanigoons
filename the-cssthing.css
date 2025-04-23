@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
 
 * { 
-    font-family: "Poppins", sans-serif;
+    font-family: "Patrick Hand", cursive;
     color: white;
 }
 
@@ -13,7 +13,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(4, 4, 37);
+    background-color: rgb(0, 0, 0);
     height: 100dvh;
     width: 100dvw;
 }
@@ -23,26 +23,86 @@ body {
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    width: 80%;
+    width: min(1200px, 50%);
+    height: 900px;
 }
 
 #textContainer { 
     display: flex;
-    width: 70%;
-    background: linear-gradient(to left, rgb(1, 2, 50), rgb(32, 11, 11));
-    padding: 1rem;
+    width: 97%;
+    background: black;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .25rem;
+    margin-bottom: none;
+    padding-bottom: none;
     color: white;
     border-radius: 15px;
+    font-size: 36px;
+    flex-direction: row;
+
+}
+#textContainer > p { 
+    margin-bottom: 1rem;
+    margin-top: 1rem;
 }
 input {
     color: black;
     
 }
+#options { 
+    border: 2px solid white;
+    width: 97%;
+    height: fit-content;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    margin-top: .75rem;
+    flex-direction: column;
+    padding-top: .7rem;
+    padding-bottom: .5rem;
+}
+#options li {
+    width: 95%;
 
-button {
-    background-color: rgb(34, 34, 138);
-    padding: .5rem 1rem;
-    border-radius: 15px;
+    font-size: 24px;
+    list-style-type:decimal;
+    text-shadow: 0px 5px black;
+
+}
+#options li:hover { 
+    transform: translateY(-3px);
+    background-color: rgba(133, 133, 133, 0.304);
+    cursor: pointer;
+}
+
+#buttonCont { 
+    align-self: center;
+    width: 50%;
+    height: fit-content;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: .25rem;
+}
+/* button {
+    background: transparent;
+    border: 2px solid white;
+    padding: .75rem 1.25rem;
+    border-radius: 2px;
     outline: none;
     border: none;
+    border: 2px solid white;
+    font-size: 24px;
+    text-shadow: 0px 5px black;
+}
+button:hover {
+    transform: translateY(-3px);
+    background-color: rgba(133, 133, 133, 0.304)
+} */
+
+#gameHolder > img {
+    width: 100%;
+    height: auto;
+    border: 2px solid rgb(255, 255, 255);
 }
