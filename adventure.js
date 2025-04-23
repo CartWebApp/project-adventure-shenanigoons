@@ -1,7 +1,5 @@
 const text = document.getElementById(`text`);
 const options = document.getElementById(`options`);
-const input = document.getElementById(`input`);
-const submit = document.getElementById(`submit`);
 const image = document.getElementById(`image`);
 
 // I'm templating it I'm templating it I'm templating it I'm templating it I'm templating it I'm templating it 
@@ -370,7 +368,7 @@ Object.prototype.run = function () {
         if ('options' in this) {
             for (option of this.options) {
                 options.innerHTML += `<li>${option}</li>`
-                
+
             }
         }
 
@@ -396,16 +394,18 @@ Object.prototype.run = function () {
             }
         } else {
             let object = this;
-            
-            for (let i=0;i<this.options.length;i++) {
+
+            for (let i = 0; i < this.options.length; i++) {
                 options.children[i].addEventListener(`click`, function select() {
                     if (!object.scenes[i].locked) {
-                        submit.removeEventListener(`click`, select);
-    
+                        for (j = 0; j < object.options.length; j++) {
+                            options.children[j].removeEventListener(`click`, select);
+                        }
+
                         if (object.cutsceneRan) {
                             delete object.cutsceneRan;
                         }
-    
+
                         if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
                             object.scenes[i].findPath().run();
                         } else {
@@ -414,6 +414,30 @@ Object.prototype.run = function () {
                     }
                     if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
                         text.innerHTML += `<br><br>That path is locked!`;
+                    }
+                })
+
+                document.addEventListener(`keydown`, function select(e) {
+                    if (e.key >= 0 && e.key < object.options.length) {
+                        document.removeEventListener(`keydown`, select);
+                    }
+                    if (e.key == i + 1) {
+                        if (!object.scenes[i].locked) {
+                            document.removeEventListener(`keydown`, select);
+
+                            if (object.cutsceneRan) {
+                                delete object.cutsceneRan;
+                            }
+
+                            if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
+                                object.scenes[i].findPath().run();
+                            } else {
+                                object.scenes[i].run();
+                            }
+                        }
+                        if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                            text.innerHTML += `<br><br>That path is locked!`;
+                        }
                     }
                 })
             }
@@ -430,8 +454,8 @@ Object.prototype.runScene = function (parent, i) {
     options.innerHTML = `<li>Continue</li>`;
 
     let scene = this;
-    submit.addEventListener(`click`, function select() {
-        submit.removeEventListener(`click`, select);
+    options.children[0].addEventListener(`click`, function select() {
+        options.children[0].removeEventListener(`click`, select);
 
         if (scene.last) {
             parent.cutsceneRan = true;
