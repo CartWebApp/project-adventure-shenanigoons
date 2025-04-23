@@ -244,7 +244,9 @@ function drawLaneLines() {
             `f2`, 
             //anyone can find me (25sec)
             `d2`, `k1`, `f1`, `d1`,
-            `j1`, `f1`, `d2`, `k1`,
+            `j1`, `f2`, 
+            //hear your music 
+            `d2`, `k1`,
             `f1`, `j1`, `d1`, `k2`,
             //running through my mind (29sec)
             `k2`, `j1`, `f1`, `d1`,
@@ -267,9 +269,9 @@ function drawLaneLines() {
             `f1`, `j1`, `f1`, `k1`,
             `d1`, `k1`, `d1`,
             //oo ee oo
-            `j1`, `f1`, `j1`, `f1`
+            `j1`, `f1`, `j1`, `f1`,
             //musica -> im thinking
-            `j1`, `k1`, `j1`, `d1`
+            `j1`, `k1`, `j1`, `d1`,
             //miku miku 
             `j1`, `k1`, `k1`, `j1`,
             `f1`, `d1`, `d1`, `f1`,
@@ -282,7 +284,7 @@ function drawLaneLines() {
             //top of the world (46sec)
             `f1`, `d1`, `j1`, `k1`,
             //because of you
-            `d3`, `k2`, `j1`, `d1`,
+            `d4`, `k2`, `j1`, `d1`,
             //all i 
             `k2`, `f0`, 
             `j2`, `d0`,
@@ -296,7 +298,7 @@ function drawLaneLines() {
             `f2`, `d1`, `f1`, `j1`,
 
             `j2`, `f2`, `k1`, `j1`,
-            `f2`, `f2`,
+            `f3`, `f2`,
             `f2`, `j1`, `k1`, `j1`,
             `d1`, `f1`,
             `k1`, `j1`, `f1`, 
