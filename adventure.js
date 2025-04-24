@@ -30,7 +30,7 @@ const image = document.getElementById(`image`);
 */
 
 const inventory = {
-    
+
 };
 
 const relationshipBlunders = {
@@ -96,7 +96,8 @@ const story = {
                             options: [`Oh ok I'll just do it myself then`, `Think of the lives at stake!`, `It'd be funny`],
                             scenes: [{
                                 text: `"You insult me, kid. LeBron, do your thing" As Peter says this, LeBron flies over to you from a corner in the room. He picks you up and flies you to the top of the skyscraper. "G'bye kid. This is just part of the job description" He drops you. YOU DIE`,
-                                ending: true
+                                options: [`Go back`, `Restart from beginning`],
+                                scenes: [{ path: [`p`] }, { path: [`P`] }]
                             }, {
                                 text: `As you say this, your vision cuts. You see a broken world, where people are both scared to die and be alive. There are posters of Miku's face everywhere. Upon closer inspection, the posters seem to have a surveillance system built into them. Everyone in this world is terrified. Your vision cuts back, and you look around. Everyone seems to have had the same vision as you. "You have to warn us before you use a cutaway gag" Shifu scolds. "I've told you before," Peter Griffin explains, "I can't control them. But this was quite enlightening."`,
                                 options: [`Continue`],
@@ -104,10 +105,10 @@ const story = {
                                     text: `Peter says, "I'll set up a vote in the guards' high council regarding a siege on Miku. You have my vote, of course, but you'll have to convince the others." You see him step over to a corner where many guards are. Most guards seem taken aback by this proposition. You see four high ranking guards besides Peter in that corner, all of them eyeing you both. You'll only need to convince two of them to get a majority vote.<br><br>If you lose 3 relationship points that person’s vote is locked out and cannot be accessed again.`,
                                     options: [`Continue`],
                                     scenes: [{
-                                        // who do you approach is here
                                         text: `Who do you approach?`,
                                         options: [`A man with sunglasses and a hat`, `Twintailed drilly haired redhead`, `A polar bear`, `A curly haired man`],
-                                        scenes: [{
+                                        scenes: [
+                                            {
                                             text: `You approach Walter White, and he eyes you catiously`,
                                             options: [`We have to cook`, `Think of Walter White Jr.`],
                                             scenes: [{
@@ -158,9 +159,12 @@ const story = {
                                                 }]
                                             }, {
                                                 text: `We have to cook! I know exactly where to use this. Come on, Pinkman. You find a remote village, and in this village you see a Barbaric King and an Archer Queen. Walter explains, “We need to cook". The monarchs lead you to a cave, showing you a massive vat of Dark Elixir. Not asking any questions, you fill a vial with this dark elixir, and you head back to Good Burger, with your new secret ingredient. YOU HAVE RETURNED WITH THE ELIXIR OPEN SECRET`,
-                                                ending: true
+                                                options: [`Play again`],
+                                                scenes: [{ path: [`P`] }]
                                             }],
                                             secret: { item: `elixir-key`, option: `*pull out the elixir key* We HAVE to cook` }
+                                        }, {
+                                            
                                         }]
                                     }]
                                 }]
@@ -196,7 +200,7 @@ const story = {
                             options: [`Continue`],
                             scenes: [{ path: ['p', 1] }]
                         }, {
-                            text: `Miku grabs you and throws you through a portal. "I thought you'd be smarter than that", Miku says, "It's a shame, really. Maybe this will teach you a lesson." You are in a prison.
+                            text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd", Miku says, "It's a shame, really. Maybe this will teach you a lesson." You are in a prison.
                             You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension, you begin to question if its because miku is hiding in everyone's wifi, thus providing wifi for everyone.  
                             The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way.  
                             Knowing that Miku is on her way, through the fortunately slow wifi, you join up with Earth's heroes, and warn them of Miku's destructive power.`,
@@ -217,14 +221,17 @@ const story = {
                                             options: [`Yep!`, `NAH`],
                                             scenes: [{
                                                 text: `Holding a leek, Miku casts a killing spell upon you, "AVADA KADAVRA", your group is completely obliterated YOU DIED`,
-                                                ending: true
+                                                options: [`Go back`, `Restart from beginning`],
+                                                scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
                                             }, {
                                                 text: `"You decided to team up with him, you have to take responsiblity for who you choose to associate with!" "ONE TWO THREE MIKU MIKU BEAM" You and your team are vanquished and not a molecule is left YOU DIED`,
-                                                ending: true
+                                                options: [`Go back`, `Restart from beginning`],
+                                                scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
                                             }]
                                         }, {
                                             text: `Markiplier replies, knowing exactly what to say, "Hello everybody, my name is Markiplier". The aura that came out of this statement was the most the world has ever seen, besides Satoru Gojo of course. Miku is taken aback, seeing this amount of aura truly impressed her. Because of this, she was moved. "Why, what a great offer, I can see why you chose this side of the war, you're the smart ones..." Miku addresses you, "I'm on top of the world, because of you." "You have untapped power, and I knew that if I didn't take this chance, I would not be able to make this world mine."  You thank Miku for this generous offer, and tell her, "All I wanted to do, is follow you" YOU HAVE REACHED THE UNDERLING ENDING`,
-                                            ending: true
+                                            options: [`Play again`],
+                                            scenes: [{ path: [`P`] }]
                                         }]
                                     }, {
                                         text: `PewDiePie unleashes his long range punch, dazing Miku, and Markiplier gets ready for an attack. DanTDM takes this opportunity, when shes dazed, to fly in and swing his diamond sword at Miku, slicing her leek wand in half. Stampy joins the fray, trying to charm Miku for you to do the final attack, this of course, doesn't work. Hatsune Miku came prepared, nobody can charm Miku the way Teto could... Enraged by this, Mikuattacks your team, leaving them all injured but you. You go to attack Miku in a one on one, and she challenges you to a one versus one in a rhythm game. It all comes down to this, the world depends on you.`,
@@ -239,7 +246,7 @@ const story = {
                                     options: [`Go back to LeBron`, `Go back to your cell`],
                                     scenes: [{ path: ['p'] }, {
                                         text: `You and the heroes return to the cell, and you try to go to sleep, feeling defeated. 
-                                        As you're trying to fall asleep, you're moving around on your mattress, and feel something underneath the mattress, which was preventing you from sleeping. You find, "The Drip."`,
+                                        As you're trying to fall asleep, you're moving around on your mattress, and feel something underneath the mattress, which was preventing you from sleeping. You find a drippy looking coat<br><br>YOU HAVE OBTAINED THE DRIP`,
                                         options: [`Continue`],
                                         item: `drip`,
                                         scenes: [{ path: ['p', 'p'] }]
@@ -248,7 +255,8 @@ const story = {
                             }]
                         }, {
                             text: `Miku's face lights up with a childlike wonder. "S... Supersize?" she asks. "Dang right" You clarify. She eats her supersized meal as her heart grows three sizes. "Hey kid. You can get loads of these burgers if you worked here." She demands a job immediatly. You see no threat in her voice, and it seems she has forgotten about the rest of this world completely. You now work with miku at good burger, and have a great time doing it. <br><br>YOU REACHED THE GOOD BURGER ENDING <br><br>OPEN SECRET`,
-                            ending: true
+                            options: [`Go back`, `Restart from beginning`],
+                            scenes: [{ path: [`p`] }, { path: [`P`] }]
                         }],
                         secret: { item: `supersize`, option: `Wanna Supersize that?` }
                     }
@@ -281,7 +289,8 @@ const story = {
                             options: [`Yes, of course!`, `No. We are here to stop Miku`],
                             scenes: [{
                                 text: `LeBron eyes you disapprovingly. "Guys, I'm the goat. You really think I can't see through a simple little lie like that?" Lebron grabs you Omni-man style. "And to think I thought you were worthy enough to stop Miku. I want to make this world a better place. And that starts by removing you from it" As LeBron says this, he flies and crashes through the window. He holds you over the street, about 2,000 ft in the air. He drops you (if you've been dropped in another ending he says "heh. feels like we've done this before, huh?").<br><br>YOU DIE`,
-                                ending: true
+                                options: [`Go back`, `Restart from beginning`],
+                                scenes: [{ path: [`p`] }, { path: [`P`] }]
                             }, {
                                 text: `LeBron chuckles a little bit. "Yeah, I was getting tired of her reign too. Y'all are free to head on back there, do whatever you want lmao" You both head up the staircase and see Miku, sitting with her back to you both as she looks at the skyline. She doesn't say anything. Oogway: "She knows we're here. There's no point in hiding this." Miku is startled, and looks back at the both of you. "Since when did you two get in here?? None of my alarms went off! No matter. There's no way either of you could stop me now. I'm so deeply rooted in everyone's wifi that there's no point in even attempting to halt my expansion."`,
                                 options: [`Ask Oogway for help`, `Nuh uh!! (Attack)`],
@@ -290,13 +299,16 @@ const story = {
                                     options: [`Do a flip`, `Offer a game of slots`, `Talk Miku out of it`],
                                     scenes: [{
                                         text: `Miku lets out an obvious pog, but her decision is unwavering. She decides to take your life.<br><br>YOU DIE`,
-                                        ending: true
+                                        options: [`Go back`, `Restart from beginning`],
+                                        scenes: [{ path: [`p`] }, { path: [`P`] }]
                                     }, {
                                         text: `You explain the concept of slots, and Miku is intrigued. The thought of making money easily has piqued her interest. She demands you show her the way, and offers a vehicle. It's one of the cars from fortnite. You both make it to Vegas, and Miku is in awe of everything. She decides to spare this world, because of this beautiful game. You end up gambling a bunch with Miku, and both end up as best friends by the end of it.<br><br>YOU REACHED THE GAMBLING ENDING`,
-                                        ending: true
+                                        options: [`Play again`],
+                                        scenes: [{ path: [`P`] }]
                                     }, {
                                         text: `You begin to imitate Steven Universe. "Miku... this isn't like you!" Miku, to be frank, is insulted that you would ever say such a thing and Miku Miku beams you on the spot.<br><br>YOU DIE`,
-                                        ending: true
+                                        options: [`Go back`, `Restart from beginning`],
+                                        scenes: [{ path: [`p`] }, { path: [`P`] }]
                                     }]
                                 }, {
                                     // rhythm game
@@ -308,13 +320,15 @@ const story = {
                             secret: { item: `drip`, option: `Whip out the drip` },
                             scenes: [{
                                 text: `Without warning, they attack, giving no time for you to think. This must have been why Oogway said to avoid this floor. You have learned your lesson.<br><br>YOU DIE`,
-                                ending: true
+                                options: [`Go back`, `Restart from beginning`],
+                                scenes: [{ path: [`p`] }, { path: [`P`] }]
                             }, {
                                 text: `You pull out the Miku drip and they are all taken aback. Peter Griffin looks you up and down, and says, "Heheh this is like that time we did the drip contest." Suddenly, your vision cuts out and you see Miku standing in front of a group of people. As you look closer, you see that these people are actually those same guards, but they are all dripped out the wazoo. They seem to be having a contest for who's the drippiest. Miku, of course, wins this with her savage lil' drip coat. Your vision comes back, and all the guards are laughing remembering their good times. Peter walks over to you and puts a hand on your shoulder. "Hey kid, why don't you work with us? Times like this don't happen often, but when they do, it's the best time ever. I can't believe I ever forgot about this."`,
                                 options: [`Yeah I'll take the job`, `Nah I'm good. Thanks tho!`],
                                 scenes: [{
                                     text: `"Good choice, kid!" As one of Miku's guards, you go on to rank pretty high in the group. After a while, you get to the point where you get to host monthly drip contests. Miku judges all of these, of course, but you still have the honor of giving everyone the oppurtunity to express themselves and unwind. You can't believe you ever thought of taking these people down, and removing their culture from this planet. Also Oogway is executed for being a traitor<br><br>YOU REACHED THE DRIP ENDING<br>OPEN SECRET`,
-                                    ending: true
+                                    options: [`Play again`],
+                                    scenes: [{ path: [`P`] }]
                                 }, {
                                     text: `Peter says, "No worries kid.  But if you're trying to get to Miku, go down and take the elevator."`,
                                     options: [`Take the elevator`],
@@ -360,6 +374,10 @@ const test = {
 Object.prototype.run = function () {
     this.openSecrets();
 
+    if (`function` in this) {
+        this.function();
+    }
+
     if (`cutscene` in this && !this.cutsceneRan) {
         this.cutscene[0].runScene(this, 0);
     } else {
@@ -398,10 +416,7 @@ Object.prototype.run = function () {
             for (let i = 0; i < this.options.length; i++) {
                 options.children[i].addEventListener(`click`, function select() {
                     if (!object.scenes[i].locked) {
-                        for (j = 0; j < object.options.length; j++) {
-                            options.children[j].removeEventListener(`click`, select);
-                        }
-
+                        document.removeEventListener(`keydown`, select);
                         if (object.cutsceneRan) {
                             delete object.cutsceneRan;
                         }
@@ -416,39 +431,33 @@ Object.prototype.run = function () {
                         text.innerHTML += `<br><br>That path is locked!`;
                     }
                 })
-
-                document.addEventListener(`keydown`, function select(e) {
-                    if (e.key >= 0 && e.key < object.options.length) {
-                        document.removeEventListener(`keydown`, select);
-                        for (j = 0; j < object.options.length; j++) {
-                            options.children[j].removeEventListener(`click`, select);
-                        }
-                    }
-                    if (e.key == i + 1) {
-                        if (!object.scenes[i].locked) {
-                            document.removeEventListener(`keydown`, select);
-
-                            if (object.cutsceneRan) {
-                                delete object.cutsceneRan;
-                            }
-
-                            if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
-                                object.scenes[i].findPath().run();
-                            } else {
-                                object.scenes[i].run();
-                            }
-                        }
-                        if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                            text.innerHTML += `<br><br>That path is locked!`;
-                        }
-                    }
-                })
             }
+            document.addEventListener(`keydown`, function select(e) {
+                if (parseInt(e.key) > 0 && parseInt(e.key) <= object.options.length) {
+                    if (!object.scenes[parseInt(e.key) - 1].locked) {
+                        document.removeEventListener(`keydown`, select);
+
+                        if (object.cutsceneRan) {
+                            delete object.cutsceneRan;
+                        }
+
+                        if (!('scenes' in object.scenes[parseInt(e.key) - 1]) && !object.scenes[parseInt(e.key) - 1].ending) {
+                            object.scenes[parseInt(e.key) - 1].findPath().run();
+                        } else {
+                            object.scenes[parseInt(e.key) - 1].run();
+                        }
+                    }
+                    if ('locked' in object.scenes[parseInt(e.key) - 1] && object.scenes[parseInt(e.key) - 1].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                        text.innerHTML += `<br><br>That path is locked!`;
+                    }
+                }
+            })
         }
     }
 }
 
 Object.prototype.runScene = function (parent, i) {
+
     text.innerHTML = this.text;
     if (`image` in this) {
         image.src = this.image;
@@ -458,14 +467,28 @@ Object.prototype.runScene = function (parent, i) {
 
     let scene = this;
     options.children[0].addEventListener(`click`, function select() {
-        options.children[0].removeEventListener(`click`, select);
-
+        document.removeEventListener(`keydown`, select);
+        options.children[0].addEventListener(`click`, select);
         if (scene.last) {
             parent.cutsceneRan = true;
             parent.run();
         } else {
             i++;
             parent.cutscene[i].runScene(parent, i);
+        }
+    })
+
+    document.addEventListener(`keydown`, function select(e) {
+        if (e.key == 1) {
+            document.removeEventListener(`keydown`, select);
+            options.children[0].addEventListener(`click`, select);
+            if (scene.last) {
+                parent.cutsceneRan = true;
+                parent.run();
+            } else {
+                i++;
+                parent.cutscene[i].runScene(parent, i);
+            }
         }
     })
 }
@@ -520,7 +543,7 @@ Object.prototype.openSecrets = function () {
 }
 
 story.addParents();
-// story.run();
+story.run();
 
 // Debug Path
-story.scenes[4].findPath().run();
+// story.scenes[4].findPath().run();
