@@ -109,63 +109,161 @@ const story = {
                                         options: [`A man with sunglasses and a hat`, `Twintailed drilly haired redhead`, `A polar bear`, `A curly haired man`],
                                         scenes: [
                                             {
-                                            text: `You approach Walter White, and he eyes you catiously`,
-                                            options: [`We have to cook`, `Think of Walter White Jr.`],
-                                            scenes: [{
-                                                text: `With what lab? Miku stole my RV once I joined her army<br><br>-1 relationship point!`,
-                                                options: [`Continue`],
-                                                scenes: [{ path: [`p`] }, {
-                                                    text: `With what lab? Miku stole my RV once I joined her army<br><br>You know what, I'm tired of this. I'm voting against the rebellion<br><br>You lost Walter's vote!`,
-                                                    options: [`Continue`],
-                                                    scenes: [{ path: [`p`, `p`, `p`] }]
-                                                }],
-                                                blunder: { name: `walter`, count: 1 },
-                                                lock: {
-                                                    paths: [{ path: [`p`] }],
-                                                    condition: () => relationshipBlunders.walter >= 3,
-                                                    scene: { path: [1] }
-                                                }
-                                            }, {
-                                                text: `How could I forget? Under Miku's reign, he's in real danger. She really likes picking on disabled kids. The situation here is too dangerous to agitate it.`,
-                                                options: [`You can’t leave him to die, Walter!`, `Danger? I am the danger`],
+                                                text: `You approach Walter White, and he eyes you catiously`,
+                                                options: [`We have to cook`, `Think of Walter White Jr.`],
                                                 scenes: [{
-                                                    text: `Walter is taken aback by this. "Who do you think you are?? To ask me for help, and insult ME in YOUR time of need? You're on thin ice, pal"<br><br>-2 relationship points!!`,
-                                                    options: [`Focus up Walter`],
+                                                    text: `With what lab? Miku stole my RV once I joined her army<br><br>-1 relationship point!`,
+                                                    options: [`Continue`],
                                                     scenes: [{ path: [`p`] }, {
-                                                        text: `Walter is taken aback by this. "Who do you think you are?? To ask me for help, and insult ME in YOUR time of need? I'm done with you. I'm voting against the rebellion<br><br>You lost Walter's vote!`,
+                                                        text: `With what lab? Miku stole my RV once I joined her army<br><br>You know what, I'm tired of this. I'm voting against the rebellion"<br><br>You lost Walter's vote!`,
                                                         options: [`Continue`],
-                                                        scenes: [{ path: [`p`, `p`, `p`, `p`] }]
+                                                        scenes: [{ path: [`p`, `p`, `p`] }]
                                                     }],
-                                                    blunder: { name: `walter`, count: 2 },
+                                                    blunder: { name: `walter`, count: 1 },
                                                     lock: {
-                                                        paths: [{ path: [`p`, `p`] }], condition: () => relationshipBlunders.walter >= 3, scene: { path: [1] }
+                                                        paths: [{ path: [`p`] }],
+                                                        condition: () => relationshipBlunders.walter >= 3,
+                                                        scene: { path: [1] }
                                                     }
                                                 }, {
-                                                    text: `Say that again?`,
-                                                    options: [`Danger? I am the danger`],
+                                                    text: `How could I forget? Under Miku's reign, he's in real danger. She really likes picking on disabled kids. The situation here is too dangerous to agitate it.`,
+                                                    options: [`You can’t leave him to die, Walter!`, `Danger? I am the danger`],
+                                                    scenes: [{
+                                                        text: `Walter is taken aback by this. "Who do you think you are?? To ask me for help, and insult ME in YOUR time of need? You're on thin ice, pal"<br><br>-2 relationship points!!`,
+                                                        options: [`Focus up Walter`],
+                                                        scenes: [{ path: [`p`] }, {
+                                                            text: `Walter is taken aback by this. "Who do you think you are?? To ask me for help, and insult ME in YOUR time of need? I'm done with you. I'm voting against the rebellion<br><br>You lost Walter's vote!`,
+                                                            options: [`Continue`],
+                                                            scenes: [{ path: [`p`, `p`, `p`, `p`] }]
+                                                        }],
+                                                        blunder: { name: `walter`, count: 2 },
+                                                        lock: {
+                                                            paths: [{ path: [`p`, `p`] }], condition: () => relationshipBlunders.walter >= 3, scene: { path: [1] }
+                                                        }
+                                                    }, {
+                                                        text: `Say that again?`,
+                                                        options: [`Danger? I am the danger`],
+                                                        scenes: [{
+                                                            text: `flungoid?`,
+                                                            options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
+                                                            scenes: [{
+                                                                text: `You see Walter's face light up with a childlike wonder "I haven't heard those words in 14 years. Alright kid, you have my vote."<br><br>YOU HAVE WALTER'S VOTE!`,
+                                                                options: [`Continue`],
+                                                                scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }],
+                                                            }],
+                                                            item: 'walter',
+                                                            lock: {
+                                                                paths: [{ path: [`p`, `p`, `p`] }], condition: () => true, scene: { path: [0] }
+                                                            }
+                                                        }]
+                                                    }]
+                                                }, {
+                                                    text: `We have to cook! I know exactly where to use this. Come on, Pinkman. You find a remote village, and in this village you see a Barbaric King and an Archer Queen. Walter explains, “We need to cook". The monarchs lead you to a cave, showing you a massive vat of Dark Elixir. Not asking any questions, you fill a vial with this dark elixir, and you head back to Good Burger, with your new secret ingredient. YOU HAVE RETURNED WITH THE ELIXIR OPEN SECRET`,
+                                                    options: [`Play again`],
+                                                    scenes: [{ path: [`P`] }]
+                                                }],
+                                                secret: { item: `elixir-key`, option: `*pull out the elixir key* We HAVE to cook` }
+                                            }, {
+                                                text: `You start heading to the drilly haired redhead Kasane Teto, and she is not happy. "Just who do you two think you are?? One cannot simply walk into Miku's base and stage a takeover!"`,
+                                                options: [`Start singing Teto Territory`, `Would you do it for a baguette?`, `But you would like to stop Miku, right?`],
+                                                scenes: [{
+                                                    text: `flungoid?`,
+                                                    options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
+                                                    scenes: [{
+                                                        text: `heheh it's the thing lmao. aight you have my vote kid that was pretty good<br><br>YOU HAVE TETO'S VOTE!`,
+                                                        options: [`Continue`],
+                                                        scenes: [{ path: [`p`, `p`, `p`] }],
+                                                    }],
+                                                    item: 'teto',
+                                                    lock: {
+                                                        paths: [{ path: [`p`] }], condition: () => true, scene: { path: [0] }
+                                                    }
+                                                }, {
+                                                    text: `No, idiot. I like baguettes but I'm not frickin' Scooby Doo. And even if I was you don't even have one.<br><br>-2 relationship point!!`,
+                                                    options: [`Start singing Teto Territory`, `But you would like to stop Miku, right?`],
+                                                    scenes: [{ path: [`p`, 0] }, { path: [`p`, 2] }, {
+                                                        text: `No, idiot. I like baguettes but I'm not frickin' Scooby Doo. Y'know what that pissed me off you just lost my vote nerd<br><br>YOU LOST TETO'S VOTE!`,
+                                                        options: [`Continue`],
+                                                        scenes: [{ path: [`p`, `p`, `p`] }]
+                                                    }],
+                                                    blunder: { name: `teto`, count: 2 },
+                                                    lock: {
+                                                        paths: [{ path: [`p`] }], condition: () => relationshipBlunders.teto >= 3, scene: { path: [2] }
+                                                    }
+                                                }, {
+                                                    text: `Of course I'd like to overthrow Miku you idiot! It's just that none of us are powerful enough to do that!`,
+                                                    options: [`If we team up we can take her down`, `I can, watch this!`],
                                                     scenes: [{
                                                         text: `flungoid?`,
                                                         options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
                                                         scenes: [{
-                                                            text: `You see Walter's face light up with a childlike wonder "I haven't heard those words in 14 years. Alright kid, you have my vote."<br><br>YOU HAVE WALTER'S VOTE!`,
+                                                            text: `That makes sense, but I'm not sure if the others will agree. Okay kid, you have my vote. IF the others are willing to go along with you too<br><br>YOU HAVE TETO'S VOTE!`,
                                                             options: [`Continue`],
-                                                            scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }],
+                                                            scenes: [{ path: [`p`, `p`, `p`, `p`] }],
                                                         }],
-                                                        item: 'walter',
+                                                        item: 'teto',
                                                         lock: {
-                                                            paths: [{ path: [`p`, `p`, `p`] }], condition: () => true, scene: { path: [0] }
+                                                            paths: [{ path: [`p`, `p`] }], condition: () => true, scene: { path: [0] }
                                                         }
+                                                    }, {
+                                                        text: `...watch what?`,
+                                                        options: [`Do backflips`, `Sike, haha!`, `Go literally insane`],
+                                                        scenes: [{
+                                                            text: `You faceplant HARD. "You kinda suck at this y'know"<br><br>-1 relationship point!`,
+                                                            options: [`*change subject* You wanted to overthrow Miku, right?`],
+                                                            scenes: [{ path: [`p`, `p`] }, {
+                                                                text: `You faceplant HARD. "...yeah you just lost my vote kid"<br><br>YOU LOST TETO'S VOTE!`,
+                                                                options: [`Continue`],
+                                                                scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }]
+                                                            }],
+                                                            blunder: { name: `teto`, count: 1 },
+                                                            lock: {
+                                                                paths: [{ path: [`p`, `p`, `p`] }], condition: () => relationshipBlunders.teto >= 3, scene: { path: [1] }
+                                                            }
+                                                        }, {
+                                                            text: `dude c'mon i wanted to see smth cool<br><br>-1 relationship point!`,
+                                                            options: [`yeah sry lol. You wanted to overthrow Miku, right?`],
+                                                            scenes: [{ path: [`p`, `p`] }, {
+                                                                text: `...screw you dude<br><br>YOU JUST LOST TETO'S VOTE!`,
+                                                                options: [`Continue`],
+                                                                scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }]
+                                                            }],
+                                                            blunder: { name: `teto`, count: 1 },
+                                                            lock: {
+                                                                paths: [{ path: [`p`, `p`, `p`] }], condition: () => relationshipBlunders.teto >= 3, scene: { path: [1] }
+                                                            }
+                                                        }, {
+                                                            text: `flungoid?`,
+                                                            options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
+                                                            scenes: [{
+                                                                text: `You start shaking about ferally and frothing at the mouth. "lmao your just like me fr. Dude you're kinda hittin' that! You just earned my vote"<br><br>YOU HAVE TETO'S VOTE!`,
+                                                                options: [`Continue`],
+                                                                scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }],
+                                                            }],
+                                                            item: 'teto',
+                                                            lock: {
+                                                                paths: [{ path: [`p`, `p`, `p`] }], condition: () => true, scene: { path: [0] }
+                                                            }
+                                                        }]
                                                     }]
                                                 }]
                                             }, {
-                                                text: `We have to cook! I know exactly where to use this. Come on, Pinkman. You find a remote village, and in this village you see a Barbaric King and an Archer Queen. Walter explains, “We need to cook". The monarchs lead you to a cave, showing you a massive vat of Dark Elixir. Not asking any questions, you fill a vial with this dark elixir, and you head back to Good Burger, with your new secret ingredient. YOU HAVE RETURNED WITH THE ELIXIR OPEN SECRET`,
-                                                options: [`Play again`],
-                                                scenes: [{ path: [`P`] }]
-                                            }],
-                                            secret: { item: `elixir-key`, option: `*pull out the elixir key* We HAVE to cook` }
-                                        }, {
-                                            
-                                        }]
+                                                text: `You approach ice bear. He's holding his axe.`,
+                                                options: [`*say nothing*`, `Nice axe`, `Wanna help stop Miku?`],
+                                                scenes: [{
+                                                    text: `Don't mock ice bear<br><br>-1 relationship point!`,
+                                                    options: [`Continue`],
+                                                    scenes: [{ path: [`p`] }, {
+                                                        text: `Don't mock ice bear<br><br>YOU JUST LOST ICE BEAR'S VOTE!`,
+                                                        options: [`Continue`],
+                                                        scenes: [{ path: [`p`, `p`, `p`] }]
+                                                    }],
+                                                    blunder: { name: `iceBear`, count: 1 },
+                                                    lock: {
+                                                        paths: [{ path: [`p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: [1]
+                                                    }
+                                                }]
+                                            }]
                                     }]
                                 }]
                             }, {
@@ -543,7 +641,7 @@ Object.prototype.openSecrets = function () {
 }
 
 story.addParents();
-story.run();
+// story.run();
 
 // Debug Path
-// story.scenes[4].findPath().run();
+story.scenes[4].findPath().run();
