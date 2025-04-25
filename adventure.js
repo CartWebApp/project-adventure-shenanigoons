@@ -171,7 +171,7 @@ const story = {
                                                     options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
                                                     scenes: [{
                                                         text: `heheh it's the thing lmao. aight you have my vote kid that was pretty good<br><br>YOU HAVE TETO'S VOTE!`,
-                                                        options: [`Continue`],
+                                                        options: [`Continue`], 
                                                         scenes: [{ path: [`p`, `p`, `p`] }],
                                                     }],
                                                     item: 'teto',
@@ -179,7 +179,7 @@ const story = {
                                                         paths: [{ path: [`p`] }], condition: () => true, scene: { path: [0] }
                                                     }
                                                 }, {
-                                                    text: `No, idiot. I like baguettes but I'm not frickin' Scooby Doo. And even if I was you don't even have one.<br><br>-2 relationship point!!`,
+                                                    text: `No, idiot. I like baguettes but I'm not frickin' Scooby Doo. And even if I was, you don't even have one.<br><br>-2 relationship point!!`,
                                                     options: [`Start singing Teto Territory`, `But you would like to stop Miku, right?`],
                                                     scenes: [{ path: [`p`, 0] }, { path: [`p`, 2] }, {
                                                         text: `No, idiot. I like baguettes but I'm not frickin' Scooby Doo. Y'know what that pissed me off you just lost my vote nerd<br><br>YOU LOST TETO'S VOTE!`,
