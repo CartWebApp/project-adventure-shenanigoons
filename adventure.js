@@ -61,20 +61,21 @@ const story = {
     image: `images/first-cutscene/9.jpg`,
     scenes: [
         {
-            // text: `You couldn’t move. You couldn’t speak. Your body locked up as Miku’s glowing eyes bore into you. The sheer weight of her presence crushed any thought of resistance. Your breath came in short, shallow gasps. She sighed, stepping closer, her expression twisting into mocking amusement. “What a hero you are,” she said, her voice dripping with sarcasm. “Truly, a warrior worthy of legend.” The air around her pulsed with raw power, yet she made no move to strike. She didn’t need to. You weren’t a threat. She turned away, already forgetting you. Somehow, that was worse than anything she could have done.`,
             text: `She turned away, already forgetting you. Somehow, that was worse than anything she could have done.`,
-            image: `images`,
-            cutscene: [{last: true}],
+            image: `images/first-fork/1-3.jpg`,
+            cutscene: [{ text: `You couldn’t move. You couldn’t speak. Your body locked up as Miku’s glowing eyes bore into you. The sheer weight of her presence crushed any thought of resistance.`, image: `images/first-fork/1-1.jpg` }, { text: `She sighed, stepping closer, her expression twisting into mocking amusement. “What a hero you are,” she said, her voice dripping with sarcasm. “Truly, a warrior worthy of legend.” The air around her pulsed with raw power, yet she made no move to strike. She didn’t need to. You weren’t a threat.`, image: `images/first-fork/1-2.jpg`, last: true }],
             options: [`Continue`],
             scenes: [{ path: ['p', 3] }]
         },
         {
-            text: `You charged.
-            Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.
-            She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”
-            You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”
-            The air pulsed. A sharp force hurled you into split garbage bags.
-            Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
+            // text: `You charged. Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.
+            // She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”
+            // You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”
+            // The air pulsed. A sharp force hurled you into split garbage bags.
+            // Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
+            text: `Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
+            image: `images/first-fork/2-6.jpg`,
+            cutscene: [{ text: `You charged.`, image: `images/first-fork/2-1.jpg` }, { text: `Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.`, image: `images/first-fork/2-2.jpg` }, { text: `She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”`, image: `images/first-fork/2-3.jpg` }, { text: `You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”`, image: `images/first-fork/2-4.jpg` }, { text: `The air pulsed. A sharp force hurled you into split garbage bags.`, image: `images/first-fork/2-5.jpg`, last: true }],
             options: [`Continue`],
             scenes: [{ path: ['p', 3] }]
         },
@@ -608,7 +609,8 @@ const story = {
             }]
         },
         // the debug pathway
-        { path: [3, 0, 0, 0, 1, 0, 0] }
+        // { path: [3, 0, 0, 0, 1, 0, 0] } who do you approach
+        { path: [1] }
     ]
 };
 
@@ -810,7 +812,7 @@ Object.prototype.openSecrets = function () {
 }
 
 story.addParents();
-story.run();
+// story.run();
 
 // Debug Path
-// story.scenes[4].findPath().run();
+story.scenes[4].findPath().run();
