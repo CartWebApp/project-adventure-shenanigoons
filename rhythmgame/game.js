@@ -393,7 +393,19 @@ let jfkdead = 0;
 let jfk = 0;
 let maxCombo = 0;
 let gameHolder = document.getElementById(`gameHolder`);
+let statHolder = document.getElementById(`statHolder`);
+let theBtn = document.getElementById(`startBtn`);
+let theBody = document.querySelector(`body`);
+setTimeout(() => {
+    theBody.classList.add(`BLINDING`);
+    
+}, 1600);
 gameHolder.classList.add(`hidden`);
+setTimeout(() => {
+    gameHolder.classList.add(`theRemoving`)
+    theBtn.classList.add(`ALIVE`);
+}, 2250);
+
 
 
 function gameEnd(misses, maxcombo) {
@@ -401,9 +413,11 @@ function gameEnd(misses, maxcombo) {
     setTimeout(() => {
             sillyCanvas.remove();
             gameHolder.classList.remove(`hidden`);
-            gameHolder.innerText += `${misses}`;
-            gameHolder.innerText += `${maxcombo}`;
-        }, 5000);
+            gameHolder.classList.remove(`theRemoving`)
+            gameHolder.innerHTML += `<p> Misses: ${misses}</p>`;
+            gameHolder.innerHTML += `<p> Maximum Combo: ${maxcombo - 1}</p>`;
+            gameHolder.innerHTML += `<p> Accuracy: ${(((laneList.length-misses)/laneList.length)*100).toFixed(4)}%</p>`;
+        }, 1500);
     //keyframe into thingy
     
     //display misses and combo and uhhh probably accuracy
@@ -456,7 +470,7 @@ function updateGameArea(timestamp) {
     console.log(nextNoteIndex);
     
     jfkdead += 1; 
-    if (nextNoteIndex == 239 && jfk == 0 && jfkdead % 90 == 0) {
+    if (nextNoteIndex == laneList.length && jfk == 0 && jfkdead % 90 == 0) {
        gameEnd(missCounter, maxCombo);
        jfk += 1
     }
