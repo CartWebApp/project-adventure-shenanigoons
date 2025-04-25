@@ -389,17 +389,28 @@ for (let i = laneList.length - 1; i>= 0, i--;) {
 
 
 
-
-
+let jfkdead = 0;
+let jfk = 0;
 let maxCombo = 0;
-
+let gameHolder = document.getElementById(`gameHolder`);
+gameHolder.classList.add(`hidden`);
 
 
 function gameEnd(misses, maxcombo) {
     
-    sillyCanvas.remove();
-    document.innerText += misses;
-    document.innerText += maxcombo;
+    setTimeout(() => {
+            sillyCanvas.remove();
+            gameHolder.classList.remove(`hidden`);
+            gameHolder.innerText += `${misses}`;
+            gameHolder.innerText += `${maxcombo}`;
+        }, 5000);
+    //keyframe into thingy
+    
+    //display misses and combo and uhhh probably accuracy
+
+    //move back to story 
+
+    
 }
 
 function updateGameArea(timestamp) {
@@ -408,7 +419,11 @@ function updateGameArea(timestamp) {
     const deltaTime = elapsed; // already in seconds from your existing logic
     lastFrameTime = timestamp;
 
-    if (combo > maxCombo) maxCombo = combo;
+    if (combo > maxCombo) {
+        maxCombo = combo;
+    }
+        
+       
 
     myGameArea.clear();
     drawLaneLines();
@@ -439,8 +454,11 @@ function updateGameArea(timestamp) {
         nextNoteIndex++;
     }
     console.log(nextNoteIndex);
-    if (nextNoteIndex == nextNoteIndex.length) {
-       gameEnd(missCounter.text, maxCombo)
+    
+    jfkdead += 1; 
+    if (nextNoteIndex == 239 && jfk == 0 && jfkdead % 90 == 0) {
+       gameEnd(missCounter, maxCombo);
+       jfk += 1
     }
     // Move and draw all obstacles
     for (let i = myObstacles.length - 1; i >= 0; i--) {
