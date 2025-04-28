@@ -7,6 +7,14 @@ let scoreCounter = 0;
 let comboDisplay;
 let missCounter = 0;
 let sillyCanvas;
+let jfkdead = 0;
+let jfk = 0;
+let maxCombo = 0;
+let gameHolder = document.getElementById(`gameHolder`);
+let statHolder = document.getElementById(`statHolder`);
+let theBtn = document.getElementById(`startBtn`);
+let theBody = document.querySelector(`body`);
+
 // let laneList;
 // let canvWidth = 270;
 let canvWidth = 400;
@@ -28,8 +36,20 @@ let nextNoteIndex = 0;
 let gameStartTime = null;
 let redWidth = canvWidth*(.9851/4);
 let redHeight = canvHeight*.83333;
+
+var winEvent = false;
+
 function startGame() {
+    setTimeout(() => {
+        theBody.classList.add(`BLINDING`);
+    }, 1600);
+    gameHolder.classList.add(`hidden`);
+    setTimeout(() => {
+        gameHolder.classList.add(`theRemoving`)
+        theBtn.classList.add(`ALIVE`);
+    }, 2250);
     document.getElementById(`startBtn`).remove();
+    
     myGamePiece = new component(redWidth, 2, "red", lane0, redHeight);
     myGamePiece2 = new component(redWidth, 2, "red", lane1, redHeight);
     myGamePiece3 = new component(redWidth, 2, "red", lane2, redHeight);
@@ -389,23 +409,6 @@ for (let i = laneList.length - 1; i>= 0, i--;) {
 
 
 
-let jfkdead = 0;
-let jfk = 0;
-let maxCombo = 0;
-let gameHolder = document.getElementById(`gameHolder`);
-let statHolder = document.getElementById(`statHolder`);
-let theBtn = document.getElementById(`startBtn`);
-let theBody = document.querySelector(`body`);
-setTimeout(() => {
-    theBody.classList.add(`BLINDING`);
-    
-}, 1600);
-gameHolder.classList.add(`hidden`);
-setTimeout(() => {
-    gameHolder.classList.add(`theRemoving`)
-    theBtn.classList.add(`ALIVE`);
-}, 2250);
-
 
 
 function gameEnd(misses, maxcombo) {
@@ -417,6 +420,7 @@ function gameEnd(misses, maxcombo) {
             gameHolder.innerHTML += `<p> Misses: ${misses}</p>`;
             gameHolder.innerHTML += `<p> Maximum Combo: ${maxcombo - 1}</p>`;
             gameHolder.innerHTML += `<p> Accuracy: ${(((laneList.length-misses)/laneList.length)*100).toFixed(4)}%</p>`;
+            winEvent = true;
         }, 1500);
     //keyframe into thingy
     

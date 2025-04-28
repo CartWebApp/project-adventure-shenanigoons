@@ -6,10 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Adventure</title>
     <link rel="stylesheet" href="the-cssthing.css">
+    <link rel="stylesheet" href="rhythmgame/gaming.css">
+    <script defer src="rhythmgame/game.js"></script>
     <script defer src="adventure.js"></script>
+    
 </head>
 
 <body id="body">
+    <audio id="bgMusic" src="rhythmgame/audio.mp3" preload="auto"></audio>
+    <button id="startBtn" onclick="startGame()">Start</button>
     <div id="gameHolder">
         <img src="" alt="" id="image">
         <div id="textContainer">
@@ -18,8 +23,10 @@
         <ul id="options">
             
         </ul>
+        <div id="statHolder">
+
+        </div>
     </div>
-    
 </body>
 
 </html>

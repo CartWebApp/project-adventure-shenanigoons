@@ -61,6 +61,7 @@ const story = {
     image: `images/first-cutscene/9.jpg`,
     scenes: [
         {
+            function: () => startGame(),
             text: `She turned away, already forgetting you. Somehow, that was worse than anything she could have done.`,
             image: `images/first-fork/1-3.jpg`,
             cutscene: [{ text: `You couldn’t move. You couldn’t speak. Your body locked up as Miku’s glowing eyes bore into you. The sheer weight of her presence crushed any thought of resistance.`, image: `images/first-fork/1-1.jpg` }, { text: `She sighed, stepping closer, her expression twisting into mocking amusement. “What a hero you are,” she said, her voice dripping with sarcasm. “Truly, a warrior worthy of legend.” The air around her pulsed with raw power, yet she made no move to strike. She didn’t need to. You weren’t a threat.`, image: `images/first-fork/1-2.jpg`, last: true }],
@@ -68,11 +69,6 @@ const story = {
             scenes: [{ path: ['p', 3] }]
         },
         {
-            // text: `You charged. Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.
-            // She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”
-            // You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”
-            // The air pulsed. A sharp force hurled you into split garbage bags.
-            // Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
             text: `Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
             image: `images/first-fork/2-6.jpg`,
             cutscene: [{ text: `You charged.`, image: `images/first-fork/2-1.jpg` }, { text: `Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.`, image: `images/first-fork/2-2.jpg` }, { text: `She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”`, image: `images/first-fork/2-3.jpg` }, { text: `You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”`, image: `images/first-fork/2-4.jpg` }, { text: `The air pulsed. A sharp force hurled you into split garbage bags.`, image: `images/first-fork/2-5.jpg`, last: true }],
@@ -184,7 +180,7 @@ const story = {
                                                     options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
                                                     scenes: [{
                                                         text: `heheh it's the thing lmao. aight you have my vote kid that was pretty good<br><br>YOU HAVE TETO'S VOTE!`,
-                                                        options: [`Continue`], 
+                                                        options: [`Continue`],
                                                         scenes: [{ path: [`p`, `p`, `p`] }],
                                                     }],
                                                     item: 'teto',
@@ -726,12 +722,10 @@ Object.prototype.run = function () {
 }
 
 Object.prototype.runScene = function (parent, i) {
-
     text.innerHTML = this.text;
     if (`image` in this) {
         image.src = this.image;
     }
-
     options.innerHTML = `<li>Continue</li>`;
 
     let scene = this;
