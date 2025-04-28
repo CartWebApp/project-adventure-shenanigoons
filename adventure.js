@@ -589,7 +589,7 @@ const story = {
                             scenes: [{
                                 text: `Without warning, they attack, giving no time for you to think. This must have been why Oogway said to avoid this floor. You have learned your lesson.<br><br>YOU DIE`,
                                 options: [`Go back`, `Restart from beginning`],
-                                scenes: [{ path: [`p`] }, { path: [`P`] }]
+                                scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
                             }, {
                                 text: `You pull out the Miku drip and they are all taken aback. Peter Griffin looks you up and down, and says, "Heheh this is like that time we did the drip contest." Suddenly, your vision cuts out and you see Miku standing in front of a group of people. As you look closer, you see that these people are actually those same guards, but they are all dripped out the wazoo. They seem to be having a contest for who's the drippiest. Miku, of course, wins this with her savage lil' drip coat. Your vision comes back, and all the guards are laughing remembering their good times. Peter walks over to you and puts a hand on your shoulder. "Hey kid, why don't you work with us? Times like this don't happen often, but when they do, it's the best time ever. I can't believe I ever forgot about this."`,
                                 options: [`Yeah I'll take the job`, `Nah I'm good. Thanks tho!`],
@@ -812,7 +812,7 @@ Object.prototype.openSecrets = function () {
 }
 
 story.addParents();
-// story.run();
+story.run();
 
 // Debug Path
-story.scenes[4].findPath().run();
+// story.scenes[4].findPath().run();
