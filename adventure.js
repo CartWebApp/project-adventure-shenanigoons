@@ -42,27 +42,40 @@ const relationshipBlunders = {
 }
 
 const story = {
+    function: () => {
+        // reset blunders
+        relationshipBlunders.walter = 0;
+        relationshipBlunders.teto = 0;
+        relationshipBlunders.iceBear = 0;
+        relationshipBlunders.gabriel = 0;
+
+        // reset votes
+        delete inventory.walter;
+        delete inventory.teto;
+        delete inventory.iceBear;
+        delete inventory.gabriel;
+    },
     text: `Miku steps forward, crossing into your world`,
     cutscene: [{ text: `The night shift at Good Burger was supposed to be uneventful. The parking lot was empty, the distant hum of traffic the only sound as you hauled a garbage bag toward the dumpster. Then, the air changed.`, image: `images/first-cutscene/1.jpg` }, { text: `A deep hum vibrated through the lot, and with a sudden crack, a portal tore open above the dumpster, swirling with neon blue energy. Inside, two figures clashed—Master Oogway, standing firm, and Hatsune Miku, a streak of turquoise light moving with impossible speed.`, image: `images/first-cutscene/2.jpg` }, { text: `“You do not belong here,” Oogway said, deflecting a strike with his staff.`, image: `images/first-cutscene/3.jpg` }, { text: `Miku’s teal eyes gleamed. “And you do?”`, image: `images/first-cutscene/4.jpg` }, { text: `She unleashed a wave of energy, sharp crescents of sound cutting through the air. Oogway spun his staff, dispersing them, but she was already gone—a blur that reappeared above him. Her foot crashed into his shell, a burst of cyan energy erupting on impact.`, image: `images/first-cutscene/5.jpg` }, { text: `With a resounding crash, Oogway was blasted from the portal, spinning through the air before slamming into the Good Burger dumpster.`, image: `images/first-cutscene/6.jpg` }, { text: `You froze, gripping the garbage bag like it was your last defense. The portal still crackled with energy. On the other side, Miku’s gaze shifted from the fallen Oogway… to you.`, image: `images/first-cutscene/7.jpg` }, { text: `From inside the dumpster, Oogway’s muffled voice weakly urged, “Go… after her…”`, image: `images/first-cutscene/8.jpg`, last: true }],
     options: [`Stay paralyzed, stunned with fear`, `Go after her`, `“What is going on!?”`],
     image: `images/first-cutscene/9.jpg`,
     scenes: [
         {
-            text: `You couldn’t move. You couldn’t speak.
-            Your body locked up as Miku’s glowing eyes bore into you. The sheer weight of her presence crushed any thought of resistance. Your breath came in short, shallow gasps.
-            She sighed, stepping closer, her expression twisting into mocking amusement. “What a hero you are,” she said, her voice dripping with sarcasm. “Truly, a warrior worthy of legend.”
-            The air around her pulsed with raw power, yet she made no move to strike. She didn’t need to. You weren’t a threat.
-            She turned away, already forgetting you. Somehow, that was worse than anything she could have done.`,
+            text: `She turned away, already forgetting you. Somehow, that was worse than anything she could have done.`,
+            image: `images/first-fork/1-3.jpg`,
+            cutscene: [{ text: `You couldn’t move. You couldn’t speak. Your body locked up as Miku’s glowing eyes bore into you. The sheer weight of her presence crushed any thought of resistance.`, image: `images/first-fork/1-1.jpg` }, { text: `She sighed, stepping closer, her expression twisting into mocking amusement. “What a hero you are,” she said, her voice dripping with sarcasm. “Truly, a warrior worthy of legend.” The air around her pulsed with raw power, yet she made no move to strike. She didn’t need to. You weren’t a threat.`, image: `images/first-fork/1-2.jpg`, last: true }],
             options: [`Continue`],
             scenes: [{ path: ['p', 3] }]
         },
         {
-            text: `You charged.
-            Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.
-            She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”
-            You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”
-            The air pulsed. A sharp force hurled you into split garbage bags.
-            Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
+            // text: `You charged. Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.
+            // She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”
+            // You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”
+            // The air pulsed. A sharp force hurled you into split garbage bags.
+            // Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
+            text: `Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
+            image: `images/first-fork/2-6.jpg`,
+            cutscene: [{ text: `You charged.`, image: `images/first-fork/2-1.jpg` }, { text: `Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.`, image: `images/first-fork/2-2.jpg` }, { text: `She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”`, image: `images/first-fork/2-3.jpg` }, { text: `You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”`, image: `images/first-fork/2-4.jpg` }, { text: `The air pulsed. A sharp force hurled you into split garbage bags.`, image: `images/first-fork/2-5.jpg`, last: true }],
             options: [`Continue`],
             scenes: [{ path: ['p', 3] }]
         },
@@ -115,7 +128,7 @@ const story = {
                                                     text: `With what lab? Miku stole my RV once I joined her army<br><br>-1 relationship point!`,
                                                     options: [`Continue`],
                                                     scenes: [{ path: [`p`] }, {
-                                                        text: `With what lab? Miku stole my RV once I joined her army<br><br>You know what, I'm tired of this. I'm voting against the rebellion"<br><br>You lost Walter's vote!`,
+                                                        text: `With what lab? Miku stole my RV once I joined her army. You know what, I'm tired of this. I'm voting against the rebellion<br><br>You lost Walter's vote!`,
                                                         options: [`Continue`],
                                                         scenes: [{ path: [`p`, `p`, `p`] }]
                                                     }],
@@ -260,10 +273,167 @@ const story = {
                                                     }],
                                                     blunder: { name: `iceBear`, count: 1 },
                                                     lock: {
-                                                        paths: [{ path: [`p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: [1]
+                                                        paths: [{ path: [`p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: { path: [1] }
+                                                    }
+                                                }, {
+                                                    text: `Ice bear says nothing. You assume he appreciates the compliment. “You could probably take Miku down yourself if you tried” "Ice bear does not see a point to that"`,
+                                                    options: [`Think of how many people you could save`, `You could be a king, Ice Bear`, `What would Grizz think?`],
+                                                    scenes: [{
+                                                        text: `Ice bear knows another tyrant will take Miku's place<br><br>-1 relationship point`,
+                                                        options: [`You could be a king, Ice Bear`, `What would Grizz think?`],
+                                                        scenes: [{ path: [`p`, 1] }, { path: [`p`, 2] }, {
+                                                            text: `Ice bear sighs. "Ice bear knows another tyrant will take Miku's place"<br><br>YOU LOST ICE BEAR'S VOTE!`,
+                                                            options: [`Continue`],
+                                                            scenes: [{ path: [`p`, `p`, `p`, `p`] }]
+                                                        }],
+                                                        blunder: { name: `iceBear`, count: 1 },
+                                                        lock: {
+                                                            paths: [{ path: [`p`, `p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: { path: [2] }
+                                                        }
+                                                    }, {
+                                                        text: `Ice bear believes that Ice bear's rule would be more tyrannical than Miku's<br><br>-1 relationship point!`,
+                                                        options: [`Think of how many people you could save`, `What would Grizz think?`],
+                                                        scenes: [{ path: [`p`, 0] }, { path: [`p`, 2] }, {
+                                                            text: `Ice bear sighs. "Ice bear believes that Ice bear's rule would be more tyrannical than Miku's"<br><br>YOU LOST ICE BEAR'S VOTE`,
+                                                            options: [`Continue`],
+                                                            scenes: [{ path: [`p`, `p`, `p`, `p`] }]
+                                                        }],
+                                                        blunder: { name: `iceBear`, count: 1 },
+                                                        lock: {
+                                                            paths: [{ path: [`p`, `p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: { path: [2] }
+                                                        }
+                                                    }, {
+                                                        text: `dont look at this user plz i beg of you`,
+                                                        options: [`NOT THIS EITHER!!1! DONT LOOK AT THPS ONE EITHER!!!`],
+                                                        scenes: [{
+                                                            text: `Ice bear flinches. He has now gotten even quieter than he was. Ice bear is in deep reflection. He looks you dead on, and gives a nod.<br><br>YOU HAVE ICE BEAR'S VOTE!`,
+                                                            options: [`Continue`],
+                                                            scenes: [{ path: [`p`, `p`, `p`, `p`] }]
+                                                        }],
+                                                        item: `iceBear`,
+                                                        lock: {
+                                                            paths: [{ path: [`p`, `p`] }], condition: () => true, scene: { path: [0] }
+                                                        }
+                                                    }]
+                                                }, {
+                                                    text: `Ice Bear would be commiting treason<br><br>-1 relationship point!`,
+                                                    options: [`Oh yeah`],
+                                                    scenes: [{ path: [`p`] }, {
+                                                        text: `Ice Bear would be commiting treason<br><br>YOU JUST LOST ICE BEAR'S VOTE!`,
+                                                        options: [`Continue`],
+                                                        scenes: [{ path: [`p`, `p`, `p`] }]
+                                                    }],
+                                                    blunder: { name: `iceBear`, count: 1 },
+                                                    lock: {
+                                                        paths: [{ path: [`p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: { path: [1] }
                                                     }
                                                 }]
-                                            }]
+                                            }, {
+                                                text: `You approach Gabriel and he daps you and Shifu up. "Waddup gang. You want smth?" Gabriel summons a mini fridge`,
+                                                options: [`Nah that's ok`, `Yeah I'll take a Butterbeer`, `Yeah I'll take some blinker fluid`, `Yeah lemme get some silly string`, `Yeah I'll get myself a Kool-Aid`, `Yeah I'll take a Dr. Pepper`, `Yeah I'll take a Dark Elixir`, `Yeah I'll take a Duff Beer`, `Yeah I'll take a Nuka Cola`],
+                                                scenes: [{
+                                                    text: `Just take smth man<br><br>-1 relationship point!`,
+                                                    options: [`Ok`],
+                                                    scenes: [{ path: [`p`] }, {
+                                                        text: `Dude just get smth. Screw you dude<br><br>YOU LOST GABRIEL'S VOTE!`,
+                                                        options: [`Continue`],
+                                                        scenes: [{ path: [`p`, `p`, `p`] }]
+                                                    }],
+                                                    blunder: { name: `gabriel`, count: 1 },
+                                                    lock: {
+                                                        paths: [{ path: [`p`] }], condition: () => relationshipBlunders.gabriel >= 3, scene: { path: [1] }
+                                                    }
+                                                }, {
+                                                    text: `Nah get smth good<br><br>-1 relationship point!`,
+                                                    options: [`Ok`],
+                                                    scenes: [{ path: [`p`] }, {
+                                                        text: `Dude your taste sucks<br><br>YOU LOST GABRIEL'S VOTE!`,
+                                                        options: [`Continue`],
+                                                        scenes: [{ path: [`p`, `p`, `p`] }]
+                                                    }],
+                                                    blunder: { name: `gabriel`, count: 1 },
+                                                    lock: {
+                                                        paths: [{ path: [`p`] }], condition: () => relationshipBlunders.gabriel >= 3, scene: { path: [1] }
+                                                    }
+                                                }, { path: [1] }, { path: [1] }, { path: [1] }, {
+                                                    text: `dont looky at this goofball teehee`,
+                                                    options: [`not this either teehee-er`],
+                                                    scenes: [{
+                                                        text: `Hell yeah. Gabriel comes in for another dap up. You both clap harder than anyone has ever clapped before. This clap shakes the skyscraper, the surrounding city, and even LeBron<br><br>YOU HAVE GABRIEL'S VOTE`,
+                                                        options: [`Continue`],
+                                                        scenes: [{ path: [`p`, `p`, `p`] }]
+                                                    }],
+                                                    item: `gabriel`,
+                                                    lock: {
+                                                        paths: [{ path: [`p`] }], condition: () => true, scene: { path: [0] }
+                                                    }
+                                                }, { path: [1] }, { path: [1] }, { path: [1] }]
+                                            }, {
+                                                text: `The guards take their vote. They decide as a group that your plan is not worth the effort or risk. Peter sighs. "I'm a man of my word, kid. I have to go along with their choice, even if I agree with you. I'm really sorry to do this to you, kid. LeBron, you know what to do." Lebron: "Already on it big guy" LeBron flies over to you. He picks you up and flies you to the top of the skyscraper. "G'bye kid. This is just part of the job description" He drops you<br><br>YOU DIE`,
+                                                options: [`Go back`, `Restart from beginning`],
+                                                scenes: [{ path: [`p`] }, { path: [`P`] }, {
+                                                    text: `Peter: "Alright then. What are we waiting for? LeBron, take us up" LeBron: "You got it, big guy." LeBron groups all of you up, and dunks you into the top floor of the Miku scraper. Miku knew you all were approaching, so she isn't surprised. Miku: "I thought you'd all be smarter than that. You're all fired. And for you (Miku turns to you) I'll take care of you myself"`,
+                                                    options: [`*square up*`],
+                                                    scenes: [{
+                                                        // rhythm game
+                                                    }]
+                                                }],
+                                                lock: {
+                                                    paths: [], condition: () => {
+                                                        let voteCount = 0;
+                                                        if (inventory.walter) voteCount++;
+                                                        if (inventory.teto) voteCount++;
+                                                        if (inventory.iceBear) voteCount++;
+                                                        if (inventory.gabriel) voteCount++;
+
+                                                        if (voteCount >= 2) {
+                                                            return true;
+                                                        } else {
+                                                            // reset blunders
+                                                            relationshipBlunders.walter = 0;
+                                                            relationshipBlunders.teto = 0;
+                                                            relationshipBlunders.iceBear = 0;
+                                                            relationshipBlunders.gabriel = 0;
+
+                                                            // reset votes
+                                                            delete inventory.walter;
+                                                            delete inventory.teto;
+                                                            delete inventory.iceBear;
+                                                            delete inventory.gabriel;
+
+                                                            // unlock paths
+                                                            let walterPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 0] }
+                                                            delete walterPath.findPath().locked;
+
+                                                            let tetoPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 1] }
+                                                            delete tetoPath.findPath().locked;
+
+                                                            let iceBearPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 2] }
+                                                            delete iceBearPath.findPath().locked;
+
+                                                            let gabrielPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 3] }
+                                                            delete gabrielPath.findPath().locked;
+                                                        }
+                                                    }, scene: { path: [2] }
+                                                }
+                                            }],
+                                        lock: {
+                                            paths: [], condition: () => {
+                                                let voteCount = 0;
+                                                if (inventory.walter) voteCount++;
+                                                if (inventory.teto) voteCount++;
+                                                if (inventory.iceBear) voteCount++;
+                                                if (inventory.gabriel) voteCount++;
+
+                                                let blunderCount = 0;
+                                                if (relationshipBlunders.walter >= 3) blunderCount++;
+                                                if (relationshipBlunders.teto >= 3) blunderCount++;
+                                                if (relationshipBlunders.iceBear >= 3) blunderCount++;
+                                                if (relationshipBlunders.gabriel >= 3) blunderCount++;
+
+                                                if (voteCount >= 2 || blunderCount >= 3) return true;
+                                            }, scene: { path: [4] }
+                                        }
                                     }]
                                 }]
                             }, {
@@ -439,7 +609,8 @@ const story = {
             }]
         },
         // the debug pathway
-        { path: [3, 0, 0, 0, 1, 0, 0] }
+        // { path: [3, 0, 0, 0, 1, 0, 0] } who do you approach
+        { path: [1] }
     ]
 };
 
@@ -641,7 +812,7 @@ Object.prototype.openSecrets = function () {
 }
 
 story.addParents();
-// story.run();
+story.run();
 
 // Debug Path
-story.scenes[4].findPath().run();
+// story.scenes[4].findPath().run();
