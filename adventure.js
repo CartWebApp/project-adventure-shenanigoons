@@ -1,7 +1,3 @@
-const text = document.getElementById(`text`);
-const options = document.getElementById(`options`);
-const image = document.getElementById(`image`);
-
 // I'm templating it I'm templating it I'm templating it I'm templating it I'm templating it I'm templating it 
 
 /* 
@@ -61,7 +57,6 @@ const story = {
     image: `images/first-cutscene/9.jpg`,
     scenes: [
         {
-            function: () => startGame(),
             text: `She turned away, already forgetting you. Somehow, that was worse than anything she could have done.`,
             image: `images/first-fork/1-3.jpg`,
             cutscene: [{ text: `You couldn’t move. You couldn’t speak. Your body locked up as Miku’s glowing eyes bore into you. The sheer weight of her presence crushed any thought of resistance.`, image: `images/first-fork/1-1.jpg` }, { text: `She sighed, stepping closer, her expression twisting into mocking amusement. “What a hero you are,” she said, her voice dripping with sarcasm. “Truly, a warrior worthy of legend.” The air around her pulsed with raw power, yet she made no move to strike. She didn’t need to. You weren’t a threat.`, image: `images/first-fork/1-2.jpg`, last: true }],
@@ -575,7 +570,18 @@ const story = {
                                         scenes: [{ path: [`p`] }, { path: [`P`] }]
                                     }]
                                 }, {
-                                    // rhythm game
+                                    text: `who am i`,
+                                    options: [`next`],
+                                    scenes: [{
+                                        text: `grunkloid`,
+                                        options: [`smth`],
+                                        scenes: [{
+                                            text: `smth`,
+                                            options: [],
+                                            scenes: []
+                                        }]
+                                    }],
+                                    startGame: true
                                 }]
                             }]
                         }, {
@@ -643,20 +649,23 @@ Object.prototype.run = function () {
         this.function();
     }
 
+    if (this.startGame) {
+        startGameAll();
+    }
+
     if (`cutscene` in this && !this.cutsceneRan) {
         this.cutscene[0].runScene(this, 0);
     } else {
-        text.innerHTML = this.text;
-        options.innerHTML = ``;
+        document.getElementById(`text`).innerHTML = this.text;
+        document.getElementById(`options`).innerHTML = ``;
         if ('options' in this) {
             for (option of this.options) {
-                options.innerHTML += `<li>${option}</li>`
-
+                document.getElementById(`options`).innerHTML += `<li>${option}</li>`
             }
         }
 
         if ('image' in this) {
-            image.src = this.image;
+            document.getElementById(`image`).src = this.image;
         }
 
         if (this.item) {
@@ -679,7 +688,7 @@ Object.prototype.run = function () {
             let object = this;
 
             for (let i = 0; i < this.options.length; i++) {
-                options.children[i].addEventListener(`click`, function select() {
+                document.getElementById(`options`).children[i].addEventListener(`click`, function select() {
                     if (!object.scenes[i].locked) {
                         document.removeEventListener(`keydown`, select);
                         if (object.cutsceneRan) {
@@ -693,7 +702,7 @@ Object.prototype.run = function () {
                         }
                     }
                     if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                        text.innerHTML += `<br><br>That path is locked!`;
+                        document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
                     }
                 })
             }
@@ -713,7 +722,7 @@ Object.prototype.run = function () {
                         }
                     }
                     if ('locked' in object.scenes[parseInt(e.key) - 1] && object.scenes[parseInt(e.key) - 1].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                        text.innerHTML += `<br><br>That path is locked!`;
+                        document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
                     }
                 }
             })
