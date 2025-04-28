@@ -61,7 +61,7 @@ const story = {
     image: `images/first-cutscene/9.jpg`,
     scenes: [
         {
-            function: () => startGame(),
+            function: () => startAllGame(),
             text: `She turned away, already forgetting you. Somehow, that was worse than anything she could have done.`,
             image: `images/first-fork/1-3.jpg`,
             cutscene: [{ text: `You couldn’t move. You couldn’t speak. Your body locked up as Miku’s glowing eyes bore into you. The sheer weight of her presence crushed any thought of resistance.`, image: `images/first-fork/1-1.jpg` }, { text: `She sighed, stepping closer, her expression twisting into mocking amusement. “What a hero you are,” she said, her voice dripping with sarcasm. “Truly, a warrior worthy of legend.” The air around her pulsed with raw power, yet she made no move to strike. She didn’t need to. You weren’t a threat.`, image: `images/first-fork/1-2.jpg`, last: true }],

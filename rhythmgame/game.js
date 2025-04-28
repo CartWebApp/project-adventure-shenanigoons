@@ -38,8 +38,7 @@ let redWidth = canvWidth*(.9851/4);
 let redHeight = canvHeight*.83333;
 
 var winEvent = false;
-
-function startGame() {
+function startAllGame() {
     setTimeout(() => {
         theBody.classList.add(`BLINDING`);
     }, 1600);
@@ -48,6 +47,9 @@ function startGame() {
         gameHolder.classList.add(`theRemoving`)
         theBtn.classList.add(`ALIVE`);
     }, 2250);
+}
+function startGame() {
+    
     document.getElementById(`startBtn`).remove();
     
     myGamePiece = new component(redWidth, 2, "red", lane0, redHeight);
