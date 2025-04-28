@@ -570,16 +570,16 @@ const story = {
                                         scenes: [{ path: [`p`] }, { path: [`P`] }]
                                     }]
                                 }, {
-                                    text: `who am i`,
-                                    options: [`next`],
+                                    text: `Miku is now fighting you!`,
+                                    options: [],
                                     scenes: [{
-                                        text: `grunkloid`,
-                                        options: [`smth`],
-                                        scenes: [{
-                                            text: `smth`,
-                                            options: [],
-                                            scenes: []
-                                        }]
+                                        text: `this is the losing scene :(((`,
+                                        options: [`Retry`, `Start from beginning`],
+                                        scenes: [{ path: [`p`] }, { path: [`P`] }]
+                                    }, {
+                                        text: `this is the winning scene! hooray!!!`,
+                                        options: [],
+                                        scenes: []
                                     }],
                                     startGame: true
                                 }]
@@ -650,7 +650,7 @@ Object.prototype.run = function () {
     }
 
     if (this.startGame) {
-        startGameAll();
+        startGameAll(this);
     }
 
     if (`cutscene` in this && !this.cutsceneRan) {
@@ -689,40 +689,44 @@ Object.prototype.run = function () {
 
             for (let i = 0; i < this.options.length; i++) {
                 document.getElementById(`options`).children[i].addEventListener(`click`, function select() {
-                    if (!object.scenes[i].locked) {
-                        document.removeEventListener(`keydown`, select);
-                        if (object.cutsceneRan) {
-                            delete object.cutsceneRan;
-                        }
+                    if (!gameActive) {
+                        if (!object.scenes[i].locked) {
+                            document.removeEventListener(`keydown`, select);
+                            if (object.cutsceneRan) {
+                                delete object.cutsceneRan;
+                            }
 
-                        if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
-                            object.scenes[i].findPath().run();
-                        } else {
-                            object.scenes[i].run();
+                            if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
+                                object.scenes[i].findPath().run();
+                            } else {
+                                object.scenes[i].run();
+                            }
                         }
-                    }
-                    if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                        document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
+                        if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                            document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
+                        }
                     }
                 })
             }
             document.addEventListener(`keydown`, function select(e) {
-                if (parseInt(e.key) > 0 && parseInt(e.key) <= object.options.length) {
-                    if (!object.scenes[parseInt(e.key) - 1].locked) {
-                        document.removeEventListener(`keydown`, select);
+                if (!gameActive) {
+                    if (parseInt(e.key) > 0 && parseInt(e.key) <= object.options.length) {
+                        if (!object.scenes[parseInt(e.key) - 1].locked) {
+                            document.removeEventListener(`keydown`, select);
 
-                        if (object.cutsceneRan) {
-                            delete object.cutsceneRan;
-                        }
+                            if (object.cutsceneRan) {
+                                delete object.cutsceneRan;
+                            }
 
-                        if (!('scenes' in object.scenes[parseInt(e.key) - 1]) && !object.scenes[parseInt(e.key) - 1].ending) {
-                            object.scenes[parseInt(e.key) - 1].findPath().run();
-                        } else {
-                            object.scenes[parseInt(e.key) - 1].run();
+                            if (!('scenes' in object.scenes[parseInt(e.key) - 1]) && !object.scenes[parseInt(e.key) - 1].ending) {
+                                object.scenes[parseInt(e.key) - 1].findPath().run();
+                            } else {
+                                object.scenes[parseInt(e.key) - 1].run();
+                            }
                         }
-                    }
-                    if ('locked' in object.scenes[parseInt(e.key) - 1] && object.scenes[parseInt(e.key) - 1].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                        document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
+                        if ('locked' in object.scenes[parseInt(e.key) - 1] && object.scenes[parseInt(e.key) - 1].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                            document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
+                        }
                     }
                 }
             })

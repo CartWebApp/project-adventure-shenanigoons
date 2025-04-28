@@ -37,8 +37,13 @@ let gameStartTime = null;
 let redWidth = canvWidth * (.9851 / 4);
 let redHeight = canvHeight * .83333;
 
-var winEvent = false;
-function startGameAll() {
+// variable to communicate with adventure.js
+let gameActive = false;
+let scene;
+
+function startGameAll(thisScene) {
+    gameActive = true;
+    scene = thisScene;
     setTimeout(() => {
         theBody.classList.add(`BLINDING`);
     }, 1600);
@@ -49,6 +54,7 @@ function startGameAll() {
     }, 2250);
 }
 function startGame() {
+    console.log(`buttonstart`)
     
     document.getElementById(`startBtn`).remove();
     myGamePiece = new component(redWidth, 2, "red", lane0, redHeight);
@@ -415,6 +421,13 @@ for (let i = laneList.length - 1; i>= 0, i--;) {
 function gameEnd(misses, maxcombo) {
 
     setTimeout(() => {
+        gameActive = false;
+        if ((((laneList.length - misses) / laneList.length) * 100).toFixed(4) >= 75) {
+            scene.scenes[1].run();
+        } else {
+            scene.scenes[0].run();
+        }
+
         sillyCanvas.remove();
         gameHolder.classList.remove(`hidden`);
         gameHolder.classList.remove(`theRemoving`)
