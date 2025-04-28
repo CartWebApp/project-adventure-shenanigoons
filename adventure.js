@@ -812,7 +812,7 @@ Object.prototype.openSecrets = function () {
 }
 
 story.addParents();
-// story.run();
+story.run();
 
 // Debug Path
-story.scenes[4].findPath().run();
+// story.scenes[4].findPath().run();
