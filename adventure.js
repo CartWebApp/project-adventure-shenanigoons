@@ -1,7 +1,3 @@
-const text = document.getElementById(`text`);
-const options = document.getElementById(`options`);
-const image = document.getElementById(`image`);
-
 // I'm templating it I'm templating it I'm templating it I'm templating it I'm templating it I'm templating it 
 
 /* 
@@ -68,11 +64,6 @@ const story = {
             scenes: [{ path: ['p', 3] }]
         },
         {
-            // text: `You charged. Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.
-            // She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”
-            // You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”
-            // The air pulsed. A sharp force hurled you into split garbage bags.
-            // Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
             text: `Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
             image: `images/first-fork/2-6.jpg`,
             cutscene: [{ text: `You charged.`, image: `images/first-fork/2-1.jpg` }, { text: `Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.`, image: `images/first-fork/2-2.jpg` }, { text: `She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”`, image: `images/first-fork/2-3.jpg` }, { text: `You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”`, image: `images/first-fork/2-4.jpg` }, { text: `The air pulsed. A sharp force hurled you into split garbage bags.`, image: `images/first-fork/2-5.jpg`, last: true }],
@@ -184,7 +175,7 @@ const story = {
                                                     options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
                                                     scenes: [{
                                                         text: `heheh it's the thing lmao. aight you have my vote kid that was pretty good<br><br>YOU HAVE TETO'S VOTE!`,
-                                                        options: [`Continue`], 
+                                                        options: [`Continue`],
                                                         scenes: [{ path: [`p`, `p`, `p`] }],
                                                     }],
                                                     item: 'teto',
@@ -579,7 +570,18 @@ const story = {
                                         scenes: [{ path: [`p`] }, { path: [`P`] }]
                                     }]
                                 }, {
-                                    // rhythm game
+                                    text: `Miku is now fighting you!`,
+                                    options: [],
+                                    scenes: [{
+                                        text: `this is the losing scene :(((`,
+                                        options: [`Retry`, `Start from beginning`],
+                                        scenes: [{ path: [`p`] }, { path: [`P`] }]
+                                    }, {
+                                        text: `this is the winning scene! hooray!!!`,
+                                        options: [],
+                                        scenes: []
+                                    }],
+                                    startGame: true
                                 }]
                             }]
                         }, {
@@ -647,20 +649,23 @@ Object.prototype.run = function () {
         this.function();
     }
 
+    if (this.startGame) {
+        startGameAll(this);
+    }
+
     if (`cutscene` in this && !this.cutsceneRan) {
         this.cutscene[0].runScene(this, 0);
     } else {
-        text.innerHTML = this.text;
-        options.innerHTML = ``;
+        document.getElementById(`text`).innerHTML = this.text;
+        document.getElementById(`options`).innerHTML = ``;
         if ('options' in this) {
             for (option of this.options) {
-                options.innerHTML += `<li>${option}</li>`
-
+                document.getElementById(`options`).innerHTML += `<li>${option}</li>`
             }
         }
 
         if ('image' in this) {
-            image.src = this.image;
+            document.getElementById(`image`).src = this.image;
         }
 
         if (this.item) {
@@ -683,41 +688,45 @@ Object.prototype.run = function () {
             let object = this;
 
             for (let i = 0; i < this.options.length; i++) {
-                options.children[i].addEventListener(`click`, function select() {
-                    if (!object.scenes[i].locked) {
-                        document.removeEventListener(`keydown`, select);
-                        if (object.cutsceneRan) {
-                            delete object.cutsceneRan;
-                        }
+                document.getElementById(`options`).children[i].addEventListener(`click`, function select() {
+                    if (!gameActive) {
+                        if (!object.scenes[i].locked) {
+                            document.removeEventListener(`keydown`, select);
+                            if (object.cutsceneRan) {
+                                delete object.cutsceneRan;
+                            }
 
-                        if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
-                            object.scenes[i].findPath().run();
-                        } else {
-                            object.scenes[i].run();
+                            if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
+                                object.scenes[i].findPath().run();
+                            } else {
+                                object.scenes[i].run();
+                            }
                         }
-                    }
-                    if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                        text.innerHTML += `<br><br>That path is locked!`;
+                        if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                            document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
+                        }
                     }
                 })
             }
             document.addEventListener(`keydown`, function select(e) {
-                if (parseInt(e.key) > 0 && parseInt(e.key) <= object.options.length) {
-                    if (!object.scenes[parseInt(e.key) - 1].locked) {
-                        document.removeEventListener(`keydown`, select);
+                if (!gameActive) {
+                    if (parseInt(e.key) > 0 && parseInt(e.key) <= object.options.length) {
+                        if (!object.scenes[parseInt(e.key) - 1].locked) {
+                            document.removeEventListener(`keydown`, select);
 
-                        if (object.cutsceneRan) {
-                            delete object.cutsceneRan;
-                        }
+                            if (object.cutsceneRan) {
+                                delete object.cutsceneRan;
+                            }
 
-                        if (!('scenes' in object.scenes[parseInt(e.key) - 1]) && !object.scenes[parseInt(e.key) - 1].ending) {
-                            object.scenes[parseInt(e.key) - 1].findPath().run();
-                        } else {
-                            object.scenes[parseInt(e.key) - 1].run();
+                            if (!('scenes' in object.scenes[parseInt(e.key) - 1]) && !object.scenes[parseInt(e.key) - 1].ending) {
+                                object.scenes[parseInt(e.key) - 1].findPath().run();
+                            } else {
+                                object.scenes[parseInt(e.key) - 1].run();
+                            }
                         }
-                    }
-                    if ('locked' in object.scenes[parseInt(e.key) - 1] && object.scenes[parseInt(e.key) - 1].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                        text.innerHTML += `<br><br>That path is locked!`;
+                        if ('locked' in object.scenes[parseInt(e.key) - 1] && object.scenes[parseInt(e.key) - 1].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                            document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
+                        }
                     }
                 }
             })
@@ -726,12 +735,10 @@ Object.prototype.run = function () {
 }
 
 Object.prototype.runScene = function (parent, i) {
-
     text.innerHTML = this.text;
     if (`image` in this) {
         image.src = this.image;
     }
-
     options.innerHTML = `<li>Continue</li>`;
 
     let scene = this;
