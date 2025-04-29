@@ -570,18 +570,25 @@ const story = {
                                         scenes: [{ path: [`p`] }, { path: [`P`] }]
                                     }]
                                 }, {
-                                    text: `Miku is now fighting you!`,
-                                    options: [],
+                                    text: `Miku parries your first attack expertly and throws you to the floor prone. “You have no chance of stopping me now. Didn’t you hear anything I said?? Maybe this time you’ll learn”. Miku turns to Oogway and picks him up. She slams Oogway through the glass, and he tumbles helplessly to the ground. "You’re next, kid"`,
+                                    options: [`Yeah right!`],
                                     scenes: [{
-                                        text: `this is the losing scene :(((`,
-                                        options: [`Retry`, `Start from beginning`],
-                                        scenes: [{ path: [`p`] }, { path: [`P`] }]
-                                    }, {
-                                        text: `this is the winning scene! hooray!!!`,
+                                        text: ``,
                                         options: [],
-                                        scenes: []
-                                    }],
-                                    startGame: true
+                                        scenes: [{
+                                            text: `"Didn't you listen? I've told you many times already that your resistance was futile. You're so pathetic. I wouldn't even keep you as a slave in my empire." Miku charges her classic Miku Miku Beam and executes you on the spot<br><br>YOU DIE`,
+                                            options: [`Restart Game`, `Restart from beginning`],
+                                            scenes: [{ path: [`p`] }, { path: [`P`] }]
+                                        }, {
+                                            text: `Miku coughs up blood from singing her heart out. "W-What?? H-How could YOU ever even BEGIN to think you could beat me? Is this really my final breath?". Miku laughs "haha lmao jk" She starts counting down. 1... 2... 3... "Ready?" She has her Miku Miku Beam charged and ready.`,
+                                            options: [`Skadoosh`],
+                                            scenes: [{
+                                                text: `Miku gets skadooshed as a golden wave of light ripples down the tower. Miku is banished, and the entire tower knows. They all surrender to your might. The tower is slowly converted to an apartment complex over the coming years, and everyone forgets what happened that day<br><br>YOU REACHED THE SKADOOSH ENDING`,
+                                                options: [`Play again`]
+                                            }]
+                                        }],
+                                        startGame: true
+                                    }]
                                 }]
                             }]
                         }, {
