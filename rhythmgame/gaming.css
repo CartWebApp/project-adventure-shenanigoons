@@ -137,12 +137,14 @@ button:hover {
     border: 2px solid rgb(255, 255, 255);
 }
 
-.ALIVE { 
-    display: flex !important;
-}
 .theRemoving {
     display: none !important;
 }
+
+.ALIVE { 
+    display: flex !important;
+}
+
 
 /* The animation code */
 @keyframes example {

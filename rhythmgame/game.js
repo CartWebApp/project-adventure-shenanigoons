@@ -3,6 +3,7 @@ let theLine;
 let myObstacles = [];
 let myScore;
 let myBody = document.querySelector(`body`)
+
 let scoreCounter = 0;
 let comboDisplay;
 let missCounter = 0;
@@ -41,50 +42,6 @@ let redHeight = canvHeight * .83333;
 let gameActive = false;
 let scene;
 
-function startGameAll(thisScene) {
-    gameActive = true;
-    scene = thisScene;
-    setTimeout(() => {
-        theBody.classList.add(`BLINDING`);
-    }, 1600);
-    gameHolder.classList.add(`hidden`);
-    setTimeout(() => {
-        gameHolder.classList.add(`theRemoving`)
-        theBtn.classList.add(`ALIVE`);
-    }, 2250);
-}
-function startGame() {
-    console.log(`buttonstart`)
-    
-    document.getElementById(`startBtn`).remove();
-    myGamePiece = new component(redWidth, 2, "red", lane0, redHeight);
-    myGamePiece2 = new component(redWidth, 2, "red", lane1, redHeight);
-    myGamePiece3 = new component(redWidth, 2, "red", lane2, redHeight);
-    myGamePiece4 = new component(redWidth, 2, "red", lane3, redHeight);
-    // theLine = new component(270, 2, "red", 0, 400); //this doesnt do anything yet lol
-
-    myScore = new component("30px", "Consolas", "white", 0, 90, "text");
-    missCountDisplay = new component("30px", "Consolas", "white", 0, 120, "text");
-    comboDisplay = new component("30px", "Consolas", "white", 0, 150, "text");
-
-    nextNoteIndex = 0;
-    lastFrameTime = null;
-
-    myGameArea.start();
-
-    setTimeout(() => {
-        music.currentTime = 0;
-        music.volume = 0.05;
-        setTimeout(() => {
-            music.play();
-        }, 250);
-        gameStartTime = performance.now(); // start tracking audio sync from this point
-    }, 1000); // 1000ms = 1 second
-    sillyCanvas = document.querySelector(`canvas`);
-
-}
-
-let lastFrameTime = null;
 let myGameArea = {
     canvas: document.createElement("canvas"),
     start: function () {
@@ -99,6 +56,75 @@ let myGameArea = {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 };
+
+
+let timings = [];
+
+function startGameAll(thisScene) {
+    p = 2;
+    nextNoteIndex = 0;
+    missCounter = 0;
+    scoreCounter = 0;
+    combo = 1;
+    maxCombo = 0;
+    myObstacles = [];
+    timings = [];
+    theBody.classList.remove(`BLINDING`);
+    
+    for (let i = 0; i < laneList.length; i++) {
+        const obstacle = laneList[i];
+
+        p = Number(obstacle[1]) + p;
+        timings.push(p)
+
+    }
+    gameActive = true;
+    scene = thisScene;
+    setTimeout(() => {
+        theBody.classList.add(`BLINDING`);
+        
+    }, 1600);
+    gameHolder.classList.add(`hidden`);
+    setTimeout(() => {
+        gameHolder.classList.add(`theRemoving`)
+        document.getElementById(`startBtn`).classList.add(`ALIVE`);
+    }, 2250);
+    
+}
+function startGame() {
+    
+    console.log(`startGame: ${gameActive}`);
+    console.log(`buttonstart`);
+    document.getElementById(`startBtn`).classList.remove(`ALIVE`);
+    myGamePiece = new component(redWidth, 2, "red", lane0, redHeight);
+    myGamePiece2 = new component(redWidth, 2, "red", lane1, redHeight);
+    myGamePiece3 = new component(redWidth, 2, "red", lane2, redHeight);
+    myGamePiece4 = new component(redWidth, 2, "red", lane3, redHeight);
+    // theLine = new component(270, 2, "red", 0, 400); //this doesnt do anything yet lol
+
+    myScore = new component("30px", "Consolas", "white", 0, 90, "text");
+    missCountDisplay = new component("30px", "Consolas", "white", 0, 120, "text");
+    comboDisplay = new component("30px", "Consolas", "white", 0, 150, "text");
+
+    nextNoteIndex = 0;
+    lastFrameTime = null;
+
+    myGameArea.start();
+    music.currentTime = 0;
+    music.volume = 0.05;
+    setTimeout(() => {
+       
+        setTimeout(() => {
+            music.play();
+        }, 250);
+        gameStartTime = performance.now(); // start tracking audio sync from this point
+    }, 1000); // 1000ms = 1 second
+    sillyCanvas = document.querySelector(`canvas`);
+    sillyCanvas.classList.remove(`theRemoving`);
+}
+
+let lastFrameTime = null;
+
 
 
 
@@ -366,14 +392,7 @@ const laneList = [
 
 ];
 // const laneList = [`d1`, `f1`, `j1`, `k1`];
-const timings = [];
-for (let i = 0; i < laneList.length; i++) {
-    const obstacle = laneList[i];
 
-    p = Number(obstacle[1]) + p;
-    timings.push(p)
-
-}
 //easier
 
 // const timings = [1, 1.5, 1.5, 1.5,    2, 2, 3]
@@ -419,139 +438,150 @@ for (let i = laneList.length - 1; i>= 0, i--;) {
 
 
 function gameEnd(misses, maxcombo) {
-
+    console.log(`gameEnd: ${gameActive}`);
     setTimeout(() => {
         gameActive = false;
-        if ((((laneList.length - misses) / laneList.length) * 100).toFixed(4) >= 75) {
+        if ((((laneList.length - misses) / laneList.length) * 100).toFixed(4) >= 65) {
             scene.scenes[1].run();
         } else {
             scene.scenes[0].run();
         }
 
-        sillyCanvas.remove();
+        sillyCanvas.classList.add(`theRemoving`);
+        myGameArea.clear();
         gameHolder.classList.remove(`hidden`);
-        gameHolder.classList.remove(`theRemoving`)
+        gameHolder.classList.remove(`theRemoving`);
         gameHolder.innerHTML += `<p> Misses: ${misses}</p>`;
         gameHolder.innerHTML += `<p> Maximum Combo: ${maxcombo - 1}</p>`;
         gameHolder.innerHTML += `<p> Accuracy: ${(((laneList.length - misses) / laneList.length) * 100).toFixed(4)}%</p>`;
+        
+        scoreCounter = missCounter = jfkdead = jfk = maxCombo = nextNoteIndex = 0;
     }, 1500);
     //keyframe into thingy
 
     //display misses and combo and uhhh probably accuracy
 
     //move back to story 
-
+    setTimeout(() => {
+        music.pause();
+    }, 2000);
+    
 
 }
 
 function updateGameArea(timestamp) {
-    if (!lastFrameTime) lastFrameTime = timestamp;
-    const elapsed = (timestamp - lastFrameTime) / 1000;
-    const deltaTime = elapsed; // already in seconds from your existing logic
-    lastFrameTime = timestamp;
+    console.log(`updateGameArea: ${gameActive}`);
+    console.log(`myObstacles ${myObstacles}`);
+    if (gameActive) {
+        if (!lastFrameTime) lastFrameTime = timestamp;
+        const elapsed = (timestamp - lastFrameTime) / 1000;
+        const deltaTime = elapsed; 
+        lastFrameTime = timestamp;
 
-    if (combo > maxCombo) {
-        maxCombo = combo;
+        if (combo > maxCombo) {
+            maxCombo = combo;
+        }
+
+
+
+        myGameArea.clear();
+        drawLaneLines();
+
+        const currentTime = gameStartTime ? (performance.now() - gameStartTime) / 1000 : 0;
+
+
+        // the new startobstacles
+        while (nextNoteIndex < timings.length && currentTime >= (b * timings[nextNoteIndex]) / 1000) {
+
+            // Get the character (like 'd', 'f', etc.)
+            const laneChar = laneList[nextNoteIndex][0];
+
+            // Map it to a lane position
+            let laneX;
+            switch (laneChar) {
+                case 'd': laneX = d; break;
+                case 'f': laneX = f; break;
+                case 'j': laneX = j; break;
+                case 'k': laneX = k; break;
+                default:
+                    console.warn(`Unknown lane: ${laneChar}`);
+                    laneX = 0;
+            }
+            console.log(laneX);
+            // Then push the obstacle in that lane
+            pushObstacle(laneX);
+            nextNoteIndex++;
+        }
+
+        jfkdead += 1;
+        if (nextNoteIndex == laneList.length && jfk == 0 && jfkdead % 90 == 0) {
+            gameEnd(missCounter, maxCombo);
+            jfk += 1
+        }
+        // Move and draw all obstacles
+        for (let i = myObstacles.length - 1; i >= 0; i--) {
+            const obstacle = myObstacles[i];
+
+            if (obstacle.y > myGameArea.canvas.height) {
+                missCounter++;
+                combo = 1;
+                myObstacles.splice(i, 1);
+                continue;
+            }
+
+
+            if (myGamePiece.crashWith(obstacle) && keyJustPressed && !obstacle.hit) {
+                scoreCounter += 100 * (combo);
+                combo += 1;
+                obstacle.hit = true;
+                myObstacles.splice(i, 1);
+                continue; // skip the rest of the loop for this one
+
+            }
+            if (myGamePiece2.crashWith(obstacle) && keyJustPressed2 && !obstacle.hit) {
+                scoreCounter += 100 * (combo);
+                combo += 1;
+                obstacle.hit = true;
+                myObstacles.splice(i, 1);
+                continue; // skip the rest of the loop for this one
+            }
+            if (myGamePiece3.crashWith(obstacle) && keyJustPressed3 && !obstacle.hit) {
+                scoreCounter += 100 * (combo);
+                combo += 1;
+                obstacle.hit = true;
+                myObstacles.splice(i, 1);
+                continue; // skip the rest of the loop for this one
+            }
+            if (myGamePiece4.crashWith(obstacle) && keyJustPressed4 && !obstacle.hit) {
+                scoreCounter += 100 * (combo);
+                combo += 1;
+                obstacle.hit = true;
+                myObstacles.splice(i, 1);
+                continue; // skip the rest of the loop for this one
+            }
+
+            obstacle.newPos(deltaTime);
+            obstacle.update();
+        }
+
+        myGamePiece.update();
+        myGamePiece2.update();
+        myGamePiece3.update();
+        myGamePiece4.update();
+
+        myScore.text = "SCORE: " + scoreCounter;
+        comboDisplay.text = "COMBO: " + (combo - 1);
+        missCountDisplay.text = "MISSES: " + missCounter;
+
+        myScore.update();
+        comboDisplay.update();
+        missCountDisplay.update();
+
+
+        // Reset keys for one-time press detection
+        keyJustPressed = keyJustPressed2 = keyJustPressed3 = keyJustPressed4 = false;
+
+        requestAnimationFrame(updateGameArea);
     }
 
-
-
-    myGameArea.clear();
-    drawLaneLines();
-
-    const currentTime = gameStartTime ? (performance.now() - gameStartTime) / 1000 : 0;
-
-
-    // the new startobstacles
-    while (nextNoteIndex < timings.length && currentTime >= (b * timings[nextNoteIndex]) / 1000) {
-
-        // Get the character (like 'd', 'f', etc.)
-        const laneChar = laneList[nextNoteIndex][0];
-
-        // Map it to a lane position
-        let laneX;
-        switch (laneChar) {
-            case 'd': laneX = d; break;
-            case 'f': laneX = f; break;
-            case 'j': laneX = j; break;
-            case 'k': laneX = k; break;
-            default:
-                console.warn(`Unknown lane: ${laneChar}`);
-                laneX = 0;
-        }
-
-        // Then push the obstacle in that lane
-        pushObstacle(laneX);
-        nextNoteIndex++;
-    }
-
-    jfkdead += 1;
-    if (nextNoteIndex == laneList.length && jfk == 0 && jfkdead % 90 == 0) {
-        gameEnd(missCounter, maxCombo);
-        jfk += 1
-    }
-    // Move and draw all obstacles
-    for (let i = myObstacles.length - 1; i >= 0; i--) {
-        const obstacle = myObstacles[i];
-
-        if (obstacle.y > myGameArea.canvas.height) {
-            missCounter++;
-            combo = 1;
-            myObstacles.splice(i, 1);
-            continue;
-        }
-
-
-        if (myGamePiece.crashWith(obstacle) && keyJustPressed && !obstacle.hit) {
-            scoreCounter += 100 * (combo);
-            combo += 1;
-            obstacle.hit = true;
-            myObstacles.splice(i, 1);
-            continue; // skip the rest of the loop for this one
-
-        }
-        if (myGamePiece2.crashWith(obstacle) && keyJustPressed2 && !obstacle.hit) {
-            scoreCounter += 100 * (combo);
-            combo += 1;
-            obstacle.hit = true;
-            myObstacles.splice(i, 1);
-            continue; // skip the rest of the loop for this one
-        }
-        if (myGamePiece3.crashWith(obstacle) && keyJustPressed3 && !obstacle.hit) {
-            scoreCounter += 100 * (combo);
-            combo += 1;
-            obstacle.hit = true;
-            myObstacles.splice(i, 1);
-            continue; // skip the rest of the loop for this one
-        }
-        if (myGamePiece4.crashWith(obstacle) && keyJustPressed4 && !obstacle.hit) {
-            scoreCounter += 100 * (combo);
-            combo += 1;
-            obstacle.hit = true;
-            myObstacles.splice(i, 1);
-            continue; // skip the rest of the loop for this one
-        }
-
-        obstacle.newPos(deltaTime);
-        obstacle.update();
-    }
-
-    myGamePiece.update();
-    myGamePiece2.update();
-    myGamePiece3.update();
-    myGamePiece4.update();
-
-    myScore.text = "SCORE: " + scoreCounter;
-    comboDisplay.text = "COMBO: " + (combo - 1);
-    missCountDisplay.text = "MISSES: " + missCounter;
-
-    myScore.update();
-    comboDisplay.update();
-    missCountDisplay.update();
-
-
-    // Reset keys for one-time press detection
-    keyJustPressed = keyJustPressed2 = keyJustPressed3 = keyJustPressed4 = false;
-
-    requestAnimationFrame(updateGameArea);
 }
