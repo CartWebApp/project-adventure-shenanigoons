@@ -50,6 +50,9 @@ const story = {
         delete inventory.teto;
         delete inventory.iceBear;
         delete inventory.gabriel;
+
+        let dripPath = { path: [`P`, 3, 0, 1, 1, 0, 1] };
+        delete dripPath.findPath().locked;
     },
     text: `Miku steps forward, crossing into your world`,
     cutscene: [{ text: `The night shift at Good Burger was supposed to be uneventful. The parking lot was empty, the distant hum of traffic the only sound as you hauled a garbage bag toward the dumpster. Then, the air changed.`, image: `images/first-cutscene/1.jpg` }, { text: `A deep hum vibrated through the lot, and with a sudden crack, a portal tore open above the dumpster, swirling with neon blue energy. Inside, two figures clashed—Master Oogway, standing firm, and Hatsune Miku, a streak of turquoise light moving with impossible speed.`, image: `images/first-cutscene/2.jpg` }, { text: `“You do not belong here,” Oogway said, deflecting a strike with his staff.`, image: `images/first-cutscene/3.jpg` }, { text: `Miku’s teal eyes gleamed. “And you do?”`, image: `images/first-cutscene/4.jpg` }, { text: `She unleashed a wave of energy, sharp crescents of sound cutting through the air. Oogway spun his staff, dispersing them, but she was already gone—a blur that reappeared above him. Her foot crashed into his shell, a burst of cyan energy erupting on impact.`, image: `images/first-cutscene/5.jpg` }, { text: `With a resounding crash, Oogway was blasted from the portal, spinning through the air before slamming into the Good Burger dumpster.`, image: `images/first-cutscene/6.jpg` }, { text: `You froze, gripping the garbage bag like it was your last defense. The portal still crackled with energy. On the other side, Miku’s gaze shifted from the fallen Oogway… to you.`, image: `images/first-cutscene/7.jpg` }, { text: `From inside the dumpster, Oogway’s muffled voice weakly urged, “Go… after her…”`, image: `images/first-cutscene/8.jpg`, last: true }],
@@ -504,11 +507,18 @@ const story = {
                                     You start walking back to your designated cell area, and while you're walking back, you think about what he was saying, and you begin to get confused. You think to yourself, why would he say that?`,
                                     options: [`Go back to LeBron`, `Go back to your cell`],
                                     scenes: [{ path: ['p'] }, {
-                                        text: `You and the heroes return to the cell, and you try to go to sleep, feeling defeated. 
-                                        As you're trying to fall asleep, you're moving around on your mattress, and feel something underneath the mattress, which was preventing you from sleeping. You find a drippy looking coat<br><br>YOU HAVE OBTAINED THE DRIP`,
-                                        options: [`Continue`],
+                                        text: `placeholder`,
+                                        options: [],
                                         item: `drip`,
-                                        scenes: [{ path: ['p', 'p'] }]
+                                        scenes: [{
+                                            text: `You and the heroes return to the cell, and you try to go to sleep, feeling defeated. 
+                                            As you're trying to fall asleep, you're moving around on your mattress, and feel something underneath the mattress, which was preventing you from sleeping. You find a drippy looking coat<br><br>YOU HAVE OBTAINED THE DRIP`,
+                                            options: [`Continue`],
+                                            scenes: [{ path: ['p', 'p', `p`] }]
+                                        }],
+                                        lock: {
+                                            paths: [{ path: [`p`] }], condition: () => true, scene: { path: [0] }
+                                        }
                                     }]
                                 }]
                             }]
@@ -535,10 +545,17 @@ const story = {
                         text: `Oogway advises that you both enter from the basement, to avoid any real conflict. You agree with your mentor, and he creates a portal inside the sewers just outside the base's basement. You ask, "Wait, how do we get in?" Oogway explains that the entrance is a secret. An open secret. Anyone can find it. Oogway opens the wall like a doorway, and goes inside. You follow him. Inside this basement you see:`,
                         options: [`A box of goodies`, `A mall type of map (you are here type thing)`, `An elevator`, `A staircase`],
                         scenes: [{
-                            text: `You gain an odd looking key. There is a container of a viscous purple fluid at the top of the key<br><br>OBTAINED ELIXER KEY`,
-                            options: [`Continue`],
-                            scenes: [{ path: ['p'] }],
-                            item: `elixir-key`
+                            text: `placeholder`,
+                            options: [],
+                            scenes: [{
+                                text: `You gain an odd looking key. There is a container of a viscous purple fluid at the top of the key<br><br>OBTAINED ELIXER KEY`,
+                                options: [`Continue`],
+                                scenes: [{ path: ['p', `p`] }],
+                            }],
+                            item: `elixir-key`,
+                            lock: {
+                                paths: [{ path: [] }], condition: () => true, scene: { path: [0] }
+                            }
                         }, {
                             text: `The map shows "you are here" in the basement. The map shows that the skyscraper is terribly unorganized, with a web diagram tangled over the whole thing showing many paths for portals. Oogway says this is an attempt at confusing any intruders, but he's seen many miku-scrapers in his day, so he'll guide you through this one easily. He points to the map and says it's best to take the elevator here`,
                             options: [`Continue`],
@@ -547,7 +564,7 @@ const story = {
                             text: `You press the button and wait for the elevator to open. As it does, you see a few of miku's soldiers inside. They both recognize Oogway and turn to him. They immediatly ask for an autograph. Oogway chuckles and grants their wish. "You know, peace is always the best option to take, if the oppurtunity presents itself." You heed the words of your master and continue. The elevator leads straight up to the second highest floor before stopping. "This is as high as it will go. I mean it'll go higher if we had more authority, but this is pretty good all things considered." You see a reception desk guarding an intimidating staircase. The person manning the desk is LeBron. "Do y'all have an appointment?"`,
                             options: [`Yes, of course!`, `No. We are here to stop Miku`],
                             scenes: [{
-                                text: `LeBron eyes you disapprovingly. "Guys, I'm the goat. You really think I can't see through a simple little lie like that?" Lebron grabs you Omni-man style. "And to think I thought you were worthy enough to stop Miku. I want to make this world a better place. And that starts by removing you from it" As LeBron says this, he flies and crashes through the window. He holds you over the street, about 2,000 ft in the air. He drops you (if you've been dropped in another ending he says "heh. feels like we've done this before, huh?").<br><br>YOU DIE`,
+                                text: `LeBron eyes you disapprovingly. "Guys, I'm the goat. You really think I can't see through a simple little lie like that?" Lebron grabs you Omni-man style. "And to think I thought you were worthy enough to stop Miku. I want to make this world a better place. And that starts by removing you from it" As LeBron says this, he flies and crashes through the window. He holds you over the street, about 2,000 ft in the air. He drops you<br><br>YOU DIE`,
                                 options: [`Go back`, `Restart from beginning`],
                                 scenes: [{ path: [`p`] }, { path: [`P`] }]
                             }, {
@@ -620,7 +637,7 @@ const story = {
         },
         // the debug pathway
         // { path: [3, 0, 0, 0, 1, 0, 0] } who do you approach
-        { path: [1] }
+        { path: [3, 0, 1, 1, 0, 1] }
     ]
 };
 
@@ -820,7 +837,7 @@ Object.prototype.findPath = function () {
 // add secret option if applicable
 Object.prototype.openSecrets = function () {
     if (this.secret) {
-        if (inventory[this.secret.item]) {
+        if (inventory[this.secret.item] && !this.options.includes(this.secret.option)) {
             this.options.push(this.secret.option);
         }
     }
