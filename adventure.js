@@ -584,7 +584,8 @@ const story = {
                                             options: [`Skadoosh`],
                                             scenes: [{
                                                 text: `Miku gets skadooshed as a golden wave of light ripples down the tower. Miku is banished, and the entire tower knows. They all surrender to your might. The tower is slowly converted to an apartment complex over the coming years, and everyone forgets what happened that day<br><br>YOU REACHED THE SKADOOSH ENDING`,
-                                                options: [`Play again`]
+                                                options: [`Play again`],
+                                                scenes: [{ path: [`P`] }]
                                             }]
                                         }],
                                         startGame: true
