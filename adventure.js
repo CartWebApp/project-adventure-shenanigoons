@@ -459,7 +459,7 @@ const story = {
                             options: [`Continue`],
                             scenes: [{ path: ['p', 1] }]
                         }, {
-                            text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd", Miku says, "It's a shame, really. Maybe this will teach you a lesson." You are in a prison.
+                            text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd." You are in a prison.
                             You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension, you begin to question if its because miku is hiding in everyone's wifi, thus providing wifi for everyone.  
                             The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way.  
                             Knowing that Miku is on her way, through the fortunately slow wifi, you join up with Earth's heroes, and warn them of Miku's destructive power.`,
