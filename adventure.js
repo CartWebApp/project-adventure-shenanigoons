@@ -548,7 +548,7 @@ const story = {
                             text: `placeholder`,
                             options: [],
                             scenes: [{
-                                text: `You gain an odd looking key. There is a container of a viscous purple fluid at the top of the key<br><br>OBTAINED ELIXER KEY`,
+                                text: `You gain an odd looking key. There is a container of a viscous purple fluid at the top of the key<br><br>OBTAINED ELIXER KEY<br>(also this path is not locked this is a visual bug lmao)`,
                                 options: [`Continue`],
                                 scenes: [{ path: ['p', `p`] }],
                             }],
