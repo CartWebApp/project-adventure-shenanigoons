@@ -53,6 +53,9 @@ const story = {
 
         let dripPath = { path: [`P`, 3, 0, 1, 1, 0, 1] };
         delete dripPath.findPath().locked;
+
+        let keyPath = { path: [`P`, 3, 1, 0, 0, 0] };
+        delete keyPath.findPath().locked;
     },
     text: `Miku steps forward, crossing into your world`,
     cutscene: [{ text: `The night shift at Good Burger was supposed to be uneventful. The parking lot was empty, the distant hum of traffic the only sound as you hauled a garbage bag toward the dumpster. Then, the air changed.`, image: `images/first-cutscene/1.jpg` }, { text: `A deep hum vibrated through the lot, and with a sudden crack, a portal tore open above the dumpster, swirling with neon blue energy. Inside, two figures clashed—Master Oogway, standing firm, and Hatsune Miku, a streak of turquoise light moving with impossible speed.`, image: `images/first-cutscene/2.jpg` }, { text: `“You do not belong here,” Oogway said, deflecting a strike with his staff.`, image: `images/first-cutscene/3.jpg` }, { text: `Miku’s teal eyes gleamed. “And you do?”`, image: `images/first-cutscene/4.jpg` }, { text: `She unleashed a wave of energy, sharp crescents of sound cutting through the air. Oogway spun his staff, dispersing them, but she was already gone—a blur that reappeared above him. Her foot crashed into his shell, a burst of cyan energy erupting on impact.`, image: `images/first-cutscene/5.jpg` }, { text: `With a resounding crash, Oogway was blasted from the portal, spinning through the air before slamming into the Good Burger dumpster.`, image: `images/first-cutscene/6.jpg` }, { text: `You froze, gripping the garbage bag like it was your last defense. The portal still crackled with energy. On the other side, Miku’s gaze shifted from the fallen Oogway… to you.`, image: `images/first-cutscene/7.jpg` }, { text: `From inside the dumpster, Oogway’s muffled voice weakly urged, “Go… after her…”`, image: `images/first-cutscene/8.jpg`, last: true }],
@@ -545,17 +548,20 @@ const story = {
                         text: `Oogway advises that you both enter from the basement, to avoid any real conflict. You agree with your mentor, and he creates a portal inside the sewers just outside the base's basement. You ask, "Wait, how do we get in?" Oogway explains that the entrance is a secret. An open secret. Anyone can find it. Oogway opens the wall like a doorway, and goes inside. You follow him. Inside this basement you see:`,
                         options: [`A box of goodies`, `A mall type of map (you are here type thing)`, `An elevator`, `A staircase`],
                         scenes: [{
-                            text: `placeholder`,
-                            options: [],
+                            text: `As you get closer to the box, a certain item catches your eye`,
+                            options: [`Inspect`],
                             scenes: [{
-                                text: `You gain an odd looking key. There is a container of a viscous purple fluid at the top of the key<br><br>OBTAINED ELIXER KEY<br>(also this path is not locked this is a visual bug lmao)`,
-                                options: [`Continue`],
-                                scenes: [{ path: ['p', `p`] }],
-                            }],
-                            item: `elixir-key`,
-                            lock: {
-                                paths: [{ path: [] }], condition: () => true, scene: { path: [0] }
-                            }
+                                text: `placeholder`,
+                                options: [],
+                                scenes: [{
+                                    text: `You gain an odd looking key. There is a container of a viscous purple fluid at the top of the key<br><br>OBTAINED ELIXER KEY`,
+                                    options: [`Continue`],
+                                    scenes: [{ path: [`p`, `p`, `p`] }]
+                                }],
+                                lock: {
+                                    paths: [{ path: [`p`] }], condition: () => true, scene: { path: [0] }
+                                }
+                            }]
                         }, {
                             text: `The map shows "you are here" in the basement. The map shows that the skyscraper is terribly unorganized, with a web diagram tangled over the whole thing showing many paths for portals. Oogway says this is an attempt at confusing any intruders, but he's seen many miku-scrapers in his day, so he'll guide you through this one easily. He points to the map and says it's best to take the elevator here`,
                             options: [`Continue`],
@@ -587,7 +593,7 @@ const story = {
                                         scenes: [{ path: [`p`] }, { path: [`P`] }]
                                     }]
                                 }, {
-                                    text: `Miku parries your first attack expertly and throws you to the floor prone. “You have no chance of stopping me now. Didn’t you hear anything I said?? Maybe this time you’ll learn”. Miku turns to Oogway and picks him up. She slams Oogway through the glass, and he tumbles helplessly to the ground. "You’re next, kid"`,
+                                    text: `Miku parries your first attack expertly and throws you to the floor prone. “You have no chance of stopping me now. Didn’t you hear anything I said?? Maybe this time you’ll learn”. Miku turns to Oogway and picks him up. She slams Oogway through the glass, and he tumbles helplessly to the ground. "You’re next, kid"<br><br>Rhythm game is played with the DFJK keys`,
                                     options: [`Yeah right!`],
                                     scenes: [{
                                         text: ``,
@@ -637,7 +643,7 @@ const story = {
         },
         // the debug pathway
         // { path: [3, 0, 0, 0, 1, 0, 0] } who do you approach
-        { path: [3, 0, 1, 1, 0, 1] }
+        { path: [3, 1, 0, 0, 0] }
     ]
 };
 
@@ -717,10 +723,12 @@ Object.prototype.run = function () {
                     if (!gameActive) {
                         if (!object.scenes[i].locked) {
                             document.removeEventListener(`keydown`, select);
+
                             if (object.cutsceneRan) {
                                 delete object.cutsceneRan;
                             }
 
+                            console.log(object.scenes);
                             if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
                                 object.scenes[i].findPath().run();
                             } else {
