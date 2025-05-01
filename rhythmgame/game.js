@@ -66,6 +66,9 @@ function resetter() {
     theBody.classList.remove(`BLINDING`);
 }
 function startGameAll(thisScene) {
+    for (let i = 0; i < 3; i++) {
+        document.removeEventListener(`keydown`, select);
+    }
     for (let i = 0; i < laneList.length; i++) {
         const obstacle = laneList[i];
         p = Number(obstacle[1]) + p;
@@ -392,6 +395,7 @@ function gameEnd(misses, maxcombo) {
     resetter();
     setTimeout(() => {
         gameActive = false;
+        console.log(scene.scenes);
         if ((((laneList.length - misses) / laneList.length) * 100).toFixed(4) >= 65) {
             scene.scenes[1].run();
         } else {
