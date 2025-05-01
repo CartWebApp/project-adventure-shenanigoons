@@ -47,22 +47,12 @@ let myGameArea = {
 };
 let timings = [];
 function resetter() {
-    scoreCounter = 0;
-    missCounter = 0;
-    jfkdead = 0;
-    jfk = 0;
-    maxCombo = 0;
-    gameStartTime = null;
-    lastFrameTime = null;
+    scoreCounter = missCounter = jfkdead = jfk = maxCombo = nextNoteIndex = missCounter = scoreCounter = maxCombo = 0;
+    gameStartTime = lastFrameTime = null;
     gameActive = false;
     p = 2;
-    nextNoteIndex = 0;
-    missCounter = 0;
-    scoreCounter = 0;
     combo = 1;
-    maxCombo = 0;
-    myObstacles = [];
-    timings = [];
+    myObstacles = timings = [];
     theBody.classList.remove(`BLINDING`);
 }
 function startGameAll(thisScene) {
