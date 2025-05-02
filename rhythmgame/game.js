@@ -392,9 +392,9 @@ function gameEnd(misses, maxcombo) {
         myGameArea.clear();
         gameHolder.classList.remove(`hidden`);
         gameHolder.classList.remove(`theRemoving`);
-        gameHolder.innerHTML += `<p> Misses: ${misses}</p>`;
-        gameHolder.innerHTML += `<p> Maximum Combo: ${maxcombo - 1}</p>`;
-        gameHolder.innerHTML += `<p> Accuracy: ${(((laneList.length - misses) / laneList.length) * 100).toFixed(4)}%</p>`;
+        // gameHolder.innerHTML += `<p> Misses: ${misses}</p>`;
+        // gameHolder.innerHTML += `<p> Maximum Combo: ${maxcombo - 1}</p>`;
+        // gameHolder.innerHTML += `<p> Accuracy: ${(((laneList.length - misses) / laneList.length) * 100).toFixed(4)}%</p>`;
 
         scoreCounter = missCounter = jfkdead = jfk = maxCombo = nextNoteIndex = 0;
     }, 1500);
