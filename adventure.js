@@ -26,7 +26,7 @@
 */
 
 const inventory = {
-
+    drip: true
 };
 
 const relationshipBlunders = {
@@ -58,61 +58,68 @@ const story = {
         delete keyPath.findPath().locked;
     },
     text: `Miku steps forward, crossing into your world`,
-    cutscene: [{ text: `The night shift at Good Burger was supposed to be uneventful. The parking lot was empty, the distant hum of traffic the only sound as you hauled a garbage bag toward the dumpster. Then, the air changed.`, image: `images/first-cutscene/1.jpg` }, { text: `A deep hum vibrated through the lot, and with a sudden crack, a portal tore open above the dumpster, swirling with neon blue energy. Inside, two figures clashed—Master Oogway, standing firm, and Hatsune Miku, a streak of turquoise light moving with impossible speed.`, image: `images/first-cutscene/2.jpg` }, { text: `“You do not belong here,” Oogway said, deflecting a strike with his staff.`, image: `images/first-cutscene/3.jpg` }, { text: `Miku’s teal eyes gleamed. “And you do?”`, image: `images/first-cutscene/4.jpg` }, { text: `She unleashed a wave of energy, sharp crescents of sound cutting through the air. Oogway spun his staff, dispersing them, but she was already gone—a blur that reappeared above him. Her foot crashed into his shell, a burst of cyan energy erupting on impact.`, image: `images/first-cutscene/5.jpg` }, { text: `With a resounding crash, Oogway was blasted from the portal, spinning through the air before slamming into the Good Burger dumpster.`, image: `images/first-cutscene/6.jpg` }, { text: `You froze, gripping the garbage bag like it was your last defense. The portal still crackled with energy. On the other side, Miku’s gaze shifted from the fallen Oogway… to you.`, image: `images/first-cutscene/7.jpg` }, { text: `From inside the dumpster, Oogway’s muffled voice weakly urged, “Go… after her…”`, image: `images/first-cutscene/8.jpg`, last: true }],
+    cutscene: [{ text: `The night shift at Good Burger was supposed to be uneventful. The parking lot was empty, the distant hum of traffic the only sound as you hauled a garbage bag toward the dumpster. Then, the air changed.`, image: `images/first-cutscene/1.jpg` }, { text: `A deep hum vibrated through the lot, and with a sudden crack, a portal tore open above the dumpster, swirling with neon blue energy. Inside, two figures clashed—Master Oogway, standing firm, and Hatsune Miku, a streak of turquoise light moving with impossible speed.`, image: `images/first-cutscene/2.jpg` }, { text: `“You do not belong here,” Oogway said, deflecting a strike with his staff.`, image: `images/first-cutscene/3.jpg` }, { text: `Miku’s teal eyes gleamed. “And you do?”`, image: `images/first-cutscene/4.jpg` }, { text: `She unleashed a wave of energy, sharp crescents of sound cutting through the air. Oogway spun his staff, dispersing them, but she was already gone—a blur that reappeared above him. Her foot crashed into his shell, a burst of cyan energy erupting on impact.`, image: `images/first-cutscene/5.jpg` }, { text: `With a resounding crash, Oogway was blasted from the portal, spinning through the air before slamming into the Good Burger dumpster.`, image: `images/first-cutscene/6.jpg` }, { text: `You froze, gripping the garbage bag like it was your last defense. The portal still crackled with energy. On the other side, Miku’s gaze shifted from the fallen Oogway… to you.`, image: `images/first-cutscene/7.jpg` }, { text: `From inside the dumpster, Oogway’s muffled voice weakly urged, “Go… after her…”`, image: `images/first-cutscene/8.jpg` }],
     options: [`Stay paralyzed, stunned with fear`, `Go after her`, `“What is going on!?”`],
     image: `images/first-cutscene/9.jpg`,
     scenes: [
         {
             text: `She turned away, already forgetting you. Somehow, that was worse than anything she could have done.`,
             image: `images/first-fork/1-3.jpg`,
-            cutscene: [{ text: `You couldn’t move. You couldn’t speak. Your body locked up as Miku’s glowing eyes bore into you. The sheer weight of her presence crushed any thought of resistance.`, image: `images/first-fork/1-1.jpg` }, { text: `She sighed, stepping closer, her expression twisting into mocking amusement. “What a hero you are,” she said, her voice dripping with sarcasm. “Truly, a warrior worthy of legend.” The air around her pulsed with raw power, yet she made no move to strike. She didn’t need to. You weren’t a threat.`, image: `images/first-fork/1-2.jpg`, last: true }],
+            cutscene: [{ text: `You couldn’t move. You couldn’t speak. Your body locked up as Miku’s glowing eyes bore into you. The sheer weight of her presence crushed any thought of resistance.`, image: `images/first-fork/1-1.jpg` }, { text: `She sighed, stepping closer, her expression twisting into mocking amusement. “What a hero you are,” she said, her voice dripping with sarcasm. “Truly, a warrior worthy of legend.” The air around her pulsed with raw power, yet she made no move to strike. She didn’t need to. You weren’t a threat.`, image: `images/first-fork/1-2.jpg` }],
             options: [`Continue`],
             scenes: [{ path: ['p', 3] }]
         },
         {
             text: `Miku loomed over you. “Should I bother finishing this… or have you learned your place?”`,
             image: `images/first-fork/2-6.jpg`,
-            cutscene: [{ text: `You charged.`, image: `images/first-fork/2-1.jpg` }, { text: `Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.`, image: `images/first-fork/2-2.jpg` }, { text: `She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”`, image: `images/first-fork/2-3.jpg` }, { text: `You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”`, image: `images/first-fork/2-4.jpg` }, { text: `The air pulsed. A sharp force hurled you into split garbage bags.`, image: `images/first-fork/2-5.jpg`, last: true }],
+            cutscene: [{ text: `You charged.`, image: `images/first-fork/2-1.jpg` }, { text: `Miku barely glanced at you before flicking her hand. A force slammed into your chest, knocking you to the ground.`, image: `images/first-fork/2-2.jpg` }, { text: `She stepped closer, eyes narrowing. “A fast-food worker?” she scoffed. “You reek of fryer grease and wasted potential.”`, image: `images/first-fork/2-3.jpg` }, { text: `You struggled up. Miku tilted her head. “Courage or stupidity?” Glyphs flickered around her fingers. “You think you can stop me?”`, image: `images/first-fork/2-4.jpg` }, { text: `The air pulsed. A sharp force hurled you into split garbage bags.`, image: `images/first-fork/2-5.jpg` }],
             options: [`Continue`],
             scenes: [{ path: ['p', 3] }]
         },
         {
-            text: `Dragging in a shaky breath, you took a step back, eyes darting between the still-crackling portal and the dumpster where Master Oogway had just crash-landed. Your heart pounded, your brain scrambling to process what you'd just witnessed.
-            "What is going on!?" you blurted, voice cracking with panic.
-            Miku turned her gaze to you, and for the first time, you felt the full weight of her presence. Her expression remained unreadable, but there was an almost amused glint in her glowing eyes.
-            “Your mortal brain could not even begin to comprehend the complexity of this situation,” she said, her voice a perfect blend of synthetic harmony and raw power. “To explain it to you would be like explaining a symphony to a worm.”
-            You swallowed hard, taking a shaky step back. The air around her shimmered, distorting like heat waves, her very existence too overwhelming for reality to contain.
-            She took a slow step forward. “But I will say this—you're in the wrong place, at the worst possible time.” Her fingers twitched, and a surge of energy crackled in the air between you.`,
+            text: `She took a slow step forward. “But I will say this—you're in the wrong place, at the worst possible time.” Her fingers twitched, and a surge of energy crackled in the air between you.`,
+            image: `images/first-fork/3-6.jpg`,
+            cutscene: [{ text: `Dragging in a shaky breath, you took a step back, eyes darting between the still-crackling portal and the dumpster where Master Oogway had just crash-landed. Your heart pounded, your brain scrambling to process what you'd just witnessed.`, image: `images/first-fork/3-1.jpg` }, { text: `"What is going on!?" you blurted, voice cracking with panic.`, image: `images/first-fork/3-2.jpg` }, { text: `Miku turned her gaze to you, and for the first time, you felt the full weight of her presence. Her expression remained unreadable, but there was an almost amused glint in her glowing eyes.`, image: `images/first-fork/3-3.jpg` }, { text: `“Your mortal brain could not even begin to comprehend the complexity of this situation,” she said, her voice a perfect blend of synthetic harmony and raw power. “To explain it to you would be like explaining a symphony to a worm.”`, image: `images/first-fork/3-4.jpg` }, { text: `You swallowed hard, taking a shaky step back. The air around her shimmered, distorting like heat waves, her very existence too overwhelming for reality to contain.`, image: `images/first-fork/3-5.jpg` }],
             options: [`Continue`],
             scenes: [{ path: ['p', 3] }]
         },
         {
-            text: `Miku scanned her surroundings, taking in the neon signs, the flickering streetlights, the distant hum of traffic. A slow, satisfied smile crossed her face.
-            “This world is nice,” she murmured. “It is mine.”
-            She stepped forward, passing Master Oogway without a glance. Behind her, the old tortoise let out a labored, grief-stricken cry, his voice filled with centuries of wisdom… and sorrow.
-            Struggling, he turned to you. “She will not hesitate,” he warned. “She will kill to take this world.” His breath was ragged, his strength barely holding. “And she is not alone.”
-            The air shifted. A distant, chaotic chatter echoed through the streets—shrill, high-pitched war cries growing louder. On the horizon, countless small, white figures emerged, their beady eyes glowing in the dim light. The Rabbids had arrived.
-            Oogway grabbed your arm, his grip weak but urgent. “You cannot face her as you are,” he said. “If you wish to stop her… you must train.”`,
+            text: `Oogway grabbed your arm, his grip weak but urgent. “You cannot face her as you are,” he said. “If you wish to stop her… you must train.”`,
+            image: `images/call-to-action/6.jpg`,
+            cutscene: [{ text: `Miku scanned her surroundings, taking in the neon signs, the flickering streetlights, the distant hum of traffic. A slow, satisfied smile crossed her face`, image: `images/call-to-action/1.jpg` }, { text: `“This world is nice,” she murmured. “It is mine.”`, image: `images/call-to-action/2.jpg` }, { text: `She stepped forward, passing Master Oogway without a glance. Behind her, the old tortoise let out a labored, grief-stricken cry, his voice filled with centuries of wisdom… and sorrow.`, image: `images/call-to-action/3.jpg` }, { text: `Struggling, he turned to you. “She will not hesitate,” he warned. “She will kill to take this world.” His breath was ragged, his strength barely holding. “And she is not alone.”`, image: `images/call-to-action/4.jpg` }, { text: `The air shifted. A distant, chaotic chatter echoed through the streets—shrill, high-pitched war cries growing louder. On the horizon, countless small, white figures emerged, their beady eyes glowing in the dim light. The Rabbids had arrived.`, image: `images/call-to-action/5.jpg` }],
             options: [`Screw this`, `Train with Oogway`],
-            scenes: [{
-                text: `You shake your head and walk back inside Good Burger. Flipping patties is way safer than fighting an anime pop goddess. Just as you settle back in, a portal bursts open inside the restaurant. Master Shifu stumbles out, eyes wild. “WHAT ARE YOU DOING?!” He launches into a desperate rant about Miku’s reign of terror—how she’s ravaged his world, abolished privacy, and turned society into a dystopian nightmare. “Please,” he begs, gripping your uniform. “We need you.” He stares at you, waiting for an answer. `,
+            scenes: [
+                {
+                text: `“Please,” he begs, gripping your uniform. “We need you.” He stares at you, waiting for an answer`,
+                cutscene: [{ text: `You shake your head and walk back inside Good Burger. Flipping patties is way safer than fighting an anime pop goddess` }, { text: `Just as you settle back in, a portal bursts open inside the restaurant. Master Shifu stumbles out, eyes wild` }, { text: `“WHAT ARE YOU DOING?!” He launches into a desperate rant about Miku’s reign of terror—how she’s ravaged his world, abolished privacy, and turned society into a dystopian nightmare` }],
                 options: ["Fine, I`ll join you", `No`],
                 scenes: [
                     {
-                        text: `You are in front of the miku home base (the miku-scraper). It appears like she's already started to take over your world. Your companion explains that miku has set up a field around the skyscraper to block any portals from opening inside`,
+                        text: `Shifu opens a portal and you follow him through. You are in front of the miku home base (the miku-scraper). It appears like she's already started to take over your world. Your companion explains that miku has set up a field around the skyscraper to block any portals from opening inside`,
                         options: [`Continue`],
                         scenes: [{
-                            text: `Shifu knows that Miku is too powerful to take on alone. He knows of a few high level guards inside the building, and thinks you both would be able to convince that group to join you both and lay siege on Miku. You don't share his optimism, but you let him lead the way. You both walk in the front door of the miku-scraper to see a group of guards having a potluck on the ground floor. They recognize Shifu, and clamor around him, greeting him, dapping him up and the like. Shifu talks about your plans to stop Miku's takeover, and the clamoring stops. "Now that just ain't gonna happen" Peter Griffin interjects.`,
+                            text: `"Heh, yeahhh, no freakin’ way that’s happenin’" Peter Griffin interjects`,
+                            cutscene: [{ text: `Shifu knows that Miku is too powerful to take on alone. He knows of a few high level guards inside the building, and thinks you both would be able to convince that group to join you both and lay siege on Miku. You don't share his optimism, but you let him lead the way` }, { text: `You both walk in the front door of the miku-scraper to see a group of guards having a potluck on the ground floor. They recognize Shifu, and clamor around him, greeting him, dapping him up and the like.` }, { text: `Shifu talks about your plans to stop Miku's takeover, and the clamoring stops.` }],
                             options: [`Oh ok I'll just do it myself then`, `Think of the lives at stake!`, `It'd be funny`],
                             scenes: [{
-                                text: `"You insult me, kid. LeBron, do your thing" As Peter says this, LeBron flies over to you from a corner in the room. He picks you up and flies you to the top of the skyscraper. "G'bye kid. This is just part of the job description" He drops you. YOU DIE`,
+                                text: `He picks you up and flies you to the top of the skyscraper. "G'bye kid. This is just part of the job description" He drops you. YOU DIE`,
+                                cutscene: [{ text: `"You’re really pushin’ my buttons here, kid. Hey LeBron, do your thing!" As Peter says this, LeBron flies over to you from a corner in the room.` }],
                                 options: [`Go back`, `Restart from beginning`],
                                 scenes: [{ path: [`p`] }, { path: [`P`] }]
                             }, {
-                                text: `As you say this, your vision cuts. You see a broken world, where people are both scared to die and be alive. There are posters of Miku's face everywhere. Upon closer inspection, the posters seem to have a surveillance system built into them. Everyone in this world is terrified. Your vision cuts back, and you look around. Everyone seems to have had the same vision as you. "You have to warn us before you use a cutaway gag" Shifu scolds. "I've told you before," Peter Griffin explains, "I can't control them. But this was quite enlightening."`,
+                                text: `"Look, I already told ya—I can’t control these things, alright?" Peter Griffin explains, "But hey, this was actually pretty eye-openin’"`,
+                                cutscene: [{ text: `As you say this, your vision cuts. You see a broken world, where people are both scared to die and be alive. There are posters of Miku's face everywhere` }, { text: `Your vision cuts back, and you look around. Everyone seems to have had the same vision as you` }, { text: `"You have to warn us before you use a cutaway gag" Shifu scolds` }],
                                 options: [`Continue`],
                                 scenes: [{
-                                    text: `Peter says, "I'll set up a vote in the guards' high council regarding a siege on Miku. You have my vote, of course, but you'll have to convince the others." You see him step over to a corner where many guards are. Most guards seem taken aback by this proposition. You see four high ranking guards besides Peter in that corner, all of them eyeing you both. You'll only need to convince two of them to get a majority vote.<br><br>If you lose 3 relationship points that person’s vote is locked out and cannot be accessed again.`,
+                                    function: () => {
+                                        // reset votes
+                                        delete inventory.walter;
+                                        delete inventory.teto;
+                                        delete inventory.iceBear;
+                                        delete inventory.gabriel;
+                                    },
+                                    text: `You see him step over to a corner where many guards are. Most guards seem taken aback by this proposition. You see four high ranking guards besides Peter in that corner, all of them eyeing you both. You'll only need to convince two of them to get a majority vote.<br><br>If you lose 3 relationship points that person’s vote is locked out and cannot be accessed again.`,
+                                    cutscene: [{ text: `Peter says, "I'll call for a vote in the guards' super fancy council thing about launchin’ a siege on Miku. You got my vote, obviously—but yeah, you're gonna have to sweet-talk the rest of those guys"` }],
                                     options: [`Continue`],
                                     scenes: [{
                                         text: `Who do you approach?`,
@@ -169,6 +176,7 @@ const story = {
                                                     }]
                                                 }, {
                                                     text: `We have to cook! I know exactly where to use this. Come on, Pinkman. You find a remote village, and in this village you see a Barbaric King and an Archer Queen. Walter explains, “We need to cook". The monarchs lead you to a cave, showing you a massive vat of Dark Elixir. Not asking any questions, you fill a vial with this dark elixir, and you head back to Good Burger, with your new secret ingredient. YOU HAVE RETURNED WITH THE ELIXIR OPEN SECRET`,
+                                                    cutscene: [{ text: `We have to cook! I know exactly where to use this. Come on, Pinkman` }, { text: `You find a remote village, and in this village you see a Barbaric King and an Archer Queen` }, { text: `Walter explains, “We need to cook"` }, { text: `The monarchs lead you to a cave, showing you a massive vat of Dark Elixir` }, { text: `Not asking any questions, you fill a vial with this dark elixir, and you head back to Good Burger, with your new secret ingredient<br><br>YOU HAVE RETURNED WITH THE ELIXIR<br>OPEN SECRET` }],
                                                     options: [`Play again`],
                                                     scenes: [{ path: [`P`] }]
                                                 }],
@@ -366,13 +374,32 @@ const story = {
                                                     }
                                                 }, { path: [1] }, { path: [1] }, { path: [1] }]
                                             }, {
-                                                text: `The guards take their vote. They decide as a group that your plan is not worth the effort or risk. Peter sighs. "I'm a man of my word, kid. I have to go along with their choice, even if I agree with you. I'm really sorry to do this to you, kid. LeBron, you know what to do." Lebron: "Already on it big guy" LeBron flies over to you. He picks you up and flies you to the top of the skyscraper. "G'bye kid. This is just part of the job description" He drops you<br><br>YOU DIE`,
+                                                text: `He drops you<br><br>YOU DIE`,
+                                                cutscene: [{ text: `The guards take their vote. They decide as a group that your plan is not worth the effort or risk` }, { text: `Peter sighs. "I’m a man of my word, kid. Gotta roll with their decision, even if I think you’re right. Really hate doin’ this to ya, but... yeah. LeBron—go ahead, buddy. You know the drill"` }, { text: `"Already on it big guy" LeBron flies over to you. He picks you up and flies you to the top of the skyscraper. "G'bye kid. This is just part of the job description"` }],
                                                 options: [`Go back`, `Restart from beginning`],
-                                                scenes: [{ path: [`p`] }, { path: [`P`] }, {
-                                                    text: `Peter: "Alright then. What are we waiting for? LeBron, take us up" LeBron: "You got it, big guy." LeBron groups all of you up, and dunks you into the top floor of the Miku scraper. Miku knew you all were approaching, so she isn't surprised. Miku: "I thought you'd all be smarter than that. You're all fired. And for you (Miku turns to you) I'll take care of you myself"`,
+                                                scenes: [{ path: [`p`, `p`] }, { path: [`P`] }, {
+                                                    text: `"I'll take care of you myself"<br><br>Use DFJK keys to control the rhythm game`,
+                                                    cutscene: [{ text: `"Alrighty then—what the hell are we standin’ around for? LeBron, fire it up and take us up there!"` }, { text: `"You got it, big guy." LeBron groups all of you up, and dunks you into the top floor of the Miku scraper` }, { text: `Miku knew you all were approaching, so she isn't surprised` }, { text: `"I thought you'd all be smarter than that. You're all fired"` }, { text: `"And for you?"` }],
                                                     options: [`*square up*`],
                                                     scenes: [{
-                                                        // rhythm game
+                                                        text: ``,
+                                                        options: [],
+                                                        scenes: [{
+                                                            text: `"Didn't you listen? I've told you many times already that your resistance was futile. You're so pathetic. I wouldn't even keep you as a slave in my empire." Miku charges her classic Miku Miku Beam and executes you on the spot<br><br>YOU DIE`,
+                                                            options: [`Retry game`, `Restart from beginning`],
+                                                            scenes: [{ path: [`p`] }, { path: [`P`] }]
+                                                        }, {
+                                                            text: `She has her Miku Miku Beam charged and ready`,
+                                                            cutscene: [{ text: `Miku coughs up blood from singing her heart out. "W-What?? H-How could YOU ever even BEGIN to think you could beat me? Is this really my final breath?"` }, { text: `Miku laughs "haha lmao jk" She starts counting down. 1... 2... 3... "Ready?"` }],
+                                                            options: [`There is nothing we can do`],
+                                                            scenes: [{
+                                                                text: `"If you only do what you can do, you'll never be better than what you are. But don't kill yourself like I did, okay?" Shifu dies<br><br>YOU REACHED THE TRAGIC VICTORY ENDING`,
+                                                                cutscene: [{ text: `Miku fires her beam, but master Shifu steps between you and her` }, { text: `As Shifu takes most of the blast, Ice Bear and Gabriel jump Miku. Miku is pinned now. Walter comes over to her and takes her out point blank. Teto just dances and watches the whole spectacle` }, { text: `Shifu is on the ground, severely injured from the blast. You hold Shifu as he takes his final breaths` }],
+                                                                options: [`Play again`],
+                                                                scenes: [{ path: [`P`] }]
+                                                            }]
+                                                        }],
+                                                        startGame: true
                                                     }]
                                                 }],
                                                 lock: {
@@ -383,33 +410,27 @@ const story = {
                                                         if (inventory.iceBear) voteCount++;
                                                         if (inventory.gabriel) voteCount++;
 
+                                                        // reset blunders
+                                                        relationshipBlunders.walter = 0;
+                                                        relationshipBlunders.teto = 0;
+                                                        relationshipBlunders.iceBear = 0;
+                                                        relationshipBlunders.gabriel = 0;
+
+                                                        // unlock paths
+                                                        let walterPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 0] }
+                                                        delete walterPath.findPath().locked;
+
+                                                        let tetoPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 1] }
+                                                        delete tetoPath.findPath().locked;
+
+                                                        let iceBearPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 2] }
+                                                        delete iceBearPath.findPath().locked;
+
+                                                        let gabrielPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 3] }
+                                                        delete gabrielPath.findPath().locked;
+
                                                         if (voteCount >= 2) {
                                                             return true;
-                                                        } else {
-                                                            // reset blunders
-                                                            relationshipBlunders.walter = 0;
-                                                            relationshipBlunders.teto = 0;
-                                                            relationshipBlunders.iceBear = 0;
-                                                            relationshipBlunders.gabriel = 0;
-
-                                                            // reset votes
-                                                            delete inventory.walter;
-                                                            delete inventory.teto;
-                                                            delete inventory.iceBear;
-                                                            delete inventory.gabriel;
-
-                                                            // unlock paths
-                                                            let walterPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 0] }
-                                                            delete walterPath.findPath().locked;
-
-                                                            let tetoPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 1] }
-                                                            delete tetoPath.findPath().locked;
-
-                                                            let iceBearPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 2] }
-                                                            delete iceBearPath.findPath().locked;
-
-                                                            let gabrielPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 3] }
-                                                            delete gabrielPath.findPath().locked;
                                                         }
                                                     }, scene: { path: [2] }
                                                 }
@@ -434,13 +455,14 @@ const story = {
                                     }]
                                 }]
                             }, {
-                                text: `It's not funny to lose my job, kid. You know what it's like, don't you? Being stuck in a job you hate? I have access to your file. I know you've been working at that good burger for over 15 years. You don't like your job, just like me, but it's what we must do to survive.`,
+                                text: `Hey, losing my job ain’t no joke, kid. You get it, don’t ya? Bein’ stuck in a job you can’t stand? I got your file right here, and I see you’ve been workin’ at that crappy burger joint for, what, 15 years? Yeah, you don’t like it any more than I do, but hey, sometimes you gotta do what you gotta do to make it through the day`,
                                 options: [`I am NOTHING like you`, `wait but i love good burger`],
                                 scenes: [{ path: ['p', 0] }, {
-                                    text: `Peter sighs. "I don't understand you. You've been working at that job for over half your life, without promotion or change of any kind. You've lived off of minimum wage for 15 full years! Doesn't that wear you down! Doesn't that make you wanna change! I bet you haven't even heard of a supersized meal." Admittedly, you haven't heard of a supersize meal. Peter sighs once more. "Hey kid. I may be overstepping my boundaries, but I like your spunk. It takes real guts to even think you can take Miku down. And I guess I feel sympathetic because I relate to you. Lemme teach you how to supersize a meal"`,
+                                    text: `So, lemme show ya the ropes—let me teach ya how to supersize a goodburger meal!"`,
+                                    cutscene: [{ text: `Peter sighs. "I don’t get you, kid. You’ve been stuck at that job for, what, half your life? No promotion, no change, just the same old grind"` }, { text: `"You’ve been livin' off minimum wage for 15 years! Doesn’t that just break ya? Don’t you wanna do somethin' different? I bet you don’t even know what a supersized meal is!"` }, { text: `Admittedly, you haven't heard of a supersize meal. Peter sighs once more` }, { text: `"Hey, kid. I might be crossin' a line here, but I gotta say, I like your spunk. It takes some serious guts to think you can take down Miku. And, ya know, I guess I feel for ya, 'cause I kinda get where you're comin' from` }],
                                     options: [`Nah I'm good. Thanks tho!`, `Yes please!`],
                                     scenes: [{
-                                        text: `Suit yourself, kid`,
+                                        text: `Eh, suit yourself, kid. Your loss`,
                                         options: [`Continue`],
                                         scenes: [{
                                             path: ['p', 'p', 'p', 1, 0]
@@ -458,28 +480,28 @@ const story = {
                         }]
                     },
                     {
-                        text: `Shifu looks flabbergasted. He never even considered that you wouldn't try to save your world. Miku portals in and grabs Shifu. Shifu: "H-How? How did you know I was here?". Miku: "I was hiding in your wifi". Miku chucks Shifu through a portal and looks at you. Miku: "Could I have a good burger meal?"`,
+                        text: `"Could I have a good burger meal?"`,
+                        cutscene: [{ text: `Shifu looks flabbergasted. He never even considered that you wouldn't try to save your world. Miku portals in and grabs Shifu` }, { text: `"H-How? How did you know I was here?"` }, { text: `"I was hiding in your wifi"` }, { text: `Miku chucks Shifu through a portal and looks at you` }],
                         options: [`Sure man. It's on the house`, `Nah`],
                         scenes: [{
                             text: `Miku says, “Mmm… Yeah this is mid af"`,
                             options: [`Continue`],
                             scenes: [{ path: ['p', 1] }]
                         }, {
-                            text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd." You are in a prison.
-                            You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension, you begin to question if its because miku is hiding in everyone's wifi, thus providing wifi for everyone.  
-                            The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way.  
-                            Knowing that Miku is on her way, through the fortunately slow wifi, you join up with Earth's heroes, and warn them of Miku's destructive power.`,
+                            text: `Knowing that Miku is on her way, through the fortunately slow wifi, you join up with Earth's heroes, and warn them of Miku's destructive power.`,
+                            cutscene: [{ text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd," Miku jests. You are in a prison.` }, { text: `You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension. Miku probably has full coverage of wifi, and spys on people through that` }, { text: `The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way` }],
                             options: [`Continue`],
                             scenes: [{
-                                text: `On your way out, the door is closed, and a hooded man is guarding the door in which the heroes came through. He says, "You know, God gave me a gift to do other things besides play the game of basketball." Feeling this man's aura, you realize that he is the GOAT, he is LeBron James. He asks you, "where do you think you're going?"`,
+                                text: `"Where do you think you're going?"`,
+                                cutscene: [{ text: `On your way out, the door is closed, and a hooded man is guarding the door in which the heroes came through` }, { text: `"You know, God gave me a gift to do other things besides play the game of basketball"` }, { text: `Feeling this man's aura, you realize that he is the GOAT, LeBron James` }],
                                 options: [`I'm gonna end Miku's reign once and for all! She needs to realize that this world is not hers!`, `Sorry, my GOAT, I did not know you were the guard here, I’ll go back…`],
                                 scenes: [{
-                                    text: `You seem like a baller, kid, and you're honest. I respect that. I'm gonna give you some advice that Warren Buffet once told me, he said, "always follow your gut. When you have that gut feeling, you have to go with it, don't go back on it.  
-                                    (LeBron grabs you and your team, dunks you and your team through a portal to the top floor of the Miku scraper). 
-                                    You land atop the Miku scraper, seeing the manaical vocaloid sitting atop a throne facing away from you, toward the now dystopian city, a city you once knew to be yours. You say to your gang, "Maybe she doesn't know we're here." As you say these words, World is Mine starts playing from all around you, and her throne spins 540 degrees (she accidentally 360'd, then finally turned it around correctly) "Of course I know you're here, kid, I've been hiding in your wifi, waiting for your attempt at retribution."`,
+                                    text: `"Of course I know you're here, kid, I've been hiding in your wifi, waiting for your attempt at retribution"`,
+                                    cutscene: [{ text: `"You seem like a baller, kid, and you're honest. I respect that. I'm gonna give you some advice that Warren Buffet once told me, he said, "always follow your gut. When you have that gut feeling, you have to go with it, don't go back on it"` }, { text: `LeBron grabs you and your team, dunks you and your team through a portal to the top floor of the Miku scraper` }, { text: `You land atop the Miku scraper, seeing the manaical vocaloid sitting atop a throne facing away from you, toward the now dystopian city, a city you once knew to be yours` }, { text: `You say to your gang, "Maybe she doesn't know we're here."` }, { text: `As you say these words, World is Mine starts playing from all around you, and her throne spins 540 degrees (she accidentally 360'd, then finally turned it around correctly)` }],
                                     options: [`Surrender`, `Fight Hatsune Miku`],
                                     scenes: [{
-                                        text: `Feeling her magical power, you feel completely oppressed, you say to your team, "we can't do this, nobody on this Earth is powerful enough." The team looks at each other and nods amongst themselves, and approach Miku. All thoughts of attempting to fight Miku have vanished, you've made peace with your life without Good Burger."We would like to serve you, to become your personal strike team" You? You weaklings? What do you have to offer me, I could do just fine without you. Who responds?`,
+                                        text: `"You? You weaklings? What do you have to offer me, I could do just fine without you."<br><br>Who responds?`,
+                                        cutscene: [{ text: `Feeling her magical power, you feel completely oppressed. You say to your team, "We can't do this, nobody on this Earth is powerful enough"` }, { text: `The team looks at each other, nods amongst themselves, and approaches Miku. All thoughts of attempting to fight Miku have vanished, you've made peace with your life without Good Burger` }, { text: `"We would like to serve you, to become your personal strike team"` }],
                                         options: [`DanTDM`, `Markiplier`],
                                         scenes: [{
                                             text: `DanTDM replies, hoping that he will say the right thing, "Make me a sandwich, woman!" Miku is completely surprised that he would say such a thing. She looks you dead in the eyes. "Do you condone this?"`,
@@ -494,28 +516,41 @@ const story = {
                                                 scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
                                             }]
                                         }, {
-                                            text: `Markiplier replies, knowing exactly what to say, "Hello everybody, my name is Markiplier". The aura that came out of this statement was the most the world has ever seen, besides Satoru Gojo of course. Miku is taken aback, seeing this amount of aura truly impressed her. Because of this, she was moved. "Why, what a great offer, I can see why you chose this side of the war, you're the smart ones..." Miku addresses you, "I'm on top of the world, because of you." "You have untapped power, and I knew that if I didn't take this chance, I would not be able to make this world mine."  You thank Miku for this generous offer, and tell her, "All I wanted to do, is follow you" YOU HAVE REACHED THE UNDERLING ENDING`,
+                                            text: `"All I wanted to do, is follow you"<br><br>YOU HAVE REACHED THE UNDERLING ENDING`,
+                                            cutscene: [{ text: `Markiplier replies, knowing exactly what to say` }, { text: `"Hello everybody, my name is Markiplier"` }, { text: `The aura that came out of this statement was the most the world has ever seen, besides Satoru Gojo of course` }, { text: `Miku is taken aback, seeing this amount of aura truly impressed her. Because of this, she was moved` }, { text: `"Why, what a great offer, I can see why you chose this side of the war, you're the smart ones..."` }, { text: `Miku addresses you, "I'm on top of the world, because of you. You have untapped power, and I knew that if I didn't take this chance, I would not be able to make this world mine."` }, { text: `You thank Miku for this generous offer` }],
                                             options: [`Play again`],
                                             scenes: [{ path: [`P`] }]
                                         }]
                                     }, {
-                                        text: `PewDiePie unleashes his long range punch, dazing Miku, and Markiplier gets ready for an attack. DanTDM takes this opportunity, when shes dazed, to fly in and swing his diamond sword at Miku, slicing her leek wand in half. Stampy joins the fray, trying to charm Miku for you to do the final attack, this of course, doesn't work. Hatsune Miku came prepared, nobody can charm Miku the way Teto could... Enraged by this, Mikuattacks your team, leaving them all injured but you. You go to attack Miku in a one on one, and she challenges you to a one versus one in a rhythm game. It all comes down to this, the world depends on you.`,
+                                        text: `You go to attack Miku in a one on one, and she challenges you to a one versus one in a rhythm game. It all comes down to this, the world depends on you<br><br>Control the rhythm game with the DFJK keys`,
+                                        cutscene: [{ text: `PewDiePie unleashes his long range punch, dazing Miku, and Markiplier gets ready for an attack. DanTDM takes this opportunity, when shes dazed, to fly in and swing his diamond sword at Miku, slicing her leek wand in half` }, { text: `Stampy joins the fray, trying to charm Miku for you to do the final attack, this of course, doesn't work. Hatsune Miku came prepared, nobody can charm Miku the way Teto could...` }, { text: `Enraged by this, Miku attacks your team, leaving them all injured but you` }],
                                         options: ['Continue'],
                                         scenes: [{
-                                            // Rhythm game
+                                            text: ``,
+                                            options: [],
+                                            scenes: [{
+                                                text: `Miku doesn't think twice before vaporizing you with her Miku Miku beam.<br><br>YOU DIE`,
+                                                options: [`Retry game`, `Restart from beginning`],
+                                                scenes: [{ path: [`p`] }, { path: [`P`] }]
+                                            }, {
+                                                text: `You won. The world can finally rest, the dictatorship by Miku is over. You don't have to worry about the world being hers, and you go back to Good Burger with your new friends<br><br>YOU HAVE REACHED THE TEAMWORK ENDING`,
+                                                options: [`Play again`],
+                                                scenes: [{ path: [`P`] }]
+                                            }],
+                                            startGame: true
                                         }]
                                     }]
                                 }, {
-                                    text: `LeBron says, "Yeah, sure ahaha, just make sure that you take care of your mattress covers (winks)"
-                                    You start walking back to your designated cell area, and while you're walking back, you think about what he was saying, and you begin to get confused. You think to yourself, why would he say that?`,
+                                    text: `You start walking back to your designated cell area, and while you're walking back, you think about what he was saying, and you begin to get confused. You think to yourself, why would he say that?`,
+                                    cutscene: [{ text: `LeBron says, "Yeah, sure ahaha, just make sure that you take care of your mattress covers." LeBron winks at you` }],
                                     options: [`Go back to LeBron`, `Go back to your cell`],
                                     scenes: [{ path: ['p'] }, {
                                         text: `placeholder`,
                                         options: [],
                                         item: `drip`,
                                         scenes: [{
-                                            text: `You and the heroes return to the cell, and you try to go to sleep, feeling defeated. 
-                                            As you're trying to fall asleep, you're moving around on your mattress, and feel something underneath the mattress, which was preventing you from sleeping. You find a drippy looking coat<br><br>YOU HAVE OBTAINED THE DRIP`,
+                                            text: `As you're trying to fall asleep, you're moving around on your mattress, and feel something underneath the mattress, which was preventing you from sleeping. You find a drippy looking coat<br><br>YOU HAVE OBTAINED THE DRIP`,
+                                            cutscene: [{ text: `You and the heroes return to the cell, and you try to go to sleep, feeling defeated` }],
                                             options: [`Continue`],
                                             scenes: [{ path: ['p', 'p', `p`] }]
                                         }],
@@ -526,7 +561,8 @@ const story = {
                                 }]
                             }]
                         }, {
-                            text: `Miku's face lights up with a childlike wonder. "S... Supersize?" she asks. "Dang right" You clarify. She eats her supersized meal as her heart grows three sizes. "Hey kid. You can get loads of these burgers if you worked here." She demands a job immediatly. You see no threat in her voice, and it seems she has forgotten about the rest of this world completely. You now work with miku at good burger, and have a great time doing it. <br><br>YOU REACHED THE GOOD BURGER ENDING <br><br>OPEN SECRET`,
+                            text: `You now work with miku at good burger, and have a great time doing it<br><br>YOU REACHED THE SUPERSIZE ENDING<br><br>OPEN SECRET`,
+                            cutscene: [{ text: `Miku's face lights up with a childlike wonder. "S... Supersize?" she asks` }, { text: `"Dang right," you clarify` }, { text: `She eats her supersized meal as her heart grows three sizes` }, { text: `"Hey Miku. You can get loads of these burgers if you worked here"` }, { text: `She demands a job immediatly. You see no threat in her voice, and it seems she has forgotten about the rest of this world completely` }],
                             options: [`Go back`, `Restart from beginning`],
                             scenes: [{ path: [`p`] }, { path: [`P`] }]
                         }],
@@ -535,26 +571,30 @@ const story = {
                 ]
             },
             {
-                text: `Oogway opens a portal to a peaceful world.
-                “Now, it’s time you learnt skadoosh” Oogway says
-                He takes 40 days and 40 nights to teach you, but it’s okay since time does not pass in this dimension
-                You arrive back in your world after your training, and are ready to take Miku down<br><br>
+                text: `You arrive back in your world after your training, and are ready to take Miku down<br><br>
                 You now know skadoosh!`,
+                image: `images/oogway/3.jpg`,
+                cutscene: [{ text: `Oogway opens a portal to a peaceful world. “Now, it’s time you learnt skadoosh” Oogway says`, image: `images/oogway/1.jpg` }, { text: `He takes 40 days and 40 nights to teach you, but it’s okay since time does not pass in this dimension`, image: `images/oogway/2.jpg` }],
                 options: [`Continue`],
                 scenes: [{
-                    text: `You are in front of the miku home base, the miku-scraper. It appears like she's already started to take over your world. Your companion explains that miku has set up a field around the skyscraper to block any portals from opening inside`,
-                    options: [`Continue`],
+                    text: `Oogway opens the wall like a doorway, and goes inside`,
+                    image: `images/oogway/7.jpg`,
+                    cutscene: [{text: `You are in front of the miku home base, the miku-scraper. It appears like she's already started to take over your world. Your companion explains that miku has set up a field around the skyscraper to block any portals from opening inside`, image: `images/oogway/4.jpg`}, { text: `Oogway advises that you both enter from the basement, to avoid any real conflict. You agree with your mentor, and he creates a portal inside the sewers just outside the base's basement`, image: `images/oogway/5.jpg`}, { text: `You ask, "Wait, how do we get in?" Oogway explains that the entrance is a secret. An open secret. Anyone can find it`, image: `images/oogway/6.jpg`}],
+                    options: [`Follow him`],
                     scenes: [{
-                        text: `Oogway advises that you both enter from the basement, to avoid any real conflict. You agree with your mentor, and he creates a portal inside the sewers just outside the base's basement. You ask, "Wait, how do we get in?" Oogway explains that the entrance is a secret. An open secret. Anyone can find it. Oogway opens the wall like a doorway, and goes inside. You follow him. Inside this basement you see:`,
+                        text: `Inside the tower's basement you see:`,
+                        image: `images/oogway/7.jpg`,
                         options: [`A box of goodies`, `A mall type of map (you are here type thing)`, `An elevator`, `A staircase`],
                         scenes: [{
                             text: `As you get closer to the box, a certain item catches your eye`,
+                            image: `images/oogway/box.jpg`,
                             options: [`Inspect`],
                             scenes: [{
                                 text: `placeholder`,
                                 options: [],
                                 scenes: [{
                                     text: `You gain an odd looking key. There is a container of a viscous purple fluid at the top of the key<br><br>OBTAINED ELIXER KEY`,
+                                    image: `images/oogway/key.jpg`,
                                     options: [`Continue`],
                                     scenes: [{ path: [`p`, `p`, `p`] }]
                                 }],
@@ -563,50 +603,71 @@ const story = {
                                 }
                             }]
                         }, {
-                            text: `The map shows "you are here" in the basement. The map shows that the skyscraper is terribly unorganized, with a web diagram tangled over the whole thing showing many paths for portals. Oogway says this is an attempt at confusing any intruders, but he's seen many miku-scrapers in his day, so he'll guide you through this one easily. He points to the map and says it's best to take the elevator here`,
+                            text: `Oogway says this is an attempt at confusing any intruders, but he's seen many miku-scrapers in his day, so he'll guide you through this one easily. He points to the map and says it's best to take the elevator here`,
+                            image: `images/oogway/map.jpg`,
+                            cutscene: [{ text: `The map shows "you are here" in the basement. The map shows that the skyscraper is terribly unorganized, with a web diagram tangled over the whole thing showing many paths for portals`, image: `images/oogway/map.jpg` }],
                             options: [`Continue`],
                             scenes: [{ path: ['p'] }]
                         }, {
-                            text: `You press the button and wait for the elevator to open. As it does, you see a few of miku's soldiers inside. They both recognize Oogway and turn to him. They immediatly ask for an autograph. Oogway chuckles and grants their wish. "You know, peace is always the best option to take, if the oppurtunity presents itself." You heed the words of your master and continue. The elevator leads straight up to the second highest floor before stopping. "This is as high as it will go. I mean it'll go higher if we had more authority, but this is pretty good all things considered." You see a reception desk guarding an intimidating staircase. The person manning the desk is LeBron. "Do y'all have an appointment?"`,
+                            text: `You see a reception desk guarding an intimidating staircase. The person manning the desk is LeBron. "Do y'all have an appointment?"`,
+                            image: `images/oogway/11.jpg`,
+                            cutscene: [{ text: `You press the button and wait for the elevator to open. As it does, you see a few of miku's soldiers inside. They both recognize Oogway and turn to him`, image: `images/oogway/8.jpg`}, { text: `They immediatly ask for an autograph. Oogway chuckles and grants their wish. "You know, peace is always the best option to take, if the oppurtunity presents itself." You heed the words of your master and continue`, image: `images/oogway/9.jpg`}, { text: `The elevator leads straight up to the second highest floor before stopping. "This is as high as it will go. I mean it'll go higher if we had more authority, but this is pretty good all things considered."`, image: `images/oogway/10.jpg` }],
                             options: [`Yes, of course!`, `No. We are here to stop Miku`],
                             scenes: [{
-                                text: `LeBron eyes you disapprovingly. "Guys, I'm the goat. You really think I can't see through a simple little lie like that?" Lebron grabs you Omni-man style. "And to think I thought you were worthy enough to stop Miku. I want to make this world a better place. And that starts by removing you from it" As LeBron says this, he flies and crashes through the window. He holds you over the street, about 2,000 ft in the air. He drops you<br><br>YOU DIE`,
+                                text: `As LeBron says this, he flies and crashes through the window. He holds you over the street, about 2,000 ft in the air. He drops you<br><br>YOU DIE`,
+                                image: `images/oogway/lebronicide/3.jpg`,
+                                cutscene: [{ text: `LeBron eyes you disapprovingly. "Guys, I'm the goat. You really think I can't see through a simple little lie like that?"`, image: `images/oogway/lebronicide/1.jpg` }, { text: `Lebron grabs you Omni-man style. "And to think I thought you were worthy enough to stop Miku. I want to make this world a better place. And that starts by removing you from it"`, image: `images/oogway/lebronicide/2.jpg` }],
                                 options: [`Go back`, `Restart from beginning`],
                                 scenes: [{ path: [`p`] }, { path: [`P`] }]
                             }, {
-                                text: `LeBron chuckles a little bit. "Yeah, I was getting tired of her reign too. Y'all are free to head on back there, do whatever you want lmao" You both head up the staircase and see Miku, sitting with her back to you both as she looks at the skyline. She doesn't say anything. Oogway: "She knows we're here. There's no point in hiding this." Miku is startled, and looks back at the both of you. "Since when did you two get in here?? None of my alarms went off! No matter. There's no way either of you could stop me now. I'm so deeply rooted in everyone's wifi that there's no point in even attempting to halt my expansion."`,
+                                text: `"No matter. There's no way either of you could stop me now. I'm so deeply rooted in everyone's wifi that there's no point in even attempting to halt my expansion."`,
+                                image: `images/oogway/14.jpg`,
+                                cutscene: [{ text: `LeBron chuckles a little bit. "Yeah, I was getting tired of her reign too. Y'all are free to head on back there, do whatever you want lmao"`, image: `images/oogway/11.jpg`}, { text: `You both head up the staircase and see Miku, sitting with her back to you both as she looks at the skyline. She doesn't say anything`, image: `images/oogway/12.jpg`}, { text: `"She knows we're here. There's no point in hiding this"`, image: `images/oogway/12.jpg`}, { text: `Miku is startled, and looks back at the both of you. "Since when did you two get in here?? None of my alarms went off!"`, image: `images/oogway/13.jpg`}],
                                 options: [`Ask Oogway for help`, `Nuh uh!! (Attack)`],
                                 scenes: [{
                                     text: `Oogway knows you can take her in a fight, but decides against it. You are reminded of Oogway's words, and also decide that peace would be a better option. How do you attempt to convince her not to conquer this world?`,
+                                    image: `images/oogway/peace/1.jpg`,
                                     options: [`Do a flip`, `Offer a game of slots`, `Talk Miku out of it`],
                                     scenes: [{
                                         text: `Miku lets out an obvious pog, but her decision is unwavering. She decides to take your life.<br><br>YOU DIE`,
+                                        image: `images/oogway/peace/flip.jpg`,
                                         options: [`Go back`, `Restart from beginning`],
                                         scenes: [{ path: [`p`] }, { path: [`P`] }]
                                     }, {
-                                        text: `You explain the concept of slots, and Miku is intrigued. The thought of making money easily has piqued her interest. She demands you show her the way, and offers a vehicle. It's one of the cars from fortnite. You both make it to Vegas, and Miku is in awe of everything. She decides to spare this world, because of this beautiful game. You end up gambling a bunch with Miku, and both end up as best friends by the end of it.<br><br>YOU REACHED THE GAMBLING ENDING`,
+                                        text: `She decides to spare this world, because of this beautiful game. You end up gambling a bunch with Miku, and both end up as best friends by the end of it<br><br>YOU REACHED THE GAMBLING ENDING`,
+                                        image: `images/oogway/peace/4.jpg`,
+                                        cutscene: [{ text: `You explain the concept of slots, and Miku is intrigued. The thought of making money easily has piqued her interest`, image: `images/oogway/peace/2.jpg`}, { text: `She demands you show her the way, and offers a vehicle. It's one of the cars from fortnite. You both make it to Vegas, and Miku is in awe of everything`, image: `images/oogway/peace/3.jpg`}],
                                         options: [`Play again`],
                                         scenes: [{ path: [`P`] }]
                                     }, {
                                         text: `You begin to imitate Steven Universe. "Miku... this isn't like you!" Miku, to be frank, is insulted that you would ever say such a thing and Miku Miku beams you on the spot.<br><br>YOU DIE`,
+                                        image: `images/oogway/peace/steven.jpg`,
                                         options: [`Go back`, `Restart from beginning`],
                                         scenes: [{ path: [`p`] }, { path: [`P`] }]
                                     }]
                                 }, {
-                                    text: `Miku parries your first attack expertly and throws you to the floor prone. “You have no chance of stopping me now. Didn’t you hear anything I said?? Maybe this time you’ll learn”. Miku turns to Oogway and picks him up. She slams Oogway through the glass, and he tumbles helplessly to the ground. "You’re next, kid"<br><br>Rhythm game is played with the DFJK keys`,
+                                    text: `Miku turns to Oogway and picks him up. She slams Oogway through the glass, and he tumbles helplessly to the ground. "You’re next, kid"<br><br>Rhythm game is played with the DFJK keys`,
+                                    image: `images/oogway/fight/2.jpg`,
+                                    cutscene: [{ text: `Miku parries your first attack expertly and throws you to the floor prone`, image: `images/oogway/fight/1.jpg`}, { text: `“You have no chance of stopping me now. Didn’t you hear anything I said?? Maybe this time you’ll learn”`, image: `images/oogway/fight/1.jpg`}],
                                     options: [`Yeah right!`],
                                     scenes: [{
                                         text: ``,
                                         options: [],
+                                        image: `images/oogway/fight/3.jpg`,
                                         scenes: [{
                                             text: `"Didn't you listen? I've told you many times already that your resistance was futile. You're so pathetic. I wouldn't even keep you as a slave in my empire." Miku charges her classic Miku Miku Beam and executes you on the spot<br><br>YOU DIE`,
+                                            image: `images/oogway/fight/loss.jpg`,
                                             options: [`Restart Game`, `Restart from beginning`],
                                             scenes: [{ path: [`p`] }, { path: [`P`] }]
                                         }, {
-                                            text: `Miku coughs up blood from singing her heart out. "W-What?? H-How could YOU ever even BEGIN to think you could beat me? Is this really my final breath?". Miku laughs "haha lmao jk" She starts counting down. 1... 2... 3... "Ready?" She has her Miku Miku Beam charged and ready.`,
+                                            text: `Miku laughs "haha lmao jk" She starts counting down. 1... 2... 3... "Ready?" She has her Miku Miku Beam charged and ready.`,
+                                            image: `images/oogway/fight/5.jpg`,
+                                            cutscene: [{ text: `Miku coughs up blood from singing her heart out. "W-What?? H-How could YOU ever even BEGIN to think you could beat me? Is this really my final breath?"`, image: `images/oogway/fight/4.jpg`}],
                                             options: [`Skadoosh`],
                                             scenes: [{
-                                                text: `Miku gets skadooshed as a golden wave of light ripples down the tower. Miku is banished, and the entire tower knows. They all surrender to your might. The tower is slowly converted to an apartment complex over the coming years, and everyone forgets what happened that day<br><br>YOU REACHED THE SKADOOSH ENDING`,
+                                                text: `The tower is slowly converted to an apartment complex over the coming years, and everyone forgets what happened that day<br><br>YOU REACHED THE SKADOOSH ENDING`,
+                                                image: `images/oogway/fight/8.jpg`,
+                                                cutscene: [{ text: `Skadoosh`, image: `images/oogway/fight/6.jpg`}, { text: `Miku gets skadooshed as a golden wave of light ripples down the tower. Miku is banished, and the entire tower knows. They all surrender to your might`, image: `images/oogway/fight/7.jpg`}],
                                                 options: [`Play again`],
                                                 scenes: [{ path: [`P`] }]
                                             }]
@@ -617,21 +678,28 @@ const story = {
                             }]
                         }, {
                             text: `You walk up the staircase with Master Oogway to see a group of high level intimidating guards on the ground floor`,
+                            image: `images/oogway/drip-ending/1.jpg`,
                             options: [`Continue`],
                             secret: { item: `drip`, option: `Whip out the drip` },
                             scenes: [{
-                                text: `Without warning, they attack, giving no time for you to think. This must have been why Oogway said to avoid this floor. You have learned your lesson.<br><br>YOU DIE`,
+                                text: `Without warning, they attack, giving no time for you to think<br><br>YOU DIE`,
+                                image: `images/oogway/drip-ending/death.jpg`,
                                 options: [`Go back`, `Restart from beginning`],
                                 scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
                             }, {
-                                text: `You pull out the Miku drip and they are all taken aback. Peter Griffin looks you up and down, and says, "Heheh this is like that time we did the drip contest." Suddenly, your vision cuts out and you see Miku standing in front of a group of people. As you look closer, you see that these people are actually those same guards, but they are all dripped out the wazoo. They seem to be having a contest for who's the drippiest. Miku, of course, wins this with her savage lil' drip coat. Your vision comes back, and all the guards are laughing remembering their good times. Peter walks over to you and puts a hand on your shoulder. "Hey kid, why don't you work with us? Times like this don't happen often, but when they do, it's the best time ever. I can't believe I ever forgot about this."`,
+                                text: `"Hey, kid, why don’t you come work with us? Moments like this don’t come around too often, but when they do? Oh man, it’s the best time ever. I can’t believe I ever forgot about this stuff!"`,
+                                image: `images/oogway/drip-ending/5.jpg`,
+                                cutscene: [{ text: `You pull out the Miku drip and they are all taken aback. Peter Griffin looks you up and down, and says, "Heheh this is like that time we did the drip contest"`, image: `images/oogway/drip-ending/2.jpg`}, { text: `Suddenly, your vision cuts out and you see Miku standing in front of a group of people. As you look closer, you see that these people are actually those same guards, but they are all dripped out the wazoo. They seem to be having a contest for who's the drippiest. Miku, of course, wins this with her savage lil' drip coat`, image: `images/oogway/drip-ending/3.jpg` }, { text: `Your vision comes back, and all the guards are laughing remembering their good times. Peter walks over to you and puts a hand on your shoulder`, image: `images/oogway/drip-ending/4.jpg` }],
                                 options: [`Yeah I'll take the job`, `Nah I'm good. Thanks tho!`],
                                 scenes: [{
-                                    text: `"Good choice, kid!" As one of Miku's guards, you go on to rank pretty high in the group. After a while, you get to the point where you get to host monthly drip contests. Miku judges all of these, of course, but you still have the honor of giving everyone the oppurtunity to express themselves and unwind. You can't believe you ever thought of taking these people down, and removing their culture from this planet. Also Oogway is executed for being a traitor<br><br>YOU REACHED THE DRIP ENDING<br>OPEN SECRET`,
+                                    text: `You can't believe you ever thought of taking these people down, and removing their culture from this planet. Also Oogway is executed for being a traitor<br><br>YOU REACHED THE DRIP ENDING<br>OPEN SECRET`,
+                                    image: `images/oogway/drip-ending/7.jpg`,
+                                    cutscene: [{ text: `"Good choice, kid!"`, image: `images/oogway/drip-ending/2.jpg`}, {text: `As one of Miku's guards, you go on to rank pretty high in the group`, image: `images/oogway/drip-ending/6.jpg` }, { text: `After a while, you get to the point where you get to host monthly drip contests. Miku judges all of these, of course, but you still have the honor of giving everyone the oppurtunity to express themselves and unwind`, image: `images/oogway/drip-ending/7.jpg` }],
                                     options: [`Play again`],
                                     scenes: [{ path: [`P`] }]
                                 }, {
-                                    text: `Peter says, "No worries kid.  But if you're trying to get to Miku, go down and take the elevator."`,
+                                    text: `Peter says, "No worries, kid. But hey, if you’re lookin’ to get to Miku, just head down and take the elevator. Simple as that!"`,
+                                    image: `images/oogway/drip-ending/1.jpg`,
                                     options: [`Take the elevator`],
                                     scenes: [{ path: ['p', 'p', 'p', 2] }]
                                 }]
@@ -642,8 +710,7 @@ const story = {
             }]
         },
         // the debug pathway
-        // { path: [3, 0, 0, 0, 1, 0, 0] } who do you approach
-        { path: [3, 1, 0, 0, 0] }
+        { path: [3, 1, 0, 0] }
     ]
 };
 
@@ -684,7 +751,7 @@ Object.prototype.run = function () {
         startGameAll(this);
     }
 
-    if (`cutscene` in this && !this.cutsceneRan) {
+    if (`cutscene` in this && !this.cutsceneRan && !(`lock` in this && this.lock.condition())) {
         this.cutscene[0].runScene(this, 0);
     } else {
         document.getElementById(`text`).innerHTML = this.text;
@@ -718,48 +785,23 @@ Object.prototype.run = function () {
         } else {
             let object = this;
 
-            for (let i = 0; i < this.options.length; i++) {
-                document.getElementById(`options`).children[i].addEventListener(`click`, function select() {
-                    if (!gameActive) {
-                        if (!object.scenes[i].locked) {
-                            document.removeEventListener(`keydown`, select);
-
-                            if (object.cutsceneRan) {
-                                delete object.cutsceneRan;
-                            }
-
-                            console.log(object.scenes);
-                            if (!('scenes' in object.scenes[i]) && !object.scenes[i].ending) {
-                                object.scenes[i].findPath().run();
-                            } else {
-                                object.scenes[i].run();
-                            }
-                        }
-                        if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                            document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
-                        }
-                    }
-                })
-            }
             document.addEventListener(`keydown`, function select(e) {
-                if (!gameActive) {
-                    if (parseInt(e.key) > 0 && parseInt(e.key) <= object.options.length) {
-                        if (!object.scenes[parseInt(e.key) - 1].locked) {
-                            document.removeEventListener(`keydown`, select);
+                if (parseInt(e.key) > 0 && parseInt(e.key) <= object.options.length && !gameActive) {
+                    if (!object.scenes[parseInt(e.key) - 1].locked) {
 
-                            if (object.cutsceneRan) {
-                                delete object.cutsceneRan;
-                            }
+                        if (object.cutsceneRan) {
+                            delete object.cutsceneRan;
+                        }
 
-                            if (!('scenes' in object.scenes[parseInt(e.key) - 1]) && !object.scenes[parseInt(e.key) - 1].ending) {
-                                object.scenes[parseInt(e.key) - 1].findPath().run();
-                            } else {
-                                object.scenes[parseInt(e.key) - 1].run();
-                            }
+                        if (!('scenes' in object.scenes[parseInt(e.key) - 1]) && !object.scenes[parseInt(e.key) - 1].ending) {
+                            object.scenes[parseInt(e.key) - 1].findPath().run();
+                        } else {
+                            object.scenes[parseInt(e.key) - 1].run();
                         }
-                        if ('locked' in object.scenes[parseInt(e.key) - 1] && object.scenes[parseInt(e.key) - 1].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
-                            document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
-                        }
+                        this.removeEventListener(`keydown`, arguments.callee);
+                    }
+                    if ('locked' in object.scenes[parseInt(e.key) - 1] && object.scenes[parseInt(e.key) - 1].locked && !text.innerHTML.includes(`<br><br>That path is locked!`)) {
+                        document.getElementById(`text`).innerHTML += `<br><br>That path is locked!`;
                     }
                 }
             })
@@ -775,23 +817,12 @@ Object.prototype.runScene = function (parent, i) {
     options.innerHTML = `<li>Continue</li>`;
 
     let scene = this;
-    options.children[0].addEventListener(`click`, function select() {
-        document.removeEventListener(`keydown`, select);
-        options.children[0].addEventListener(`click`, select);
-        if (scene.last) {
-            parent.cutsceneRan = true;
-            parent.run();
-        } else {
-            i++;
-            parent.cutscene[i].runScene(parent, i);
-        }
-    })
 
     document.addEventListener(`keydown`, function select(e) {
         if (e.key == 1) {
             document.removeEventListener(`keydown`, select);
             options.children[0].addEventListener(`click`, select);
-            if (scene.last) {
+            if (i + 1 === parent.cutscene.length) {
                 parent.cutsceneRan = true;
                 parent.run();
             } else {
@@ -852,7 +883,7 @@ Object.prototype.openSecrets = function () {
 }
 
 story.addParents();
-story.run();
+// story.run();
 
 // Debug Path
-// story.scenes[4].findPath().run();
+story.scenes[4].findPath().run();
