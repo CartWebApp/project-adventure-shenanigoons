@@ -92,7 +92,7 @@ const story = {
                 {
                 text: `“Please,” he begs, gripping your uniform. “We need you.” He stares at you, waiting for an answer`,
                 image: ``,
-                cutscene: [{ text: `You shake your head and walk back inside Good Burger. Flipping patties is way safer than fighting an anime pop goddess` }, { text: `Just as you settle back in, a portal bursts open inside the restaurant. Master Shifu stumbles out, eyes wild` }, { text: `“WHAT ARE YOU DOING?!” He launches into a desperate rant about Miku’s reign of terror—how she’s ravaged his world, abolished privacy, and turned society into a dystopian nightmare` }],
+                cutscene: [{ text: `You shake your head and walk back inside Good Burger. Flipping patties is way safer than fighting an anime pop goddess`, image: `` }, { text: `Just as you settle back in, a portal bursts open inside the restaurant. Master Shifu stumbles out, eyes wild` }, { text: `“WHAT ARE YOU DOING?!” He launches into a desperate rant about Miku’s reign of terror—how she’s ravaged his world, abolished privacy, and turned society into a dystopian nightmare` }],
                 options: ["Fine, I`ll join you", `No`],
                 scenes: [
                     {
