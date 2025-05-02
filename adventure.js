@@ -599,6 +599,7 @@ const story = {
                                     options: [`Continue`],
                                     scenes: [{ path: [`p`, `p`, `p`] }]
                                 }],
+                                item: `elixir-key`,
                                 lock: {
                                     paths: [{ path: [`p`] }], condition: () => true, scene: { path: [0] }
                                 }
