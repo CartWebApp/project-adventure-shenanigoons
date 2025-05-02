@@ -26,7 +26,7 @@
 */
 
 const inventory = {
-    drip: true
+    
 };
 
 const relationshipBlunders = {
