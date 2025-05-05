@@ -25,9 +25,12 @@
     }
 */
 
-const inventory = {
-    
-};
+let inventory;
+if (!localStorage.inventory) {
+    inventory = {};
+} else {
+    inventory = localStorage.inventory;
+}
 
 const relationshipBlunders = {
     teto: 0,
