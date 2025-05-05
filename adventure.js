@@ -482,10 +482,12 @@ const story = {
                     },
                     {
                         text: `"Could I have a good burger meal?"`,
-                        cutscene: [{ text: `Shifu looks flabbergasted. He never even considered that you wouldn't try to save your world. Miku portals in and grabs Shifu` }, { text: `"H-How? How did you know I was here?"` }, { text: `"I was hiding in your wifi"` }, { text: `Miku chucks Shifu through a portal and looks at you` }],
+                        image: `images/prison/4.jpg`,
+                        cutscene: [{ text: `Shifu looks flabbergasted. He never even considered that you wouldn't try to save your world. Miku portals in and grabs Shifu`, image: `images/prison/1.jpg`}, { text: `"H-How? How did you know I was here?"`, image: `images/prison/2.jpg`}, { text: `"I was hiding in your wifi"`, image: `images/prison/2.jpg`}, { text: `Miku chucks Shifu through a portal and looks at you`, image: `images/prison/3.jpg`}],
                         options: [`Sure man. It's on the house`, `Nah`],
                         scenes: [{
                             text: `Miku says, “Mmm… Yeah this is mid af"`,
+                            image: `images/prison/mid.jpg`,
                             options: [`Continue`],
                             scenes: [{ path: ['p', 1] }]
                         }, {
@@ -712,7 +714,7 @@ const story = {
             }]
         },
         // the debug pathway
-        { path: [3, 1, 0, 0] }
+        { path: [3, 0, 1] }
     ]
 };
 
