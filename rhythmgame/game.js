@@ -504,3 +504,7 @@ function updateGameArea(timestamp) {
         requestAnimationFrame(updateGameArea);
     }
 }
+
+
+
+
