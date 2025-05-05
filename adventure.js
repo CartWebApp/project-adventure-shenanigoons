@@ -757,6 +757,9 @@ Object.prototype.run = function () {
         this.cutscene[0].runScene(this, 0);
     } else {
         document.getElementById(`text`).innerHTML = this.text;
+
+        // Insert typewriter here hehe
+
         document.getElementById(`options`).innerHTML = ``;
         if ('options' in this) {
             for (option of this.options) {
@@ -813,6 +816,9 @@ Object.prototype.run = function () {
 
 Object.prototype.runScene = function (parent, i) {
     text.innerHTML = this.text;
+
+    //put typewriter in here hehe
+
     if (`image` in this) {
         image.src = this.image;
     }
@@ -889,3 +895,17 @@ story.run();
 
 // Debug Path
 // story.scenes[4].findPath().run();
+
+
+
+
+// 
+// 
+// let typeSpeed = 60
+// function typeWriter(sillyInput) {
+//     if (i < sillyInput.length) {
+//       document.getElementById("demo").innerHTML += sillyInput.charAt(i);
+//        i++;
+//       setTimeout(typeWriter, typeSpeed);
+//     }
+//   }
