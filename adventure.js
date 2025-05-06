@@ -29,11 +29,12 @@ let typeWriterInput;
 let m = -1;
 let typeSpeed = 20;
 
+// lets us bring stored inventory into the game
 let inventory;
 if (!localStorage.inventory) {
     inventory = {};
 } else {
-    inventory = localStorage.inventory;
+    inventory = JSON.parse(localStorage.getItem("inventory"));;
 }
 
 const relationshipBlunders = {
@@ -97,27 +98,18 @@ const story = {
             options: [`Screw this`, `Train with Oogway`],
             scenes: [
                 {
-                text: `“Please,” he begs, gripping your uniform. “We need you.” He stares at you, waiting for an answer`,
-                image: `images/refusal/4.jpg`,
-                cutscene: [{ text: `You shake your head and walk back inside Good Burger. Flipping patties is way safer than fighting an anime pop goddess`, image: `images/refusal/1.jpg` }, { text: `Just as you settle back in, a portal bursts open inside the restaurant. Master Shifu stumbles out, eyes wild`, image: `images/refusal/2.jpg` }, { text: `“WHAT ARE YOU DOING?!” He launches into a desperate rant about Miku’s reign of terror—how she’s ravaged his world, abolished privacy, and turned society into a dystopian nightmare`, image: `images/refusal/3.jpg` }],
-                options: ["Fine, I`ll join you", `No`],
-                scenes: [
-                    {
-                        text: `Shifu opens a portal and you follow him through. You are in front of the miku home base (the miku-scraper). It appears like she's already started to take over your world. Your companion explains that miku has set up a field around the skyscraper to block any portals from opening inside`,
-                        options: [`Continue`],
-                        scenes: [{
-                            text: `"Heh, yeahhh, no freakin’ way that’s happenin’" Peter Griffin interjects`,
-                            cutscene: [{ text: `Shifu knows that Miku is too powerful to take on alone. He knows of a few high level guards inside the building, and thinks you both would be able to convince that group to join you both and lay siege on Miku. You don't share his optimism, but you let him lead the way` }, { text: `You both walk in the front door of the miku-scraper to see a group of guards having a potluck on the ground floor. They recognize Shifu, and clamor around him, greeting him, dapping him up and the like.` }, { text: `Shifu talks about your plans to stop Miku's takeover, and the clamoring stops.` }],
-                            options: [`Oh ok I'll just do it myself then`, `Think of the lives at stake!`, `It'd be funny`],
+                    text: `“Please,” he begs, gripping your uniform. “We need you.” He stares at you, waiting for an answer`,
+                    image: `images/refusal/4.jpg`,
+                    cutscene: [{ text: `You shake your head and walk back inside Good Burger. Flipping patties is way safer than fighting an anime pop goddess`, image: `images/refusal/1.jpg` }, { text: `Just as you settle back in, a portal bursts open inside the restaurant. Master Shifu stumbles out, eyes wild`, image: `images/refusal/2.jpg` }, { text: `“WHAT ARE YOU DOING?!” He launches into a desperate rant about Miku’s reign of terror—how she’s ravaged his world, abolished privacy, and turned society into a dystopian nightmare`, image: `images/refusal/3.jpg` }],
+                    options: ["Fine, I`ll join you", `No`],
+                    scenes: [
+                        {
+                            text: `Shifu opens a portal and you follow him through. You are in front of the miku home base (the miku-scraper). It appears like she's already started to take over your world. Your companion explains that miku has set up a field around the skyscraper to block any portals from opening inside`,
+                            options: [`Continue`],
                             scenes: [{
-                                text: `He picks you up and flies you to the top of the skyscraper. "G'bye kid. This is just part of the job description" He drops you. YOU DIE`,
-                                cutscene: [{ text: `"You’re really pushin’ my buttons here, kid. Hey LeBron, do your thing!" As Peter says this, LeBron flies over to you from a corner in the room.` }],
-                                options: [`Go back`, `Restart from beginning`],
-                                scenes: [{ path: [`p`] }, { path: [`P`] }]
-                            }, {
-                                text: `"Look, I already told ya—I can’t control these things, alright?" Peter Griffin explains, "But hey, this was actually pretty eye-openin’"`,
-                                cutscene: [{ text: `As you say this, your vision cuts. You see a broken world, where people are both scared to die and be alive. There are posters of Miku's face everywhere` }, { text: `Your vision cuts back, and you look around. Everyone seems to have had the same vision as you` }, { text: `"You have to warn us before you use a cutaway gag" Shifu scolds` }],
-                                options: [`Continue`],
+                                text: `"Heh, yeahhh, no freakin’ way that’s happenin’" Peter Griffin interjects`,
+                                cutscene: [{ text: `Shifu knows that Miku is too powerful to take on alone. He knows of a few high level guards inside the building, and thinks you both would be able to convince that group to join you both and lay siege on Miku. You don't share his optimism, but you let him lead the way` }, { text: `You both walk in the front door of the miku-scraper to see a group of guards having a potluck on the ground floor. They recognize Shifu, and clamor around him, greeting him, dapping him up and the like.` }, { text: `Shifu talks about your plans to stop Miku's takeover, and the clamoring stops.` }],
+                                options: [`Oh ok I'll just do it myself then`, `Think of the lives at stake!`, `It'd be funny`],
                                 scenes: [{
                                     function: () => {
                                         // reset votes
@@ -159,27 +151,45 @@ const story = {
                                                         scenes: [{ path: [`p`] }, {
                                                             text: `Walter is taken aback by this. "Who do you think you are?? To ask me for help, and insult ME in YOUR time of need? I'm done with you. I'm voting against the rebellion]]You lost Walter's vote!`,
                                                             options: [`Continue`],
-                                                            scenes: [{ path: [`p`, `p`, `p`, `p`] }]
+                                                            scenes: [{ path: [`p`, `p`, `p`] }]
                                                         }],
-                                                        blunder: { name: `walter`, count: 2 },
+                                                        blunder: { name: `walter`, count: 1 },
                                                         lock: {
-                                                            paths: [{ path: [`p`, `p`] }], condition: () => relationshipBlunders.walter >= 3, scene: { path: [1] }
+                                                            paths: [{ path: [`p`] }],
+                                                            condition: () => relationshipBlunders.walter >= 3,
+                                                            scene: { path: [1] }
                                                         }
                                                     }, {
-                                                        text: `Say that again?`,
-                                                        options: [`Danger? I am the danger`],
+                                                        text: `How could I forget? Under Miku's reign, he's in real danger. She really likes picking on disabled kids. The situation here is too dangerous to agitate it.`,
+                                                        options: [`You can’t leave him to die, Walter!`, `Danger? I am the danger`],
                                                         scenes: [{
                                                             text: `flungoid?`,
                                                             options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
                                                             scenes: [{
                                                                 text: `You see Walter's face light up with a childlike wonder "I haven't heard those words in 14 years. Alright kid, you have my vote."]]YOU HAVE WALTER'S VOTE!`,
                                                                 options: [`Continue`],
-                                                                scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }],
+                                                                scenes: [{ path: [`p`, `p`, `p`, `p`] }]
                                                             }],
-                                                            item: 'walter',
+                                                            blunder: { name: `walter`, count: 2 },
                                                             lock: {
-                                                                paths: [{ path: [`p`, `p`, `p`] }], condition: () => true, scene: { path: [0] }
+                                                                paths: [{ path: [`p`, `p`] }], condition: () => relationshipBlunders.walter >= 3, scene: { path: [1] }
                                                             }
+                                                        }, {
+                                                            text: `Say that again?`,
+                                                            options: [`Danger? I am the danger`],
+                                                            scenes: [{
+                                                                text: `flungoid?`,
+                                                                options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
+                                                                scenes: [{
+                                                                    text: `You see Walter's face light up with a childlike wonder "I haven't heard those words in 14 years. Alright kid, you have my vote."<br><br>YOU HAVE WALTER'S VOTE!`,
+                                                                    options: [`Continue`],
+                                                                    scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }],
+                                                                }],
+                                                                item: 'walter',
+                                                                lock: {
+                                                                    paths: [{ path: [`p`, `p`, `p`] }], condition: () => true, scene: { path: [0] }
+                                                                }
+                                                            }]
                                                         }]
                                                     }]
                                                 }, {
@@ -200,10 +210,7 @@ const story = {
                                                         options: [`Continue`],
                                                         scenes: [{ path: [`p`, `p`, `p`] }],
                                                     }],
-                                                    item: 'teto',
-                                                    lock: {
-                                                        paths: [{ path: [`p`] }], condition: () => true, scene: { path: [0] }
-                                                    }
+                                                    secret: { item: `elixir-key`, option: `*pull out the elixir key* We HAVE to cook` }
                                                 }, {
                                                     text: `No, idiot. I like baguettes but I'm not frickin' Scooby Doo. And even if I was, you don't even have one.]]-2 relationship point!!`,
                                                     options: [`Start singing Teto Territory`, `But you would like to stop Miku, right?`],
@@ -225,15 +232,27 @@ const story = {
                                                         scenes: [{
                                                             text: `That makes sense, but I'm not sure if the others will agree. Okay kid, you have my vote. IF the others are willing to go along with you too]]YOU HAVE TETO'S VOTE!`,
                                                             options: [`Continue`],
-                                                            scenes: [{ path: [`p`, `p`, `p`, `p`] }],
+                                                            scenes: [{ path: [`p`, `p`, `p`] }],
                                                         }],
                                                         item: 'teto',
                                                         lock: {
-                                                            paths: [{ path: [`p`, `p`] }], condition: () => true, scene: { path: [0] }
+                                                            paths: [{ path: [`p`] }], condition: () => true, scene: { path: [0] }
                                                         }
                                                     }, {
-                                                        text: `...watch what?`,
-                                                        options: [`Do backflips`, `Sike, haha!`, `Go literally insane`],
+                                                        text: `No, idiot. I like baguettes but I'm not frickin' Scooby Doo. And even if I was, you don't even have one.<br><br>-2 relationship point!!`,
+                                                        options: [`Start singing Teto Territory`, `But you would like to stop Miku, right?`],
+                                                        scenes: [{ path: [`p`, 0] }, { path: [`p`, 2] }, {
+                                                            text: `No, idiot. I like baguettes but I'm not frickin' Scooby Doo. Y'know what that pissed me off you just lost my vote nerd<br><br>YOU LOST TETO'S VOTE!`,
+                                                            options: [`Continue`],
+                                                            scenes: [{ path: [`p`, `p`, `p`] }]
+                                                        }],
+                                                        blunder: { name: `teto`, count: 2 },
+                                                        lock: {
+                                                            paths: [{ path: [`p`] }], condition: () => relationshipBlunders.teto >= 3, scene: { path: [2] }
+                                                        }
+                                                    }, {
+                                                        text: `Of course I'd like to overthrow Miku you idiot! It's just that none of us are powerful enough to do that!`,
+                                                        options: [`If we team up we can take her down`, `I can, watch this!`],
                                                         scenes: [{
                                                             text: `You faceplant HARD. "You kinda suck at this y'know"]]-1 relationship point!`,
                                                             options: [`*change subject* You wanted to overthrow Miku, right?`],
@@ -264,12 +283,52 @@ const story = {
                                                             scenes: [{
                                                                 text: `You start shaking about ferally and frothing at the mouth. "lmao your just like me fr. Dude you're kinda hittin' that! You just earned my vote"]]YOU HAVE TETO'S VOTE!`,
                                                                 options: [`Continue`],
-                                                                scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }],
+                                                                scenes: [{ path: [`p`, `p`, `p`, `p`] }],
                                                             }],
                                                             item: 'teto',
                                                             lock: {
-                                                                paths: [{ path: [`p`, `p`, `p`] }], condition: () => true, scene: { path: [0] }
+                                                                paths: [{ path: [`p`, `p`] }], condition: () => true, scene: { path: [0] }
                                                             }
+                                                        }, {
+                                                            text: `...watch what?`,
+                                                            options: [`Do backflips`, `Sike, haha!`, `Go literally insane`],
+                                                            scenes: [{
+                                                                text: `You faceplant HARD. "You kinda suck at this y'know"<br><br>-1 relationship point!`,
+                                                                options: [`*change subject* You wanted to overthrow Miku, right?`],
+                                                                scenes: [{ path: [`p`, `p`] }, {
+                                                                    text: `You faceplant HARD. "...yeah you just lost my vote kid"<br><br>YOU LOST TETO'S VOTE!`,
+                                                                    options: [`Continue`],
+                                                                    scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }]
+                                                                }],
+                                                                blunder: { name: `teto`, count: 1 },
+                                                                lock: {
+                                                                    paths: [{ path: [`p`, `p`, `p`] }], condition: () => relationshipBlunders.teto >= 3, scene: { path: [1] }
+                                                                }
+                                                            }, {
+                                                                text: `dude c'mon i wanted to see smth cool<br><br>-1 relationship point!`,
+                                                                options: [`yeah sry lol. You wanted to overthrow Miku, right?`],
+                                                                scenes: [{ path: [`p`, `p`] }, {
+                                                                    text: `...screw you dude<br><br>YOU JUST LOST TETO'S VOTE!`,
+                                                                    options: [`Continue`],
+                                                                    scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }]
+                                                                }],
+                                                                blunder: { name: `teto`, count: 1 },
+                                                                lock: {
+                                                                    paths: [{ path: [`p`, `p`, `p`] }], condition: () => relationshipBlunders.teto >= 3, scene: { path: [1] }
+                                                                }
+                                                            }, {
+                                                                text: `flungoid?`,
+                                                                options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
+                                                                scenes: [{
+                                                                    text: `You start shaking about ferally and frothing at the mouth. "lmao your just like me fr. Dude you're kinda hittin' that! You just earned my vote"<br><br>YOU HAVE TETO'S VOTE!`,
+                                                                    options: [`Continue`],
+                                                                    scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }],
+                                                                }],
+                                                                item: 'teto',
+                                                                lock: {
+                                                                    paths: [{ path: [`p`, `p`, `p`] }], condition: () => true, scene: { path: [0] }
+                                                                }
+                                                            }]
                                                         }]
                                                     }]
                                                 }]
@@ -289,19 +348,19 @@ const story = {
                                                         paths: [{ path: [`p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: { path: [1] }
                                                     }
                                                 }, {
-                                                    text: `Ice bear says nothing. You assume he appreciates the compliment. “You could probably take Miku down yourself if you tried” "Ice bear does not see a point to that"`,
-                                                    options: [`Think of how many people you could save`, `You could be a king, Ice Bear`, `What would Grizz think?`],
+                                                    text: `You approach ice bear. He's holding his axe.`,
+                                                    options: [`*say nothing*`, `Nice axe`, `Wanna help stop Miku?`],
                                                     scenes: [{
                                                         text: `Ice bear knows another tyrant will take Miku's place]]-1 relationship point`,
                                                         options: [`You could be a king, Ice Bear`, `What would Grizz think?`],
                                                         scenes: [{ path: [`p`, 1] }, { path: [`p`, 2] }, {
                                                             text: `Ice bear sighs. "Ice bear knows another tyrant will take Miku's place"]]YOU LOST ICE BEAR'S VOTE!`,
                                                             options: [`Continue`],
-                                                            scenes: [{ path: [`p`, `p`, `p`, `p`] }]
+                                                            scenes: [{ path: [`p`, `p`, `p`] }]
                                                         }],
                                                         blunder: { name: `iceBear`, count: 1 },
                                                         lock: {
-                                                            paths: [{ path: [`p`, `p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: { path: [2] }
+                                                            paths: [{ path: [`p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: { path: [1] }
                                                         }
                                                     }, {
                                                         text: `Ice bear believes that Ice bear's rule would be more tyrannical than Miku's]]-1 relationship point!`,
@@ -397,9 +456,20 @@ const story = {
                                                             options: [`Retry game`, `Restart from beginning`],
                                                             scenes: [{ path: [`p`] }, { path: [`P`] }]
                                                         }, {
-                                                            text: `She has her Miku Miku Beam charged and ready`,
-                                                            cutscene: [{ text: `Miku coughs up blood from singing her heart out. "W-What?? H-How could YOU ever even BEGIN to think you could beat me? Is this really my final breath?"` }, { text: `Miku laughs "haha lmao jk" She starts counting down. 1... 2... 3... "Ready?"` }],
-                                                            options: [`There is nothing we can do`],
+                                                            text: `Ice bear believes that Ice bear's rule would be more tyrannical than Miku's<br><br>-1 relationship point!`,
+                                                            options: [`Think of how many people you could save`, `What would Grizz think?`],
+                                                            scenes: [{ path: [`p`, 0] }, { path: [`p`, 2] }, {
+                                                                text: `Ice bear sighs. "Ice bear believes that Ice bear's rule would be more tyrannical than Miku's"<br><br>YOU LOST ICE BEAR'S VOTE`,
+                                                                options: [`Continue`],
+                                                                scenes: [{ path: [`p`, `p`, `p`, `p`] }]
+                                                            }],
+                                                            blunder: { name: `iceBear`, count: 1 },
+                                                            lock: {
+                                                                paths: [{ path: [`p`, `p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: { path: [2] }
+                                                            }
+                                                        }, {
+                                                            text: `dont look at this user plz i beg of you`,
+                                                            options: [`NOT THIS EITHER!!1! DONT LOOK AT THPS ONE EITHER!!!`],
                                                             scenes: [{
                                                                 text: `"If you only do what you can do, you'll never be better than what you are. But don't kill yourself like I did, okay?" Shifu dies]]YOU REACHED THE TRAGIC VICTORY ENDING`,
                                                                 cutscene: [{ text: `Miku fires her beam, but master Shifu steps between you and her` }, { text: `As Shifu takes most of the blast, Ice Bear and Gabriel jump Miku. Miku is pinned now. Walter comes over to her and takes her out point blank. Teto just dances and watches the whole spectacle` }, { text: `Shifu is on the ground, severely injured from the blast. You hold Shifu as he takes his final breaths` }],
@@ -407,80 +477,152 @@ const story = {
                                                                 scenes: [{ path: [`P`] }]
                                                             }]
                                                         }],
-                                                        startGame: true
-                                                    }]
-                                                }],
-                                                lock: {
-                                                    paths: [], condition: () => {
-                                                        let voteCount = 0;
-                                                        if (inventory.walter) voteCount++;
-                                                        if (inventory.teto) voteCount++;
-                                                        if (inventory.iceBear) voteCount++;
-                                                        if (inventory.gabriel) voteCount++;
-
-                                                        // reset blunders
-                                                        relationshipBlunders.walter = 0;
-                                                        relationshipBlunders.teto = 0;
-                                                        relationshipBlunders.iceBear = 0;
-                                                        relationshipBlunders.gabriel = 0;
-
-                                                        // unlock paths
-                                                        let walterPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 0] }
-                                                        delete walterPath.findPath().locked;
-
-                                                        let tetoPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 1] }
-                                                        delete tetoPath.findPath().locked;
-
-                                                        let iceBearPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 2] }
-                                                        delete iceBearPath.findPath().locked;
-
-                                                        let gabrielPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 3] }
-                                                        delete gabrielPath.findPath().locked;
-
-                                                        if (voteCount >= 2) {
-                                                            return true;
+                                                        blunder: { name: `iceBear`, count: 1 },
+                                                        lock: {
+                                                            paths: [{ path: [`p`] }], condition: () => relationshipBlunders.iceBear >= 3, scene: { path: [1] }
                                                         }
-                                                    }, scene: { path: [2] }
-                                                }
-                                            }],
-                                        lock: {
-                                            paths: [], condition: () => {
-                                                let voteCount = 0;
-                                                if (inventory.walter) voteCount++;
-                                                if (inventory.teto) voteCount++;
-                                                if (inventory.iceBear) voteCount++;
-                                                if (inventory.gabriel) voteCount++;
+                                                    }]
+                                                }, {
+                                                    text: `You approach Gabriel and he daps you and Shifu up. "Waddup gang. You want smth?" Gabriel summons a mini fridge`,
+                                                    options: [`Nah that's ok`, `Yeah I'll take a Butterbeer`, `Yeah I'll take some blinker fluid`, `Yeah lemme get some silly string`, `Yeah I'll get myself a Kool-Aid`, `Yeah I'll take a Dr. Pepper`, `Yeah I'll take a Dark Elixir`, `Yeah I'll take a Duff Beer`, `Yeah I'll take a Nuka Cola`],
+                                                    scenes: [{
+                                                        text: `Just take smth man<br><br>-1 relationship point!`,
+                                                        options: [`Ok`],
+                                                        scenes: [{ path: [`p`] }, {
+                                                            text: `Dude just get smth. Screw you dude<br><br>YOU LOST GABRIEL'S VOTE!`,
+                                                            options: [`Continue`],
+                                                            scenes: [{ path: [`p`, `p`, `p`] }]
+                                                        }],
+                                                        blunder: { name: `gabriel`, count: 1 },
+                                                        lock: {
+                                                            paths: [{ path: [`p`] }], condition: () => relationshipBlunders.gabriel >= 3, scene: { path: [1] }
+                                                        }
+                                                    }, {
+                                                        text: `Nah get smth good<br><br>-1 relationship point!`,
+                                                        options: [`Ok`],
+                                                        scenes: [{ path: [`p`] }, {
+                                                            text: `Dude your taste sucks<br><br>YOU LOST GABRIEL'S VOTE!`,
+                                                            options: [`Continue`],
+                                                            scenes: [{ path: [`p`, `p`, `p`] }]
+                                                        }],
+                                                        blunder: { name: `gabriel`, count: 1 },
+                                                        lock: {
+                                                            paths: [{ path: [`p`] }], condition: () => relationshipBlunders.gabriel >= 3, scene: { path: [1] }
+                                                        }
+                                                    }, { path: [1] }, { path: [1] }, { path: [1] }, {
+                                                        text: `dont looky at this goofball teehee`,
+                                                        options: [`not this either teehee-er`],
+                                                        scenes: [{
+                                                            text: `Hell yeah. Gabriel comes in for another dap up. You both clap harder than anyone has ever clapped before. This clap shakes the skyscraper, the surrounding city, and even LeBron<br><br>YOU HAVE GABRIEL'S VOTE`,
+                                                            options: [`Continue`],
+                                                            scenes: [{ path: [`p`, `p`, `p`] }]
+                                                        }],
+                                                        item: `gabriel`,
+                                                        lock: {
+                                                            paths: [{ path: [`p`] }], condition: () => true, scene: { path: [0] }
+                                                        }
+                                                    }, { path: [1] }, { path: [1] }, { path: [1] }]
+                                                }, {
+                                                    text: `He drops you<br><br>YOU DIE`,
+                                                    cutscene: [{ text: `The guards take their vote. They decide as a group that your plan is not worth the effort or risk` }, { text: `Peter sighs. "I’m a man of my word, kid. Gotta roll with their decision, even if I think you’re right. Really hate doin’ this to ya, but... yeah. LeBron—go ahead, buddy. You know the drill"` }, { text: `"Already on it big guy" LeBron flies over to you. He picks you up and flies you to the top of the skyscraper. "G'bye kid. This is just part of the job description"` }],
+                                                    options: [`Go back`, `Restart from beginning`],
+                                                    scenes: [{ path: [`p`, `p`] }, { path: [`P`] }, {
+                                                        text: `"I'll take care of you myself"<br><br>Use DFJK keys to control the rhythm game`,
+                                                        cutscene: [{ text: `"Alrighty then—what the hell are we standin’ around for? LeBron, fire it up and take us up there!"` }, { text: `"You got it, big guy." LeBron groups all of you up, and dunks you into the top floor of the Miku scraper` }, { text: `Miku knew you all were approaching, so she isn't surprised` }, { text: `"I thought you'd all be smarter than that. You're all fired"` }, { text: `"And for you?"` }],
+                                                        options: [`*square up*`],
+                                                        scenes: [{
+                                                            text: ``,
+                                                            options: [],
+                                                            scenes: [{
+                                                                text: `"Didn't you listen? I've told you many times already that your resistance was futile. You're so pathetic. I wouldn't even keep you as a slave in my empire." Miku charges her classic Miku Miku Beam and executes you on the spot<br><br>YOU DIE`,
+                                                                options: [`Retry game`, `Restart from beginning`],
+                                                                scenes: [{ path: [`p`] }, { path: [`P`] }]
+                                                            }, {
+                                                                text: `She has her Miku Miku Beam charged and ready`,
+                                                                cutscene: [{ text: `Miku coughs up blood from singing her heart out. "W-What?? H-How could YOU ever even BEGIN to think you could beat me? Is this really my final breath?"` }, { text: `Miku laughs "haha lmao jk" She starts counting down. 1... 2... 3... "Ready?"` }],
+                                                                options: [`There is nothing we can do`],
+                                                                scenes: [{
+                                                                    text: `"If you only do what you can do, you'll never be better than what you are. But don't kill yourself like I did, okay?" Shifu dies<br><br>YOU REACHED THE TRAGIC VICTORY ENDING`,
+                                                                    cutscene: [{ text: `Miku fires her beam, but master Shifu steps between you and her` }, { text: `As Shifu takes most of the blast, Ice Bear and Gabriel jump Miku. Miku is pinned now. Walter comes over to her and takes her out point blank. Teto just dances and watches the whole spectacle` }, { text: `Shifu is on the ground, severely injured from the blast. You hold Shifu as he takes his final breaths` }],
+                                                                    options: [`Play again`],
+                                                                    scenes: [{ path: [`P`] }]
+                                                                }]
+                                                            }],
+                                                            startGame: true
+                                                        }]
+                                                    }],
+                                                    lock: {
+                                                        paths: [], condition: () => {
+                                                            let voteCount = 0;
+                                                            if (inventory.walter) voteCount++;
+                                                            if (inventory.teto) voteCount++;
+                                                            if (inventory.iceBear) voteCount++;
+                                                            if (inventory.gabriel) voteCount++;
 
-                                                let blunderCount = 0;
-                                                if (relationshipBlunders.walter >= 3) blunderCount++;
-                                                if (relationshipBlunders.teto >= 3) blunderCount++;
-                                                if (relationshipBlunders.iceBear >= 3) blunderCount++;
-                                                if (relationshipBlunders.gabriel >= 3) blunderCount++;
+                                                            // reset blunders
+                                                            relationshipBlunders.walter = 0;
+                                                            relationshipBlunders.teto = 0;
+                                                            relationshipBlunders.iceBear = 0;
+                                                            relationshipBlunders.gabriel = 0;
 
-                                                if (voteCount >= 2 || blunderCount >= 3) return true;
-                                            }, scene: { path: [4] }
-                                        }
-                                    }]
-                                }]
-                            }, {
-                                text: `Hey, losing my job ain’t no joke, kid. You get it, don’t ya? Bein’ stuck in a job you can’t stand? I got your file right here, and I see you’ve been workin’ at that crappy burger joint for, what, 15 years? Yeah, you don’t like it any more than I do, but hey, sometimes you gotta do what you gotta do to make it through the day`,
-                                options: [`I am NOTHING like you`, `wait but i love good burger`],
-                                scenes: [{ path: ['p', 0] }, {
-                                    text: `So, lemme show ya the ropes—let me teach ya how to supersize a goodburger meal!"`,
-                                    cutscene: [{ text: `Peter sighs. "I don’t get you, kid. You’ve been stuck at that job for, what, half your life? No promotion, no change, just the same old grind"` }, { text: `"You’ve been livin' off minimum wage for 15 years! Doesn’t that just break ya? Don’t you wanna do somethin' different? I bet you don’t even know what a supersized meal is!"` }, { text: `Admittedly, you haven't heard of a supersize meal. Peter sighs once more` }, { text: `"Hey, kid. I might be crossin' a line here, but I gotta say, I like your spunk. It takes some serious guts to think you can take down Miku. And, ya know, I guess I feel for ya, 'cause I kinda get where you're comin' from` }],
-                                    options: [`Nah I'm good. Thanks tho!`, `Yes please!`],
-                                    scenes: [{
-                                        text: `Eh, suit yourself, kid. Your loss`,
-                                        options: [`Continue`],
-                                        scenes: [{
-                                            path: ['p', 'p', 'p', 1, 0]
+                                                            // unlock paths
+                                                            let walterPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 0] }
+                                                            delete walterPath.findPath().locked;
+
+                                                            let tetoPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 1] }
+                                                            delete tetoPath.findPath().locked;
+
+                                                            let iceBearPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 2] }
+                                                            delete iceBearPath.findPath().locked;
+
+                                                            let gabrielPath = { path: [`P`, 3, 0, 0, 0, 1, 0, 0, 3] }
+                                                            delete gabrielPath.findPath().locked;
+
+                                                            if (voteCount >= 2) {
+                                                                return true;
+                                                            }
+                                                        }, scene: { path: [2] }
+                                                    }
+                                                }],
+                                            lock: {
+                                                paths: [], condition: () => {
+                                                    let voteCount = 0;
+                                                    if (inventory.walter) voteCount++;
+                                                    if (inventory.teto) voteCount++;
+                                                    if (inventory.iceBear) voteCount++;
+                                                    if (inventory.gabriel) voteCount++;
+
+                                                    let blunderCount = 0;
+                                                    if (relationshipBlunders.walter >= 3) blunderCount++;
+                                                    if (relationshipBlunders.teto >= 3) blunderCount++;
+                                                    if (relationshipBlunders.iceBear >= 3) blunderCount++;
+                                                    if (relationshipBlunders.gabriel >= 3) blunderCount++;
+
+                                                    if (voteCount >= 2 || blunderCount >= 3) return true;
+                                                }, scene: { path: [4] }
+                                            }
                                         }]
-                                    }, {
-                                        text: `Peter teaches you how to supersize a good burger meal. You now know how to supersize!`,
-                                        options: [`Continue`],
-                                        item: 'supersize',
+                                    }]
+                                }, {
+                                    text: `Hey, losing my job ain’t no joke, kid. You get it, don’t ya? Bein’ stuck in a job you can’t stand? I got your file right here, and I see you’ve been workin’ at that crappy burger joint for, what, 15 years? Yeah, you don’t like it any more than I do, but hey, sometimes you gotta do what you gotta do to make it through the day`,
+                                    options: [`I am NOTHING like you`, `wait but i love good burger`],
+                                    scenes: [{ path: ['p', 0] }, {
+                                        text: `So, lemme show ya the ropes—let me teach ya how to supersize a goodburger meal!"`,
+                                        cutscene: [{ text: `Peter sighs. "I don’t get you, kid. You’ve been stuck at that job for, what, half your life? No promotion, no change, just the same old grind"` }, { text: `"You’ve been livin' off minimum wage for 15 years! Doesn’t that just break ya? Don’t you wanna do somethin' different? I bet you don’t even know what a supersized meal is!"` }, { text: `Admittedly, you haven't heard of a supersize meal. Peter sighs once more` }, { text: `"Hey, kid. I might be crossin' a line here, but I gotta say, I like your spunk. It takes some serious guts to think you can take down Miku. And, ya know, I guess I feel for ya, 'cause I kinda get where you're comin' from` }],
+                                        options: [`Nah I'm good. Thanks tho!`, `Yes please!`],
                                         scenes: [{
-                                            path: ['p', 'p', 'p', 1, 0]
+                                            text: `Eh, suit yourself, kid. Your loss`,
+                                            options: [`Continue`],
+                                            scenes: [{
+                                                path: ['p', 'p', 'p', 1, 0]
+                                            }]
+                                        }, {
+                                            text: `Peter teaches you how to supersize a good burger meal. You now know how to supersize!`,
+                                            options: [`Continue`],
+                                            item: 'supersize',
+                                            scenes: [{
+                                                path: ['p', 'p', 'p', 1, 0]
+                                            }]
                                         }]
                                     }]
                                 }]
@@ -502,28 +644,43 @@ const story = {
                             cutscene: [{ text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd," Miku jests. You are in a prison.` }, { text: `You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension. Miku probably has full coverage of wifi, and spys on people through that.` }, { text: `The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way` }],
                             options: [`Continue`],
                             scenes: [{
-                                text: `"Where do you think you're going?"`,
-                                cutscene: [{ text: `On your way out, the door is closed, and a hooded man is guarding the door in which the heroes came through` }, { text: `"You know, God gave me a gift to do other things besides play the game of basketball"` }, { text: `Feeling this man's aura, you realize that he is the GOAT, LeBron James` }],
-                                options: [`I'm gonna end Miku's reign once and for all! She needs to realize that this world is not hers!`, `Sorry, my GOAT, I did not know you were the guard here, I’ll go back…`],
+                                text: `Miku says, “Mmm… Yeah this is mid af"`,
+                                image: `images/prison/mid.jpg`,
+                                options: [`Continue`],
+                                scenes: [{ path: ['p', 1] }]
+                            }, {
+                                text: `Knowing that Miku is on her way, through the fortunately slow wifi, you join up with Earth's heroes, and warn them of Miku's destructive power.`,
+                                cutscene: [{ text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd," Miku jests. You are in a prison.` }, { text: `You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension. Miku probably has full coverage of wifi, and spys on people through that` }, { text: `The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way` }],
+                                options: [`Continue`],
                                 scenes: [{
-                                    text: `"Of course I know you're here, kid, I've been hiding in your wifi, waiting for your attempt at retribution"`,
-                                    cutscene: [{ text: `"You seem like a baller, kid, and you're honest. I respect that. I'm gonna give you some advice that Warren Buffet once told me, he said, "always follow your gut. When you have that gut feeling, you have to go with it, don't go back on it"` }, { text: `LeBron grabs you and your team, dunks you and your team through a portal to the top floor of the Miku scraper` }, { text: `You land atop the Miku scraper, seeing the manaical vocaloid sitting atop a throne facing away from you, toward the now dystopian city, a city you once knew to be yours` }, { text: `You say to your gang, "Maybe she doesn't know we're here."` }, { text: `As you say these words, World is Mine starts playing from all around you, and her throne spins 540 degrees (she accidentally 360'd, then finally turned it around correctly)` }],
-                                    options: [`Surrender`, `Fight Hatsune Miku`],
+                                    text: `"Where do you think you're going?"`,
+                                    cutscene: [{ text: `On your way out, the door is closed, and a hooded man is guarding the door in which the heroes came through` }, { text: `"You know, God gave me a gift to do other things besides play the game of basketball"` }, { text: `Feeling this man's aura, you realize that he is the GOAT, LeBron James` }],
+                                    options: [`I'm gonna end Miku's reign once and for all! She needs to realize that this world is not hers!`, `Sorry, my GOAT, I did not know you were the guard here, I’ll go back…`],
                                     scenes: [{
                                         text: `"You? You weaklings? What do you have to offer me, I could do just fine without you."]]Who responds?`,
                                         cutscene: [{ text: `Feeling her magical power, you feel completely oppressed. You say to your team, "We can't do this, nobody on this Earth is powerful enough"` }, { text: `The team looks at each other, nods amongst themselves, and approaches Miku. All thoughts of attempting to fight Miku have vanished, you've made peace with your life without Good Burger` }, { text: `"We would like to serve you, to become your personal strike team"` }],
                                         options: [`DanTDM`, `Markiplier`],
                                         scenes: [{
-                                            text: `DanTDM replies, hoping that he will say the right thing, "Make me a sandwich, woman!" Miku is completely surprised that he would say such a thing. She looks you dead in the eyes. "Do you condone this?"`,
-                                            options: [`Yep!`, `NAH`],
+                                            text: `"You? You weaklings? What do you have to offer me, I could do just fine without you."<br><br>Who responds?`,
+                                            cutscene: [{ text: `Feeling her magical power, you feel completely oppressed. You say to your team, "We can't do this, nobody on this Earth is powerful enough"` }, { text: `The team looks at each other, nods amongst themselves, and approaches Miku. All thoughts of attempting to fight Miku have vanished, you've made peace with your life without Good Burger` }, { text: `"We would like to serve you, to become your personal strike team"` }],
+                                            options: [`DanTDM`, `Markiplier`],
                                             scenes: [{
-                                                text: `Holding a leek, Miku casts a killing spell upon you, "AVADA KADAVRA", your group is completely obliterated YOU DIED`,
-                                                options: [`Go back`, `Restart from beginning`],
-                                                scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
+                                                text: `DanTDM replies, hoping that he will say the right thing, "Make me a sandwich, woman!" Miku is completely surprised that he would say such a thing. She looks you dead in the eyes. "Do you condone this?"`,
+                                                options: [`Yep!`, `NAH`],
+                                                scenes: [{
+                                                    text: `Holding a leek, Miku casts a killing spell upon you, "AVADA KADAVRA", your group is completely obliterated YOU DIED`,
+                                                    options: [`Go back`, `Restart from beginning`],
+                                                    scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
+                                                }, {
+                                                    text: `"You decided to team up with him, you have to take responsiblity for who you choose to associate with!" "ONE TWO THREE MIKU MIKU BEAM" You and your team are vanquished and not a molecule is left YOU DIED`,
+                                                    options: [`Go back`, `Restart from beginning`],
+                                                    scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
+                                                }]
                                             }, {
-                                                text: `"You decided to team up with him, you have to take responsiblity for who you choose to associate with!" "ONE TWO THREE MIKU MIKU BEAM" You and your team are vanquished and not a molecule is left YOU DIED`,
-                                                options: [`Go back`, `Restart from beginning`],
-                                                scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
+                                                text: `"All I wanted to do, is follow you"<br><br>YOU HAVE REACHED THE UNDERLING ENDING`,
+                                                cutscene: [{ text: `Markiplier replies, knowing exactly what to say` }, { text: `"Hello everybody, my name is Markiplier"` }, { text: `The aura that came out of this statement was the most the world has ever seen, besides Satoru Gojo of course` }, { text: `Miku is taken aback, seeing this amount of aura truly impressed her. Because of this, she was moved` }, { text: `"Why, what a great offer, I can see why you chose this side of the war, you're the smart ones..."` }, { text: `Miku addresses you, "I'm on top of the world, because of you. You have untapped power, and I knew that if I didn't take this chance, I would not be able to make this world mine."` }, { text: `You thank Miku for this generous offer` }],
+                                                options: [`Play again`],
+                                                scenes: [{ path: [`P`] }]
                                             }]
                                         }, {
                                             text: `"All I wanted to do, is follow you"]]YOU HAVE REACHED THE UNDERLING ENDING`,
@@ -538,6 +695,7 @@ const story = {
                                         scenes: [{
                                             text: ``,
                                             options: [],
+                                            image: `images/oogway/fight/3.jpg`,
                                             scenes: [{
                                                 text: `Miku doesn't think twice before vaporizing you with her Miku Miku beam.]]YOU DIE`,
                                                 options: [`Retry game`, `Restart from beginning`],
@@ -631,14 +789,20 @@ const story = {
                                 options: [`Go back`, `Restart from beginning`],
                                 scenes: [{ path: [`p`] }, { path: [`P`] }]
                             }, {
-                                text: `"No matter. There's no way either of you could stop me now. I'm so deeply rooted in everyone's wifi that there's no point in even attempting to halt my expansion."`,
-                                image: `images/oogway/14.jpg`,
-                                cutscene: [{ text: `LeBron chuckles a little bit. "Yeah, I was getting tired of her reign too. Y'all are free to head on back there, do whatever you want lmao"`, image: `images/oogway/11.jpg`}, { text: `You both head up the staircase and see Miku, sitting with her back to you both as she looks at the skyline. She doesn't say anything`, image: `images/oogway/12.jpg`}, { text: `"She knows we're here. There's no point in hiding this"`, image: `images/oogway/12.jpg`}, { text: `Miku is startled, and looks back at the both of you. "Since when did you two get in here?? None of my alarms went off!"`, image: `images/oogway/13.jpg`}],
-                                options: [`Ask Oogway for help`, `Nuh uh!! (Attack)`],
+                                text: `You walk up the staircase with Master Oogway to see a group of high level intimidating guards on the ground floor`,
+                                image: `images/oogway/drip-ending/1.jpg`,
+                                options: [`Continue`],
+                                secret: { item: `drip`, option: `Whip out the drip` },
                                 scenes: [{
-                                    text: `Oogway knows you can take her in a fight, but decides against it. You are reminded of Oogway's words, and also decide that peace would be a better option. How do you attempt to convince her not to conquer this world?`,
-                                    image: `images/oogway/peace/1.jpg`,
-                                    options: [`Do a flip`, `Offer a game of slots`, `Talk Miku out of it`],
+                                    text: `Without warning, they attack, giving no time for you to think<br><br>YOU DIE`,
+                                    image: `images/oogway/drip-ending/death.jpg`,
+                                    options: [`Go back`, `Restart from beginning`],
+                                    scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
+                                }, {
+                                    text: `"Hey, kid, why don’t you come work with us? Moments like this don’t come around too often, but when they do? Oh man, it’s the best time ever. I can’t believe I ever forgot about this stuff!"`,
+                                    image: `images/oogway/drip-ending/5.jpg`,
+                                    cutscene: [{ text: `You pull out the Miku drip and they are all taken aback. Peter Griffin looks you up and down, and says, "Heheh this is like that time we did the drip contest"`, image: `images/oogway/drip-ending/2.jpg` }, { text: `Suddenly, your vision cuts out and you see Miku standing in front of a group of people. As you look closer, you see that these people are actually those same guards, but they are all dripped out the wazoo. They seem to be having a contest for who's the drippiest. Miku, of course, wins this with her savage lil' drip coat`, image: `images/oogway/drip-ending/3.jpg` }, { text: `Your vision comes back, and all the guards are laughing remembering their good times. Peter walks over to you and puts a hand on your shoulder`, image: `images/oogway/drip-ending/4.jpg` }],
+                                    options: [`Yeah I'll take the job`, `Nah I'm good. Thanks tho!`],
                                     scenes: [{
                                         text: `Miku lets out an obvious pog, but her decision is unwavering. She decides to take your life.]]YOU DIE`,
                                         image: `images/oogway/peace/flip.jpg`,
@@ -718,7 +882,6 @@ const story = {
                         }]
                     }]
                 }]
-            }]
         },
         // the debug pathway
         { path: [3, 0, 1] }
@@ -905,6 +1068,15 @@ Object.prototype.openSecrets = function () {
         }
     }
 }
+
+// keeps inventory through page exit
+window.addEventListener(`beforeunload`, () => {
+    let processingInventory = { ...inventory }
+    for (person of Object.keys(relationshipBlunders)) {
+        delete processingInventory[person];
+    }
+    localStorage.setItem("inventory", JSON.stringify(processingInventory));
+})
 
 story.addParents();
 story.run();
