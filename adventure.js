@@ -25,6 +25,7 @@
 */
 let m = 0; 
 let typeWriterVersion = 0; 
+let typeWriterInput;
 let typeSpeed = 20;
 // lets us bring stored inventory into the game
 let inventory;
