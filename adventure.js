@@ -16,8 +16,7 @@
         // secret appends an option to the options array if the item in the inventory is true
         // so supersize shows as an option if supersize is true
         secret: {item: supersize, option: `Supersize`},
-        item: `string of the item to be added to the inventory`,
-        ending: true or false
+        item: `string of the item to be added to the inventory`
         
         // if want scene to go up to parent and down path { path: ['p', (num of option), ...] }
 
@@ -718,7 +717,7 @@ const story = {
                 }]
         },
         // the debug pathway
-        { path: [3, 0, 1] }
+        { path: [3, 0, 1, 1] }
     ]
 };
 
@@ -906,10 +905,10 @@ window.addEventListener(`beforeunload`, () => {
 })
 
 story.addParents();
-story.run();
+// story.run();
 
 // Debug Path
-// story.scenes[4].findPath().run();
+story.scenes[4].findPath().run();
 
 
 
