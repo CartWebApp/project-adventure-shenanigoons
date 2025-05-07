@@ -26,7 +26,7 @@
 let m = 0;
 let typeWriterVersion = 0;
 let typeWriterInput;
-let typeSpeed = 10;
+let typeSpeed = 17.5;
 // lets us bring stored inventory into the game
 let inventory;
 if (!localStorage.inventory) {
@@ -497,16 +497,16 @@ const story = {
                                 options: [`Continue`],
                                 scenes: [{ path: ['p', 1] }]
                             }, {
-                                text: `Knowing that Miku is on her way, through the fortunately slow wifi, you join up with Earth's heroes, and warn them of Miku's destructive power.`,
-                                cutscene: [{ text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd," Miku jests. You are in a prison.` }, { text: `You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension. Miku probably has full coverage of wifi, and spys on people through that` }, { text: `The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way` }],
+                                text: `Knowing that Miku is on her way, through the fortunately slow wifi, you join up with Earth's heroes, and warn them of Miku's destructive power.`, image: `images/prison/8.jpg`,
+                                cutscene: [{ text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd," Miku jests. You are in a prison.`, image: `images/prison/5.jpg`}, { text: `You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension. Miku probably has full coverage of wifi, and spys on people through that`, image: `images/prison/6.jpg` }, { text: `The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way`, image: `images/prison/7.jpg` }],
                                 options: [`Continue`],
                                 scenes: [{
-                                    text: `"Where do you think you're going?"`,
-                                    cutscene: [{ text: `On your way out, the door is closed, and a hooded man is guarding the door in which the heroes came through` }, { text: `"You know, God gave me a gift to do other things besides play the game of basketball"` }, { text: `Feeling this man's aura, you realize that he is the GOAT, LeBron James` }],
+                                    text: `"Where do you think you're going?"`, image: `images/prison/12.jpg`,
+                                    cutscene: [{ text: `On your way out, the door is closed, and a hooded man is guarding the door in which the heroes came through`, image: `images/prison/9.jpg` }, { text: `"You know, God gave me a gift to do other things besides play the game of basketball"`, image: `images/prison/10.jpg`}, { text: `Feeling this man's aura, you realize that he is the GOAT, LeBron James`, image: `images/prison/11.jpg`}],
                                     options: [`I'm gonna end Miku's reign once and for all! She needs to realize that this world is not hers!`, `Sorry, my GOAT, I did not know you were the guard here, I’ll go back…`],
                                     scenes: [{
-                                        text: `"Of course I know you're here, kid, I've been hiding in your wifi, waiting for your attempt at retribution"`,
-                                        cutscene: [{ text: `"You seem like a baller, kid, and you're honest. I respect that. I'm gonna give you some advice that Warren Buffet once told me, he said, "always follow your gut. When you have that gut feeling, you have to go with it, don't go back on it"` }, { text: `LeBron grabs you and your team, dunks you and your team through a portal to the top floor of the Miku scraper` }, { text: `You land atop the Miku scraper, seeing the manaical vocaloid sitting atop a throne facing away from you, toward the now dystopian city, a city you once knew to be yours` }, { text: `You say to your gang, "Maybe she doesn't know we're here."` }, { text: `As you say these words, World is Mine starts playing from all around you, and her throne spins 540 degrees (she accidentally 360'd, then finally turned it around correctly)` }],
+                                        text: `"Of course I know you're here, kid, I've been hiding in your wifi, waiting for your attempt at retribution"`, image: `images/prison/destroy/5.jpg`,
+                                        cutscene: [{ text: `"You seem like a baller, kid, and you're honest. I respect that. I'm gonna give you some advice that Warren Buffet once told me, he said, "always follow your gut. When you have that gut feeling, you have to go with it, don't go back on it"`, image: `images/prison/destroy/1.jpg` }, { text: `LeBron grabs you and your team, dunks you and your team through a portal to the top floor of the Miku scraper`, image: `images/prison/destroy/2.jpg` }, { text: `You land atop the Miku scraper, seeing the manaical vocaloid sitting atop a throne facing away from you, toward the now dystopian city, a city you once knew to be yours`, image: `images/prison/destroy/3.jpg` }, { text: `You say to your gang, "Maybe she doesn't know we're here."`}, { text: `As you say these words, World is Mine starts playing from all around you, and her throne spins 540 degrees (she accidentally 360'd, then finally turned it around correctly)`, image: `images/prison/destroy/4.jpg` }],
                                         options: [`Surrender`, `Fight Hatsune Miku`],
                                         scenes: [{
                                             text: `"You? You weaklings? What do you have to offer me, I could do just fine without you."\n\nWho responds?`,
@@ -516,11 +516,11 @@ const story = {
                                                 text: `DanTDM replies, hoping that he will say the right thing, "Make me a sandwich, woman!" Miku is completely surprised that he would say such a thing. She looks you dead in the eyes. "Do you condone this?"`,
                                                 options: [`Yep!`, `NAH`],
                                                 scenes: [{
-                                                    text: `Holding a leek, Miku casts a killing spell upon you, "AVADA KADAVRA", your group is completely obliterated YOU DIED`,
+                                                    text: `Holding a leek, Miku casts a killing spell upon you, "AVADA KADAVRA", your group is completely obliterated \n\n YOU DIED`,
                                                     options: [`Go back`, `Restart from beginning`],
                                                     scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
                                                 }, {
-                                                    text: `"You decided to team up with him, you have to take responsiblity for who you choose to associate with!" "ONE TWO THREE MIKU MIKU BEAM" You and your team are vanquished and not a molecule is left YOU DIED`,
+                                                    text: `"You decided to team up with him, you have to take responsiblity for who you choose to associate with!" \n\n"ONE TWO THREE MIKU MIKU BEAM" \n\nYou and your team are vanquished and not a molecule is left \n\n YOU DIED`,
                                                     options: [`Go back`, `Restart from beginning`],
                                                     scenes: [{ path: [`p`, `p`] }, { path: [`P`] }]
                                                 }]
@@ -550,16 +550,16 @@ const story = {
                                             }]
                                         }]
                                     }, {
-                                        text: `You start walking back to your designated cell area, and while you're walking back, you think about what he was saying, and you begin to get confused. You think to yourself, why would he say that?`,
-                                        cutscene: [{ text: `LeBron says, "Yeah, sure ahaha, just make sure that you take care of your mattress covers." LeBron winks at you` }],
+                                        text: `You start walking back to your designated cell area, and while you're walking back, you think about what he was saying, and you begin to get confused. You think to yourself, why would he say that?`, image: `images/prison/walkback/2.jpg`,
+                                        cutscene: [{ text: `LeBron says, "Yeah, sure ahaha, just make sure that you take care of your mattress covers." LeBron winks at you`, image: `images/prison/walkback/1.jpg`}],
                                         options: [`Go back to LeBron`, `Go back to your cell`],
                                         scenes: [{ path: ['p'] }, {
                                             text: `placeholder`,
                                             options: [],
                                             item: `drip`,
                                             scenes: [{
-                                                text: `As you're trying to fall asleep, you're moving around on your mattress, and feel something underneath the mattress, which was preventing you from sleeping. You find a drippy looking coat\n\nYOU HAVE OBTAINED THE DRIP`,
-                                                cutscene: [{ text: `You and the heroes return to the cell, and you try to go to sleep, feeling defeated` }],
+                                                text: `As you're trying to fall asleep, you're moving around on your mattress, and feel something underneath the mattress, which was preventing you from sleeping. You find a drippy looking coat\n\nYOU HAVE OBTAINED THE DRIP`, image: `images/prison/walkback/drip.jpg`,
+                                                cutscene: [{ text: `You and the heroes return to the cell, and you try to go to sleep, feeling defeated`, image: `images/prison/walkback/3.jpg` }],
                                                 options: [`Continue`],
                                                 scenes: [{ path: ['p', 'p', `p`] }]
                                             }],
@@ -720,7 +720,7 @@ const story = {
                 }]
         },
         // the debug pathway
-        { path: [3] }
+        { path: [3, 0, 1, 1] }
     ]
 };
 
@@ -927,7 +927,7 @@ function typeWriter(localVersion) {
 }
 
 story.addParents();
-story.run();
+// story.run();
 
 // Debug Path
-// story.scenes[4].findPath().run();
+story.scenes[4].findPath().run();
