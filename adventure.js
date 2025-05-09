@@ -103,19 +103,23 @@ const story = {
                     scenes: [
                         {
                             text: `Shifu opens a portal and you follow him through. You are in front of the miku home base (the miku-scraper). It appears like she's already started to take over your world. Your companion explains that miku has set up a field around the skyscraper to block any portals from opening inside`,
+                            image: `images/refusal/5.jpg`,
                             options: [`Continue`],
                             scenes: [{
                                 text: `"Heh, yeahhh, no freakin’ way that’s happenin’" Peter Griffin interjects`,
-                                cutscene: [{ text: `Shifu knows that Miku is too powerful to take on alone. He knows of a few high level guards inside the building, and thinks you both would be able to convince that group to join you both and lay siege on Miku. You don't share his optimism, but you let him lead the way` }, { text: `You both walk in the front door of the miku-scraper to see a group of guards having a potluck on the ground floor. They recognize Shifu, and clamor around him, greeting him, dapping him up and the like.` }, { text: `Shifu talks about your plans to stop Miku's takeover, and the clamoring stops.` }],
+                                image: `images/refusal/9.jpg`,
+                                cutscene: [{ text: `Shifu knows that Miku is too powerful to take on alone. He knows of a few high level guards inside the building, and thinks you both would be able to convince that group to join you both and lay siege on Miku. You don't share his optimism, but you let him lead the way`, image: `images/refusal/6.jpg` }, { text: `You both walk in the front door of the miku-scraper to see a group of guards having a potluck on the ground floor. They recognize Shifu, and clamor around him, greeting him, dapping him up and the like.`, image: `images/refusal/7.jpg` }, { text: `Shifu talks about your plans to stop Miku's takeover, and the clamoring stops.`, image: `images/refusal/8.jpg` }],
                                 options: [`Oh ok I'll just do it myself then`, `Think of the lives at stake!`, `It'd be funny`],
                                 scenes: [{
                                     text: `He picks you up and flies you to the top of the skyscraper. "G'bye kid. This is just part of the job description" He drops you. YOU DIE`,
-                                    cutscene: [{ text: `"You’re really pushin’ my buttons here, kid. Hey LeBron, do your thing!" As Peter says this, LeBron flies over to you from a corner in the room.` }],
+                                    image: `images/oogway/lebronicide/3.jpg`,
+                                    cutscene: [{ text: `"You’re really pushin’ my buttons here, kid. Hey LeBron, do your thing!" As Peter says this, LeBron flies over to you from a corner in the room.`, image: `images/refusal/lebron-grab.jpg` }],
                                     options: [`Go back`, `Restart from beginning`],
                                     scenes: [{ path: [`p`] }, { path: [`P`] }]
                                 }, {
                                     text: `"Look, I already told ya—I can’t control these things, alright?" Peter Griffin explains, "But hey, this was actually pretty eye-openin’"`,
-                                    cutscene: [{ text: `As you say this, your vision cuts. You see a broken world, where people are both scared to die and be alive. There are posters of Miku's face everywhere` }, { text: `Your vision cuts back, and you look around. Everyone seems to have had the same vision as you` }, { text: `"You have to warn us before you use a cutaway gag" Shifu scolds` }],
+                                    image: `images/refusal/12.jpg`,
+                                    cutscene: [{ text: `As you say this, your vision cuts. You see a broken world, where people are both scared to die and be alive. There are posters of Miku's face everywhere`, image: `images/refusal/10.jpg` }, { text: `Your vision cuts back, and you look around. Everyone seems to have had the same vision as you`, image: `images/refusal/11.jpg` }, { text: `"You have to warn us before you use a cutaway gag" Shifu scolds`, image: `images/refusal/12.jpg`}],
                                     options: [`Continue`],
                                     scenes: [{
                                         function: () => {
@@ -126,17 +130,21 @@ const story = {
                                             delete inventory.gabriel;
                                         },
                                         text: `You see him step over to a corner where many guards are. Most guards seem taken aback by this proposition. You see four high ranking guards besides Peter in that corner, all of them eyeing you both. You'll only need to convince two of them to get a majority vote.\n\nIf you lose 3 relationship points that person’s vote is locked out and cannot be accessed again.`,
-                                        cutscene: [{ text: `Peter says, "I'll call for a vote in the guards' super fancy council thing about launchin’ a siege on Miku. You got my vote, obviously—but yeah, you're gonna have to sweet-talk the rest of those guys"` }],
+                                        image: `images/refusal/14.jpg`,
+                                        cutscene: [{ text: `Peter says, "I'll call for a vote in the guards' super fancy council thing about launchin’ a siege on Miku. You got my vote, obviously—but yeah, you're gonna have to sweet-talk the rest of those guys"`, image: `images/refusal/13.jpg` }],
                                         options: [`Continue`],
                                         scenes: [{
                                             text: `Who do you approach?`,
+                                            image: `images/refusal/15.jpg`,
                                             options: [`A man with sunglasses and a hat`, `Twintailed drilly haired redhead`, `A polar bear`, `A curly haired man`],
                                             scenes: [
                                                 {
                                                     text: `You approach Walter White, and he eyes you catiously`,
+                                                    image: `images/refusal/walter/1.jpg`,
                                                     options: [`We have to cook`, `Think of Walter White Jr.`],
                                                     scenes: [{
                                                         text: `With what lab? Miku stole my RV once I joined her army\n\n-1 relationship point!`,
+                                                        image: `images/refusal/walter/lab.jpg`,
                                                         options: [`Continue`],
                                                         scenes: [{ path: [`p`] }, {
                                                             text: `With what lab? Miku stole my RV once I joined her army. You know what, I'm tired of this. I'm voting against the rebellion\n\nYou lost Walter's vote!`,
@@ -151,8 +159,10 @@ const story = {
                                                         }
                                                     }, {
                                                         text: `How could I forget? Under Miku's reign, he's in real danger. She really likes picking on disabled kids. The situation here is too dangerous to agitate it.`,
+                                                        image: `images/refusal/walter/2.jpg`,
                                                         options: [`You can’t leave him to die, Walter!`, `Danger? I am the danger`],
                                                         scenes: [{
+                                                            image: `images/refusal/walter/yell.jpg`,
                                                             text: `Walter is taken aback by this. "Who do you think you are?? To ask me for help, and insult ME in YOUR time of need? You're on thin ice, pal"\n\n-2 relationship points!!`,
                                                             options: [`Focus up Walter`],
                                                             scenes: [{ path: [`p`] }, {
@@ -166,12 +176,14 @@ const story = {
                                                             }
                                                         }, {
                                                             text: `Say that again?`,
+                                                            image: `images/refusal/walter/3.jpg`,
                                                             options: [`Danger? I am the danger`],
                                                             scenes: [{
                                                                 text: `flungoid?`,
                                                                 options: [`It's a default thing this should never show up in game GRINGUS BUNK DORK SHLINK DONK`],
                                                                 scenes: [{
                                                                     text: `You see Walter's face light up with a childlike wonder "I haven't heard those words in 14 years. Alright kid, you have my vote."\n\nYOU HAVE WALTER'S VOTE!`,
+                                                                    image: `images/refusal/walter/4.jpg`,
                                                                     options: [`Continue`],
                                                                     scenes: [{ path: [`p`, `p`, `p`, `p`, `p`] }],
                                                                 }],
@@ -342,9 +354,11 @@ const story = {
                                                     }]
                                                 }, {
                                                     text: `You approach Gabriel and he daps you and Shifu up. "Waddup gang. You want smth?" Gabriel summons a mini fridge`,
+                                                    image: `images/refusal/gabriel/1.jpg`,
                                                     options: [`Nah that's ok`, `Yeah I'll take a Butterbeer`, `Yeah I'll take some blinker fluid`, `Yeah lemme get some silly string`, `Yeah I'll get myself a Kool-Aid`, `Yeah I'll take a Dr. Pepper`, `Yeah I'll take a Dark Elixir`, `Yeah I'll take a Duff Beer`, `Yeah I'll take a Nuka Cola`],
                                                     scenes: [{
                                                         text: `Just take smth man\n\n-1 relationship point!`,
+                                                        image: `images/refusal/gabriel/2.jpg`,
                                                         options: [`Ok`],
                                                         scenes: [{ path: [`p`] }, {
                                                             text: `Dude just get smth. Screw you dude\n\nYOU LOST GABRIEL'S VOTE!`,
@@ -357,6 +371,7 @@ const story = {
                                                         }
                                                     }, {
                                                         text: `Nah get smth good\n\n-1 relationship point!`,
+                                                        image: `images/refusal/gabriel/2.jpg`,
                                                         options: [`Ok`],
                                                         scenes: [{ path: [`p`] }, {
                                                             text: `Dude your taste sucks\n\nYOU LOST GABRIEL'S VOTE!`,
@@ -372,6 +387,7 @@ const story = {
                                                         options: [`not this either teehee-er`],
                                                         scenes: [{
                                                             text: `Hell yeah. Gabriel comes in for another dap up. You both clap harder than anyone has ever clapped before. This clap shakes the skyscraper, the surrounding city, and even LeBron\n\nYOU HAVE GABRIEL'S VOTE`,
+                                                            image: `images/refusal/gabriel/3.jpg`,
                                                             options: [`Continue`],
                                                             scenes: [{ path: [`p`, `p`, `p`] }]
                                                         }],
@@ -463,19 +479,23 @@ const story = {
                                     }]
                                 }, {
                                     text: `Hey, losing my job ain’t no joke, kid. You get it, don’t ya? Bein’ stuck in a job you can’t stand? I got your file right here, and I see you’ve been workin’ at that crappy burger joint for, what, 15 years? Yeah, you don’t like it any more than I do, but hey, sometimes you gotta do what you gotta do to make it through the day`,
+                                    image: `images/refusal/supersize/1.jpg`,
                                     options: [`I am NOTHING like you`, `wait but i love good burger`],
                                     scenes: [{ path: ['p', 0] }, {
                                         text: `So, lemme show ya the ropes—let me teach ya how to supersize a goodburger meal!"`,
-                                        cutscene: [{ text: `Peter sighs. "I don’t get you, kid. You’ve been stuck at that job for, what, half your life? No promotion, no change, just the same old grind"` }, { text: `"You’ve been livin' off minimum wage for 15 years! Doesn’t that just break ya? Don’t you wanna do somethin' different? I bet you don’t even know what a supersized meal is!"` }, { text: `Admittedly, you haven't heard of a supersize meal. Peter sighs once more` }, { text: `"Hey, kid. I might be crossin' a line here, but I gotta say, I like your spunk. It takes some serious guts to think you can take down Miku. And, ya know, I guess I feel for ya, 'cause I kinda get where you're comin' from` }],
+                                        image: `images/refusal/supersize/6.jpg`,
+                                        cutscene: [{ text: `Peter sighs. "I don’t get you, kid. You’ve been stuck at that job for, what, half your life? No promotion, no change, just the same old grind"`, image: `images/refusal/supersize/2.jpg` }, { text: `"You’ve been livin' off minimum wage for 15 years! Doesn’t that just break ya? Don’t you wanna do somethin' different? I bet you don’t even know what a supersized meal is!"`, image: `images/refusal/supersize/3.jpg` }, { text: `Admittedly, you haven't heard of a supersize meal. Peter sighs once more`, image: `images/refusal/supersize/4.jpg` }, { text: `"Hey, kid. I might be crossin' a line here, but I gotta say, I like your spunk. It takes some serious guts to think you can take down Miku. And, ya know, I guess I feel for ya, 'cause I kinda get where you're comin' from`, image: `images/refusal/supersize/5.jpg` }],
                                         options: [`Nah I'm good. Thanks tho!`, `Yes please!`],
                                         scenes: [{
                                             text: `Eh, suit yourself, kid. Your loss`,
+                                            image: `images/refusal/supersize/refusal.jpg`,
                                             options: [`Continue`],
                                             scenes: [{
                                                 path: ['p', 'p', 'p', 1, 0]
                                             }]
                                         }, {
                                             text: `Peter teaches you how to supersize a good burger meal. You now know how to supersize!`,
+                                            image: `images/refusal/supersize/7.jpg`,
                                             options: [`Continue`],
                                             item: 'supersize',
                                             scenes: [{
@@ -720,7 +740,7 @@ const story = {
                 }]
         },
         // the debug pathway
-        { path: [3, 0, 1, 1] }
+        { path: [3, 0, 0, 0, 1, 0, 0] }
     ]
 };
 
@@ -961,7 +981,7 @@ function typeWriter(localVersion) {
 }
 
 story.addParents();
-story.run();
+// story.run();
 
 // Debug Path
-// story.scenes[4].findPath().run();
+story.scenes[4].findPath().run();
