@@ -86,3 +86,33 @@ input {
     height: auto;
     border: 2px solid rgb(255, 255, 255);
 }
+
+
+
+
+
+#overlayHolder {
+    margin-top: 12rem;
+    position: absolute;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+    gap: 2px;
+}
+
+ /* #touchDiv0 { 
+    margin-left: 6px;
+} */
+/* #touchDiv1 { 
+    margin-left: 3px;
+}
+#touchDiv2 { 
+    margin-left: 1px;
+} */
+/* #touchDiv3 { 
+    margin-right: 4px;
+}  */

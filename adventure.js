@@ -720,7 +720,7 @@ const story = {
                 }]
         },
         // the debug pathway
-        { path: [3, 0, 1, 1] }
+        { path: [3] }
     ]
 };
 
@@ -927,7 +927,7 @@ function typeWriter(localVersion) {
 }
 
 story.addParents();
-// story.run();
+story.run();
 
 // Debug Path
-story.scenes[4].findPath().run();
+// story.scenes[4].findPath().run();

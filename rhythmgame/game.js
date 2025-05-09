@@ -2,14 +2,19 @@ let myGamePiece, myGamePiece2, myGamePiece3, myGamePiece4;
 let theLine;
 let myObstacles = [];
 let myScore;
-let myBody = document.querySelector(`body`)
-let scoreCounter = missCounter = jfkdead = jfk = maxCombo = netNoteIndex = 0;
+let myBody = document.querySelector(`body`);
+let scoreCounter = missCounter = jfkdead = jfk = maxCombo =  nextNoteIndex = 0;
+let touchPressed1, touchPressed2, touchPressed3, touchPressed4;
+let keyJustTouched1, keyJustTouched2, keyJustTouched3, keyJustTouched4;
 let comboDisplay;
+let touch1, touch2, touch3, touch4;
 let sillyCanvas;
 let gameHolder = document.getElementById(`gameHolder`);
 let statHolder = document.getElementById(`statHolder`);
+let overlayHolder = document.getElementById(`overlayHolder`);
 let theBtn = document.getElementById(`startBtn`);
 let theBody = document.querySelector(`body`);
+let touchIndex = 0;
 // let laneList;
 // let canvWidth = 270;
 let canvWidth = 400;
@@ -24,7 +29,6 @@ let lane1 = (canvWidth * (1.01 / 4));
 let lane2 = ((canvWidth * 2.015 / 4));
 let lane3 = (canvWidth * (3.02 / 4));
 const spawnLanes = [lane0, lane1, lane2, lane3];
-let nextNoteIndex = 0;
 let gameStartTime = null;
 let redWidth = canvWidth * (.9851 / 4);
 let redHeight = canvHeight * .83333;
@@ -54,8 +58,14 @@ function resetter() {
     combo = 1;
     timings = [];
     theBody.classList.remove(`BLINDING`);
+    touch1.classList.remove(`ALIVE`);
+    touch2.classList.remove(`ALIVE`);
+    touch3.classList.remove(`ALIVE`);
+    touch4.classList.remove(`ALIVE`);
+    rhythmRemoveEventListeners();
 }
 function startGameAll(thisScene) {
+    
     for (let i = 0; i < laneList.length; i++) {
         const obstacle = laneList[i];
         p = Number(obstacle[1]) + p;
@@ -72,19 +82,53 @@ function startGameAll(thisScene) {
         document.getElementById(`startBtn`).classList.add(`ALIVE`);
     }, 2250);
 }
+
+function createTouchOverlay(width, height, color) {
+    const div = document.createElement("div");
+    
+    // div.style.position = "absolute";
+    // div.style.left = x + "px";
+    // div.style.bottom = "0px";
+    div.style.width = width + "px";
+    div.style.height = height + "px";
+    div.style.backgroundColor = `transparent`; // make visible for debugging if needed
+    div.style.zIndex = 99999;
+    div.id = `touchDiv${touchIndex}`;
+    overlayHolder.appendChild(div);
+    touchIndex++;
+    div.classList.add(`ALIVE`);
+    return div;
+}
+
+
+
 function startGame() {
+    
     document.getElementById(`startBtn`).classList.remove(`ALIVE`);
     myGamePiece = new component(redWidth, 2, "red", lane0, redHeight);
     myGamePiece2 = new component(redWidth, 2, "red", lane1, redHeight);
     myGamePiece3 = new component(redWidth, 2, "red", lane2, redHeight);
     myGamePiece4 = new component(redWidth, 2, "red", lane3, redHeight);
+    //touchscreen here
+    // touch1 = new component(redWidth, 40, "transparent", lane0, redHeight);
+    // touch2 = new component(redWidth, 40, "transparent", lane1, redHeight);
+    // touch3 = new component(redWidth, 40, "transparent", lane2, redHeight);
+    // touch4 = new component(redWidth, 40, "transparent", lane3, redHeight);
+    touch1 = createTouchOverlay(redWidth, 300);
+    touch2 = createTouchOverlay(redWidth, 300);
+    touch3 = createTouchOverlay(redWidth, 300);
+    touch4 = createTouchOverlay(redWidth, 300);
+    
+
     // theLine = new component(270, 2, "red", 0, 400); //this doesnt do anything yet lol
     myScore = new component("30px", "Consolas", "white", 0, 90, "text");
     missCountDisplay = new component("30px", "Consolas", "white", 0, 120, "text");
     comboDisplay = new component("30px", "Consolas", "white", 0, 150, "text");
     nextNoteIndex = 0;
     lastFrameTime = null;
+
     myGameArea.start();
+    theEventListeners();
     music.currentTime = 0;
     music.volume = 0.05;
     setTimeout(() => {
@@ -153,7 +197,10 @@ function component(width, height, color, x, y, type) {
     }
 }
 // ALL ME BABY LETS GO 
-myBody.addEventListener(`keydown`, function (e) {
+
+
+
+function keyChecker(e) {
     if (e.key === `d` && !keyPressed) {
         keyPressed = true;
         keyJustPressed = true; // mark this as a new press
@@ -170,16 +217,54 @@ myBody.addEventListener(`keydown`, function (e) {
         keyPressed4 = true;
         keyJustPressed4 = true; // mark this as a new press
     }
-});
-// ALL ME BABY RAHHH
-myBody.addEventListener(`keyup`, function (e) {
+}
+function keyUpChecker(e) {
     if (e.key === `d` || e.key === `f` || e.key === `j` || e.key === `k`) {
         keyPressed = false;
         keyPressed2 = false;
         keyPressed3 = false;
         keyPressed4 = false;
     }
-});
+}
+function touchChecker1() {
+    touchPressed1 = true;
+    keyJustTouched1 = true;
+}
+function touchChecker2() {
+    touchPressed2 = true;
+    keyJustTouched2 = true;
+}
+function touchChecker3() {
+    touchPressed3 = true;
+    keyJustTouched3 = true;
+}
+function touchChecker4() {
+    touchPressed4 = true;
+    keyJustTouched4 = true;
+}
+
+function theEventListeners() {
+    console.log(`bingbingbing`);
+    myBody.addEventListener(`keydown`, keyChecker);
+    myBody.addEventListener(`keyup`, keyUpChecker);
+    touch1.addEventListener(`mousedown`, touchChecker1);
+    touch2.addEventListener(`mousedown`, touchChecker2);
+    touch3.addEventListener(`mousedown`, touchChecker3);
+    touch4.addEventListener(`mousedown`, touchChecker4);
+    
+}
+
+function rhythmRemoveEventListeners() {
+    myBody.removeEventListener(`keydown`, keyChecker);
+    myBody.removeEventListener(`keyup`, keyUpChecker);
+    touch1.removeEventListener(`mousedown`, touchChecker1);
+    touch2.removeEventListener(`mousedown`, touchChecker2);
+    touch3.removeEventListener(`mousedown`, touchChecker3);
+    touch4.removeEventListener(`mousedown`, touchChecker4);
+}
+// ALL ME BABY RAHHH
+
+
 // don't need to understand lol
 function drawLaneLines() {
     const ctx = myGameArea.context;
@@ -380,6 +465,7 @@ for (let i = laneList.length - 1; i>= 0, i--;) {
 
 function gameEnd(misses, maxcombo) {
     resetter();
+    
     setTimeout(() => {
         gameActive = false;
         if ((((laneList.length - misses) / laneList.length) * 100).toFixed(4) >= 65) {
@@ -458,28 +544,32 @@ function updateGameArea(timestamp) {
                 myObstacles.splice(i, 1);
                 continue;
             }
-            if (myGamePiece.crashWith(obstacle) && keyJustPressed && !obstacle.hit) {
+            if ((myGamePiece.crashWith(obstacle) && keyJustPressed && !obstacle.hit) || (myGamePiece.crashWith(obstacle) && keyJustTouched1 && !obstacle.hit)) {
+                console.log(`bing`)
                 scoreCounter += 100 * (combo);
                 combo += 1;
                 obstacle.hit = true;
                 myObstacles.splice(i, 1);
                 continue; // skip the rest of the loop for this one
             }
-            if (myGamePiece2.crashWith(obstacle) && keyJustPressed2 && !obstacle.hit) {
+            if ((myGamePiece2.crashWith(obstacle) && keyJustPressed2 && !obstacle.hit) || (myGamePiece2.crashWith(obstacle) && keyJustTouched2 && !obstacle.hit)) {
+                console.log(`bingbing`)
                 scoreCounter += 100 * (combo);
                 combo += 1;
                 obstacle.hit = true;
                 myObstacles.splice(i, 1);
                 continue; // skip the rest of the loop for this one
             }
-            if (myGamePiece3.crashWith(obstacle) && keyJustPressed3 && !obstacle.hit) {
+            if ((myGamePiece3.crashWith(obstacle) && keyJustPressed3 && !obstacle.hit) || (myGamePiece3.crashWith(obstacle) && keyJustTouched3 && !obstacle.hit)) {
+                console.log(`bingbingbing`)
                 scoreCounter += 100 * (combo);
                 combo += 1;
                 obstacle.hit = true;
                 myObstacles.splice(i, 1);
                 continue; // skip the rest of the loop for this one
             }
-            if (myGamePiece4.crashWith(obstacle) && keyJustPressed4 && !obstacle.hit) {
+            if ((myGamePiece4.crashWith(obstacle) && keyJustPressed4 && !obstacle.hit) || (myGamePiece4.crashWith(obstacle) && keyJustTouched4 && !obstacle.hit)) {
+                console.log(`bingbingbingbing`)
                 scoreCounter += 100 * (combo);
                 combo += 1;
                 obstacle.hit = true;
@@ -501,6 +591,7 @@ function updateGameArea(timestamp) {
         missCountDisplay.update();
         // Reset keys for one-time press detection
         keyJustPressed = keyJustPressed2 = keyJustPressed3 = keyJustPressed4 = false;
+        keyJustTouched1 = keyJustTouched2 = keyJustTouched3 = keyJustTouched4 = false;
         requestAnimationFrame(updateGameArea);
     }
 }
