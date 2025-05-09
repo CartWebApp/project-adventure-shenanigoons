@@ -86,3 +86,9 @@ input {
     height: auto;
     border: 2px solid rgb(255, 255, 255);
 }
+
+#options li:hover { 
+    transform: translateY(-3px);
+    background-color: rgba(133, 133, 133, 0.304);
+    cursor: pointer;
+}

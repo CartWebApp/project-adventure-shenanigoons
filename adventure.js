@@ -498,19 +498,19 @@ const story = {
                                 scenes: [{ path: ['p', 1] }]
                             }, {
                                 text: `Knowing that Miku is on her way, through the fortunately slow wifi, you join up with Earth's heroes, and warn them of Miku's destructive power.`, image: `images/prison/8.jpg`,
-                                cutscene: [{ text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd," Miku jests. You are in a prison.`, image: `images/prison/5.jpg`}, { text: `You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension. Miku probably has full coverage of wifi, and spys on people through that`, image: `images/prison/6.jpg` }, { text: `The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way`, image: `images/prison/7.jpg` }],
+                                cutscene: [{ text: `Miku grabs you and throws you through a portal. "Lmao get jailed nerd," Miku jests. You are in a prison.`, image: `images/prison/5.jpg` }, { text: `You begin to form a plan, thinking of how in the world you would possibly escape the miku regime. Finally, you try to contact your world's heroes, because somehow, your phone works in this other dimension. Miku probably has full coverage of wifi, and spys on people through that`, image: `images/prison/6.jpg` }, { text: `The greatest of Earth's heroes show up, DanTDM, PewDiePie, Stampy, and Markiplier. Unfortunately for you, Miku knows that you accessed her wifi, and is on her way`, image: `images/prison/7.jpg` }],
                                 options: [`Continue`],
                                 scenes: [{
                                     text: `"Where do you think you're going?"`, image: `images/prison/12.jpg`,
-                                    cutscene: [{ text: `On your way out, the door is closed, and a hooded man is guarding the door in which the heroes came through`, image: `images/prison/9.jpg` }, { text: `"You know, God gave me a gift to do other things besides play the game of basketball"`, image: `images/prison/10.jpg`}, { text: `Feeling this man's aura, you realize that he is the GOAT, LeBron James`, image: `images/prison/11.jpg`}],
+                                    cutscene: [{ text: `On your way out, the door is closed, and a hooded man is guarding the door in which the heroes came through`, image: `images/prison/9.jpg` }, { text: `"You know, God gave me a gift to do other things besides play the game of basketball"`, image: `images/prison/10.jpg` }, { text: `Feeling this man's aura, you realize that he is the GOAT, LeBron James`, image: `images/prison/11.jpg` }],
                                     options: [`I'm gonna end Miku's reign once and for all! She needs to realize that this world is not hers!`, `Sorry, my GOAT, I did not know you were the guard here, I’ll go back…`],
                                     scenes: [{
                                         text: `"Of course I know you're here, kid, I've been hiding in your wifi, waiting for your attempt at retribution"`, image: `images/prison/destroy/5.jpg`,
-                                        cutscene: [{ text: `"You seem like a baller, kid, and you're honest. I respect that. I'm gonna give you some advice that Warren Buffet once told me, he said, "always follow your gut. When you have that gut feeling, you have to go with it, don't go back on it"`, image: `images/prison/destroy/1.jpg` }, { text: `LeBron grabs you and your team, dunks you and your team through a portal to the top floor of the Miku scraper`, image: `images/prison/destroy/2.jpg` }, { text: `You land atop the Miku scraper, seeing the manaical vocaloid sitting atop a throne facing away from you, toward the now dystopian city, a city you once knew to be yours`, image: `images/prison/destroy/3.jpg` }, { text: `You say to your gang, "Maybe she doesn't know we're here."`}, { text: `As you say these words, World is Mine starts playing from all around you, and her throne spins 540 degrees (she accidentally 360'd, then finally turned it around correctly)`, image: `images/prison/destroy/4.jpg` }],
+                                        cutscene: [{ text: `"You seem like a baller, kid, and you're honest. I respect that. I'm gonna give you some advice that Warren Buffet once told me, he said, "always follow your gut. When you have that gut feeling, you have to go with it, don't go back on it"`, image: `images/prison/destroy/1.jpg` }, { text: `LeBron grabs you and your team, dunks you and your team through a portal to the top floor of the Miku scraper`, image: `images/prison/destroy/2.jpg` }, { text: `You land atop the Miku scraper, seeing the manaical vocaloid sitting atop a throne facing away from you, toward the now dystopian city, a city you once knew to be yours`, image: `images/prison/destroy/3.jpg` }, { text: `You say to your gang, "Maybe she doesn't know we're here."` }, { text: `As you say these words, World is Mine starts playing from all around you, and her throne spins 540 degrees (she accidentally 360'd, then finally turned it around correctly)`, image: `images/prison/destroy/4.jpg` }],
                                         options: [`Surrender`, `Fight Hatsune Miku`],
                                         scenes: [{
                                             text: `"You? You weaklings? What do you have to offer me, I could do just fine without you."\n\nWho responds?`, image: `images/prison/destroy/surrender/4.jpg`,
-                                            cutscene: [{ text: `Feeling her magical power, you feel completely oppressed. You say to your team, "We can't do this, nobody on this Earth is powerful enough"`, image: `images/prison/destroy/surrender/1.jpg`}, { text: `The team looks at each other, nods amongst themselves, and approaches Miku. All thoughts of attempting to fight Miku have vanished, you've made peace with your life without Good Burger`, image: `images/prison/destroy/surrender/2.jpg` }, { text: `"We would like to serve you, to become your personal strike team"`, image: `images/prison/destroy/surrender/3.jpg` }],
+                                            cutscene: [{ text: `Feeling her magical power, you feel completely oppressed. You say to your team, "We can't do this, nobody on this Earth is powerful enough"`, image: `images/prison/destroy/surrender/1.jpg` }, { text: `The team looks at each other, nods amongst themselves, and approaches Miku. All thoughts of attempting to fight Miku have vanished, you've made peace with your life without Good Burger`, image: `images/prison/destroy/surrender/2.jpg` }, { text: `"We would like to serve you, to become your personal strike team"`, image: `images/prison/destroy/surrender/3.jpg` }],
                                             options: [`DanTDM`, `Markiplier`],
                                             scenes: [{
                                                 text: `DanTDM replies, hoping that he will say the right thing, "Make me a sandwich, woman!" Miku is completely surprised that he would say such a thing. She looks you dead in the eyes. "Do you condone this?"`, image: `images/prison/destroy/surrender/5.jpg`,
@@ -551,7 +551,7 @@ const story = {
                                         }]
                                     }, {
                                         text: `You start walking back to your designated cell area, and while you're walking back, you think about what he was saying, and you begin to get confused. You think to yourself, why would he say that?`, image: `images/prison/walkback/2.jpg`,
-                                        cutscene: [{ text: `LeBron says, "Yeah, sure ahaha, just make sure that you take care of your mattress covers." LeBron winks at you`, image: `images/prison/walkback/1.jpg`}],
+                                        cutscene: [{ text: `LeBron says, "Yeah, sure ahaha, just make sure that you take care of your mattress covers." LeBron winks at you`, image: `images/prison/walkback/1.jpg` }],
                                         options: [`Go back to LeBron`, `Go back to your cell`],
                                         scenes: [{ path: ['p'] }, {
                                             text: `placeholder`,
@@ -802,7 +802,7 @@ Object.prototype.run = function () {
         } else {
             let object = this;
 
-            document.addEventListener(`keydown`, function select(e) {
+            function select(e) {
                 if (parseInt(e.key) > 0 && parseInt(e.key) <= object.options.length && !gameActive) {
                     if (!object.scenes[parseInt(e.key) - 1].locked) {
 
@@ -810,7 +810,7 @@ Object.prototype.run = function () {
                             delete object.cutsceneRan;
                         }
 
-                        if (!('scenes' in object.scenes[parseInt(e.key) - 1]) && !object.scenes[parseInt(e.key) - 1].ending) {
+                        if (!('scenes' in object.scenes[parseInt(e.key) - 1])) {
                             object.scenes[parseInt(e.key) - 1].findPath().run();
                         } else {
                             object.scenes[parseInt(e.key) - 1].run();
@@ -821,7 +821,29 @@ Object.prototype.run = function () {
                         document.getElementById(`text`).innerHTML = `That path is locked!<br><br>` + document.getElementById(`text`).innerHTML;
                     }
                 }
-            })
+            }
+
+            for (let i = 0; i < options.children.length; i++) {
+                options.children[i].addEventListener('click', () => {
+                    if (!gameActive && !object.scenes[i].locked) {
+                        if (object.cutsceneRan) {
+                            delete object.cutsceneRan;
+                        }
+
+                        if (!('scenes' in object.scenes[i])) {
+                            object.scenes[i].findPath().run();
+                        } else {
+                            object.scenes[i].run();
+                        }
+                        document.removeEventListener(`keydown`, select);
+                    }
+                    if ('locked' in object.scenes[i] && object.scenes[i].locked && !text.innerHTML.includes(`That path is locked!`)) {
+                        document.getElementById(`text`).innerHTML = `That path is locked!<br><br>` + document.getElementById(`text`).innerHTML;
+                    }
+                })
+            }
+
+            document.addEventListener(`keydown`, select);
         }
     }
 }
@@ -841,10 +863,20 @@ Object.prototype.runScene = function (parent, i) {
 
     let scene = this;
 
-    document.addEventListener(`keydown`, function select(e) {
+    options.children[0].addEventListener(`click`, () => {
+        document.removeEventListener(`keydown`, select);
+        if (i + 1 === parent.cutscene.length) {
+            parent.cutsceneRan = true;
+            parent.run();
+        } else {
+            i++;
+            parent.cutscene[i].runScene(parent, i);
+        }
+    })
+
+    function select(e) {
         if (e.key == 1) {
             document.removeEventListener(`keydown`, select);
-            options.children[0].addEventListener(`click`, select);
             if (i + 1 === parent.cutscene.length) {
                 parent.cutsceneRan = true;
                 parent.run();
@@ -853,7 +885,9 @@ Object.prototype.runScene = function (parent, i) {
                 parent.cutscene[i].runScene(parent, i);
             }
         }
-    })
+    }
+
+    document.addEventListener(`keydown`, select);
 }
 
 // adds parents to all the objects
@@ -927,7 +961,7 @@ function typeWriter(localVersion) {
 }
 
 story.addParents();
-// story.run();
+story.run();
 
 // Debug Path
-story.scenes[4].findPath().run();
+// story.scenes[4].findPath().run();
