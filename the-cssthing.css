@@ -116,3 +116,8 @@ input {
 /* #touchDiv3 { 
     margin-right: 4px;
 }  */
+#options li:hover { 
+    transform: translateY(-3px);
+    background-color: rgba(133, 133, 133, 0.304);
+    cursor: pointer;
+}
