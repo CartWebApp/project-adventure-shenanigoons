@@ -740,7 +740,12 @@ const story = {
                 }]
         },
         // the debug pathway
-        { path: [3, 0, 0, 0, 1, 0, 0] }
+        { path: [3, 1, 0, 0, 2, 1, 1] }
+
+
+
+        // oogway rhythm game path
+        // { path: [3, 1, 0, 0, 2, 1, 1] }
     ]
 };
 

@@ -7,6 +7,9 @@ let scoreCounter = missCounter = jfkdead = jfk = maxCombo =  nextNoteIndex = 0;
 let touchPressed1, touchPressed2, touchPressed3, touchPressed4;
 let keyJustTouched1, keyJustTouched2, keyJustTouched3, keyJustTouched4;
 let comboDisplay;
+
+let touchMade = 0;
+
 let touch1, touch2, touch3, touch4;
 let sillyCanvas;
 let gameHolder = document.getElementById(`gameHolder`);
@@ -65,7 +68,7 @@ function resetter() {
     rhythmRemoveEventListeners();
 }
 function startGameAll(thisScene) {
-    
+    overlayHolder.classList.add(`ALIVE`);
     for (let i = 0; i < laneList.length; i++) {
         const obstacle = laneList[i];
         p = Number(obstacle[1]) + p;
@@ -114,10 +117,13 @@ function startGame() {
     // touch2 = new component(redWidth, 40, "transparent", lane1, redHeight);
     // touch3 = new component(redWidth, 40, "transparent", lane2, redHeight);
     // touch4 = new component(redWidth, 40, "transparent", lane3, redHeight);
-    touch1 = createTouchOverlay(redWidth, 300);
-    touch2 = createTouchOverlay(redWidth, 300);
-    touch3 = createTouchOverlay(redWidth, 300);
-    touch4 = createTouchOverlay(redWidth, 300);
+    if (!touchMade) {
+        touch1 = createTouchOverlay(redWidth, 500);
+        touch2 = createTouchOverlay(redWidth, 500);
+        touch3 = createTouchOverlay(redWidth, 500);
+        touch4 = createTouchOverlay(redWidth, 500);
+    }
+    
     
 
     // theLine = new component(270, 2, "red", 0, 400); //this doesnt do anything yet lol
@@ -244,7 +250,6 @@ function touchChecker4() {
 }
 
 function theEventListeners() {
-    console.log(`bingbingbing`);
     myBody.addEventListener(`keydown`, keyChecker);
     myBody.addEventListener(`keyup`, keyUpChecker);
     touch1.addEventListener(`mousedown`, touchChecker1);
@@ -301,12 +306,13 @@ const laneList = [
     `k1`, `d1`, `f1`, `d1`,
 
     `j1`, `f1`, `j1`, `f1`,
-
+    //16 combo
     `k1`, `j1`, `k1`, `j1`,
     `k1`, `k1`, `j1`, `f1`,
     `d1`, `k1`, `j1`, `k1`,
 
     `k5`, `f2`, `j2`, `d2`,
+    //32combo
     `k2`, `d1`, `j1`, `f1`,
 
     `j5`, `d2`, `k2`, `f2`,
@@ -314,71 +320,98 @@ const laneList = [
     `d2`, `k1`, `d1`, `k1`,
 
     `k5`, `k2`, `d2`, `d2`,
-
+    //48combo
     `d2`, `k1`, `f1`, `j1`,
     `d1`, `d2`, `f2`, `k2`,
     `d2`, `j2`, `d2`, `f1`,
 
     `j1`, `k1`, `d1`, `f1`,
+    //64combo
     `d1`, `k2`, `j2`, `d2`,
     `f2`,
+    //69combo
     //anyone can find me (25sec)
     `d2`, `k1`, `f1`, `d1`,
     `j1`, `f2`,
+    //75combo
     //hear your music 
     `d2`, `k1`,
     `f1`, `j1`, `d1`, `k2`,
+    //81combo
     //running through my mind (29sec)
     `k2`, `j1`, `f1`, `d1`,
     `k1`,
+    //86combo
     //im thinking
     `f1`, `j1`, `k1`,
+    //89combo     ^
     //miku miku (31sec)
     `d1`, `k2`, `d2`, `k2`,
+    //93combo           ^
     //oo ee oo
     `d2`, `k1`, `j1`, `f1`,
+    //97               ^
     //im thinking
     `k2`, `j1`, `f1`,
+    //100combo    ^
+
     //miku miku (34sec)
     `k1`, `d2`, `k2`, `d2`,
     //oo ee oo 
     `k2`, `d1`, `j1`, `f1`,
+    //108combo         ^
 
     `d2`, `f1`, `k1`, `j1`,
 
     `f1`, `j1`, `f1`, `k1`,
+    //116combo         ^
     `d1`, `k1`, `d1`,
     //oo ee oo
     `j1`, `f1`, `j1`, `f1`,
     //musica -> im thinking
     `j1`, `k1`, `j1`, `d1`,
+    //127combo         ^
     //miku miku 
     `j1`, `k1`, `k1`, `j1`,
     `f1`, `d1`, `d1`, `f1`,
+    //135combo         ^
     //oo ee oo
     `k1`, `f1`, `d1`, `d1`,
+    //139combo         ^
     //musica
     `d2`, `k1`, `d1`,
+    //142combo   ^
     //im on 
     `k1`, `j2`,
+    //144combo^
     //top of the world (46sec)
-    `f1`, `d1`, `j1`, `k1`,
+    `f2`, `d1`, `j1`, `k1`,
     //because of you
-    `d4`, `k2`, `j1`, `d1`,
+    `d3`, `k2`, `j1`, `d1`,
+    //156combo         ^
     //all i 
     `k2`, `f0`,
     `j2`, `d0`,
-
+    //160combo^
+    //wanted to do
     `f2`, `k1`, `j1`, `d1`,
-
+    //164combo        ^
+    //is follow you
     `d3`, `f2`, `j1`, `k1`,
-
+    //168combo          ^
+    //ill keep
     `k2`, `j2`,
-
+    //170combo ^
+    //singing along
     `f2`, `d1`, `f1`, `j1`,
+    //174combo        ^
+    //to
+    `j3 `,
+    //all of you 
+    `f2`, `k1`, `j1`,
+    //ill keep
+    `f2`, `f2`,
 
-    `j2`, `f2`, `k1`, `j1`,
-    `f3`, `f2`,
     `f2`, `j1`, `k1`, `j1`,
     `d1`, `f1`,
     `k1`, `j1`, `f1`,
@@ -465,7 +498,13 @@ for (let i = laneList.length - 1; i>= 0, i--;) {
 
 function gameEnd(misses, maxcombo) {
     resetter();
-    
+    overlayHolder.classList.remove(`ALIVE`);
+    touch1.classList.remove(`ALIVE`);
+    touch2.classList.remove(`ALIVE`);
+    touch3.classList.remove(`ALIVE`);
+    touch4.classList.remove(`ALIVE`);
+    touchIndex = 0;
+    touchMade = 1;
     setTimeout(() => {
         gameActive = false;
         if ((((laneList.length - misses) / laneList.length) * 100).toFixed(4) >= 65) {
@@ -545,7 +584,7 @@ function updateGameArea(timestamp) {
                 continue;
             }
             if ((myGamePiece.crashWith(obstacle) && keyJustPressed && !obstacle.hit) || (myGamePiece.crashWith(obstacle) && keyJustTouched1 && !obstacle.hit)) {
-                console.log(`bing`)
+
                 scoreCounter += 100 * (combo);
                 combo += 1;
                 obstacle.hit = true;
@@ -553,7 +592,7 @@ function updateGameArea(timestamp) {
                 continue; // skip the rest of the loop for this one
             }
             if ((myGamePiece2.crashWith(obstacle) && keyJustPressed2 && !obstacle.hit) || (myGamePiece2.crashWith(obstacle) && keyJustTouched2 && !obstacle.hit)) {
-                console.log(`bingbing`)
+
                 scoreCounter += 100 * (combo);
                 combo += 1;
                 obstacle.hit = true;
@@ -561,7 +600,7 @@ function updateGameArea(timestamp) {
                 continue; // skip the rest of the loop for this one
             }
             if ((myGamePiece3.crashWith(obstacle) && keyJustPressed3 && !obstacle.hit) || (myGamePiece3.crashWith(obstacle) && keyJustTouched3 && !obstacle.hit)) {
-                console.log(`bingbingbing`)
+
                 scoreCounter += 100 * (combo);
                 combo += 1;
                 obstacle.hit = true;
@@ -569,7 +608,7 @@ function updateGameArea(timestamp) {
                 continue; // skip the rest of the loop for this one
             }
             if ((myGamePiece4.crashWith(obstacle) && keyJustPressed4 && !obstacle.hit) || (myGamePiece4.crashWith(obstacle) && keyJustTouched4 && !obstacle.hit)) {
-                console.log(`bingbingbingbing`)
+
                 scoreCounter += 100 * (combo);
                 combo += 1;
                 obstacle.hit = true;

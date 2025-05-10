@@ -92,9 +92,9 @@ input {
 
 
 #overlayHolder {
-    margin-top: 12rem;
+    margin-top: 18rem;
     position: absolute;
-    display: flex;
+    display: none;
     align-self: center;
     justify-content: center;
     align-items: center;
@@ -120,4 +120,27 @@ input {
     transform: translateY(-3px);
     background-color: rgba(133, 133, 133, 0.304);
     cursor: pointer;
+}
+
+
+
+
+
+@media screen and (max-width: 950px) {
+    body { 
+        margin: 0;
+    }
+    #gameHolder { 
+        width: 97% !important;
+        height: auto;
+        margin: 0 !important;
+    }
+    #textContainer { 
+        width: 90% !important;
+        overflow-y: auto;
+    }
+    #options {
+        width: 92% !important;
+        overflow-y: auto;
+    }
 }
